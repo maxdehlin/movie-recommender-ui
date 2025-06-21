@@ -37,9 +37,10 @@ function LandingPage() {
             </div>
             <Link
               to='/login'
-              className='px-6 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-indigo-500/25 border border-indigo-400/20'
+              className='relative px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-indigo-500/25 border border-indigo-400/30 overflow-hidden group bg-no-repeat'
             >
-              Get Started
+              <div className='absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300'></div>
+              <span className='relative z-10 drop-shadow-sm'>Get Started</span>
             </Link>
           </div>
         </div>
@@ -68,9 +69,12 @@ function LandingPage() {
               <div className='flex flex-col sm:flex-row items-center justify-center gap-6'>
                 <Link
                   to='/login'
-                  className='px-12 py-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 text-white rounded-2xl font-bold text-lg transition-all duration-500 hover:scale-105 shadow-2xl hover:shadow-purple-500/30 border border-indigo-400/20 tracking-wide'
+                  className='relative px-12 py-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-700 hover:via-purple-700 hover:to-pink-700 text-white rounded-2xl font-bold text-lg transition-all duration-500 hover:scale-105 shadow-2xl hover:shadow-purple-500/30 border border-indigo-400/30 tracking-wide overflow-hidden group bg-no-repeat'
                 >
-                  Start Discovering
+                  <div className='absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300'></div>
+                  <span className='relative z-10 drop-shadow-sm'>
+                    Start Discovering
+                  </span>
                 </Link>
                 <div className='flex items-center space-x-4 text-white/60'>
                   <div className='flex items-center space-x-2'>
