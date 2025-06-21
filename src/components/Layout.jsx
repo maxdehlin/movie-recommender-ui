@@ -35,9 +35,9 @@ function Layout({ onLogout }) {
               </div>
               <div>
                 <h1 className='text-xl font-bold text-white tracking-tight'>
-                  MovieMind
+                  MovieRecs
                 </h1>
-                <p className='text-xs text-white/60 font-medium hidden sm:block'>
+                <p className='text-xs text-white/50 font-medium hidden sm:block'>
                   AI-Powered Recommendations
                 </p>
               </div>
