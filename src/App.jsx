@@ -6,8 +6,8 @@ import {
   Navigate,
 } from 'react-router-dom'
 import './App.css'
-import LoginPage from './LoginPage'
-import RatingPage from './RatingPage'
+import LoginPage from './pages/LoginPage'
+import RatingPage from './pages/RatingPage'
 import LandingPage from './pages/LandingPage'
 import Dashboard from './pages/Dashboard'
 import MovieDetails from './pages/MovieDetails'

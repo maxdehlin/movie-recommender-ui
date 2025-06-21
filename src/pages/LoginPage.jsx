@@ -1,5 +1,5 @@
 import React from 'react'
-import api from './utils/api'
+import api from '../utils/api'
 
 const BACKEND_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 const isDevelopment = import.meta.env.DEV
