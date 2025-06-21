@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 function LandingPage() {
   return (
-    <div className='min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-950 relative overflow-hidden w-screen'>
+    <div className='min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-950 relative overflow-hidden w-screen flex flex-col'>
       {/* Background Pattern */}
       <div
         className='absolute inset-0 opacity-20'
@@ -47,7 +47,7 @@ function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <main className='relative z-10'>
+      <main className='relative z-10 flex-1'>
         <div className='max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-32'>
           <div className='text-center space-y-12'>
             {/* Hero Content */}
