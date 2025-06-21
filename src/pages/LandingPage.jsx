@@ -28,7 +28,7 @@ function LandingPage() {
               </div>
               <div>
                 <h1 className='text-xl font-bold text-white tracking-tight'>
-                  MovieMind
+                  MovieRecs
                 </h1>
                 <p className='text-xs text-white/60 font-medium'>
                   AI-Powered Recommendations
@@ -60,7 +60,7 @@ function LandingPage() {
                   </span>
                 </h1>
                 <p className='text-xl md:text-2xl text-white/70 font-light leading-relaxed max-w-3xl mx-auto'>
-                  Powered by AI, MovieMind learns your taste and recommends
+                  Powered by AI, MovieRecs learns your taste and recommends
                   films you'll absolutely love. Rate a few movies and unlock
                   personalized recommendations.
                 </p>
@@ -140,7 +140,7 @@ function LandingPage() {
         <div className='max-w-7xl mx-auto px-6 lg:px-8 py-8'>
           <div className='text-center'>
             <p className='text-white/50 text-sm'>
-              © 2024 MovieMind. Discover movies you'll love with AI-powered
+              © 2024 MovieRecs. Discover movies you'll love with AI-powered
               recommendations.
             </p>
           </div>
