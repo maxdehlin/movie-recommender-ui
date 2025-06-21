@@ -233,9 +233,12 @@ function Dashboard() {
                 </div>
                 <Link
                   to='/rate'
-                  className='inline-flex px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white rounded-2xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-indigo-500/25 border border-indigo-400/20'
+                  className='relative inline-flex px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-2xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-indigo-500/25 border border-indigo-400/30 overflow-hidden group bg-no-repeat'
                 >
-                  Rate Your First Movie
+                  <div className='absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300'></div>
+                  <span className='relative z-10 drop-shadow-sm'>
+                    Rate Your First Movie
+                  </span>
                 </Link>
               </div>
             </div>

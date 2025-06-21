@@ -30,7 +30,7 @@ function Layout({ onLogout }) {
           <div className='flex items-center justify-between h-16'>
             {/* Logo */}
             <Link to='/dashboard' className='flex items-center space-x-3 group'>
-              <div className='w-10 h-10 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-indigo-500/25 transition-all duration-300'>
+              <div className='w-10 h-10 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-indigo-500/25 transition-all duration-300 bg-no-repeat'>
                 <span className='text-white font-bold text-lg'>🎬</span>
               </div>
               <div>
@@ -49,7 +49,7 @@ function Layout({ onLogout }) {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`px-4 py-2 rounded-xl font-medium text-sm transition-all duration-300 hover:scale-105 ${
+                  className={`px-4 py-2 rounded-xl font-medium text-sm transition-all duration-300 hover:scale-105 bg-no-repeat ${
                     isActive(item.href)
                       ? 'bg-gradient-to-r from-indigo-500/30 to-purple-500/30 text-white border border-indigo-400/30 shadow-lg'
                       : 'text-white/70 hover:text-white hover:bg-white/10'
@@ -65,7 +65,7 @@ function Layout({ onLogout }) {
             <div className='flex items-center space-x-4'>
               <button
                 onClick={onLogout}
-                className='px-4 py-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 hover:from-red-500/30 hover:to-pink-500/30 text-white border border-red-500/30 hover:border-red-400/50 rounded-xl transition-all duration-300 hover:scale-105 backdrop-blur-sm font-medium text-sm tracking-wide shadow-lg hover:shadow-red-500/20'
+                className='px-4 py-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 hover:from-red-500/30 hover:to-pink-500/30 text-white border border-red-500/30 hover:border-red-400/50 rounded-xl transition-all duration-300 hover:scale-105 backdrop-blur-sm font-medium text-sm tracking-wide shadow-lg hover:shadow-red-500/20 bg-no-repeat'
               >
                 Sign Out
               </button>

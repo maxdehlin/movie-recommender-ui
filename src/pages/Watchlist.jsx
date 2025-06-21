@@ -57,7 +57,7 @@ function Watchlist() {
                   </h3>
                   <button
                     onClick={() => removeFromWatchlist(movie)}
-                    className='w-10 h-10 bg-red-500/20 hover:bg-red-500/30 rounded-full flex items-center justify-center text-red-300 hover:text-white transition-all duration-300'
+                    className='w-10 h-10 bg-red-500/20 hover:bg-red-500/30 rounded-full flex items-center justify-center text-red-300 hover:text-white transition-all duration-300 bg-no-repeat'
                   >
                     <svg
                       className='w-5 h-5'
