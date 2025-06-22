@@ -2,6 +2,7 @@ import { Outlet, useLocation, Link } from 'react-router-dom'
 import { useState } from 'react'
 import { ToastContainer } from './Toast'
 import useToast from '../hooks/useToast'
+import cx from 'clsx'
 
 function SidebarLayout({ onLogout }) {
   const location = useLocation()
@@ -43,17 +44,18 @@ function SidebarLayout({ onLogout }) {
 
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 z-50 ${
-          sidebarCollapsed ? 'w-16' : 'w-64'
-        } bg-charcoal-light/95 backdrop-blur-xl border-r border-gray-600/30 flex flex-col transform transition-all duration-300 lg:translate-x-0 ${
+        className={cx(
+          'fixed inset-y-0 left-0 z-50 bg-charcoal-light/95 backdrop-blur-xl border-r border-gray-600/30 flex flex-col transform transition-all duration-300 lg:translate-x-0',
+          sidebarCollapsed ? 'w-16' : 'w-64',
           isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
+        )}
       >
         {/* Logo */}
         <div
-          className={`flex items-center ${
+          className={cx(
+            'flex items-center border-b border-gray-600/30 transition-all duration-300',
             sidebarCollapsed ? 'justify-center p-4' : 'space-x-3 p-6'
-          } border-b border-gray-600/30 transition-all duration-300`}
+          )}
         >
           <div className='w-10 h-10 bg-gradient-to-br from-crimson to-crimson-dark rounded-full flex items-center justify-center shadow-xl border-2 border-crimson/20'>
             <span className='text-cream font-bold text-lg'>🎬</span>
@@ -87,75 +89,59 @@ function SidebarLayout({ onLogout }) {
         </div>
 
         {/* Navigation */}
-        <nav className='flex-1 px-4 py-6 space-y-2'>
+        <nav className='flex-1 py-6'>
           {navigation.map((item) => (
             <Link
               key={item.name}
               to={item.href}
-              className={`relative flex items-center ${
-                sidebarCollapsed ? 'justify-center px-2' : 'space-x-3 px-4'
-              } py-3 rounded-xl font-medium text-sm transition-all duration-500 hover:scale-105 group overflow-hidden touch-manipulation ${
+              className={cx(
+                'relative flex items-center py-3 font-medium text-sm transition-all duration-200 group touch-manipulation',
+                sidebarCollapsed ? 'justify-center px-2' : 'space-x-3 px-4',
                 isActive(item.href)
-                  ? 'bg-gradient-to-r from-teal/30 to-crimson/30 text-cream shadow-lg shadow-teal/20'
-                  : 'text-muted-gray hover:text-cream hover:bg-charcoal-light/60 backdrop-blur-sm'
-              }`}
+                  ? 'bg-charcoal-900 text-cream'
+                  : 'text-muted-gray hover:text-cream hover:bg-charcoal-900 active:bg-charcoal-900'
+              )}
               onClick={() => setIsMobileMenuOpen(false)}
               title={sidebarCollapsed ? item.name : ''}
             >
-              <span className='relative z-10 text-xl group-hover:animate-pulse'>
-                {item.icon}
-              </span>
+              <span className='text-xl'>{item.icon}</span>
               {!sidebarCollapsed && (
-                <span className='relative z-10 tracking-wide'>{item.name}</span>
+                <span className='tracking-wide'>{item.name}</span>
               )}
-
-              {/* Hover glow effect */}
-              <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
             </Link>
           ))}
         </nav>
 
         {/* User Actions at Bottom */}
-        <div className='p-4 space-y-2 border-t border-gray-600/30'>
+        <div className='border-t border-gray-600/30'>
           <Link
             to='/profile'
-            className={`relative flex items-center ${
-              sidebarCollapsed ? 'justify-center px-2' : 'space-x-3 px-4'
-            } py-3 rounded-xl font-medium text-sm transition-all duration-500 hover:scale-105 group overflow-hidden touch-manipulation ${
+            className={cx(
+              'relative flex items-center py-3 font-medium text-sm transition-all duration-200 group touch-manipulation',
+              sidebarCollapsed ? 'justify-center px-2' : 'space-x-3 px-4',
               isActive('/profile')
-                ? 'bg-gradient-to-r from-teal/30 to-crimson/30 text-cream shadow-lg shadow-teal/20'
-                : 'text-muted-gray hover:text-cream hover:bg-charcoal-light/60 backdrop-blur-sm'
-            }`}
+                ? 'bg-charcoal-light text-cream'
+                : 'text-muted-gray hover:text-cream hover:bg-charcoal-light/100 active:bg-charcoal-light/100'
+            )}
             onClick={() => setIsMobileMenuOpen(false)}
             title={sidebarCollapsed ? 'Profile' : ''}
           >
-            <span className='relative z-10 text-xl group-hover:animate-pulse'>
-              👤
-            </span>
+            <span className='text-xl'>👤</span>
             {!sidebarCollapsed && (
-              <span className='relative z-10 tracking-wide'>Profile</span>
+              <span className='tracking-wide'>Profile</span>
             )}
-
-            {/* Hover glow effect */}
-            <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
           </Link>
 
           <button
             onClick={onLogout}
-            className={`relative w-full flex items-center ${
+            className={cx(
+              'relative w-full flex items-center py-3 bg-gradient-to-r from-crimson/40 to-crimson-dark/40 hover:from-crimson/60 hover:to-crimson-dark/60 active:from-crimson/70 active:to-crimson-dark/70 text-cream backdrop-blur-sm font-medium text-sm tracking-wide transition-all duration-200 group touch-manipulation',
               sidebarCollapsed ? 'justify-center px-2' : 'space-x-3 px-4'
-            } py-3 bg-gradient-to-r from-crimson/20 to-crimson-dark/20 hover:from-crimson/30 hover:to-crimson-dark/30 text-cream border border-crimson/30 hover:border-crimson/50 rounded-xl transition-all duration-500 hover:scale-105 backdrop-blur-sm font-medium text-sm tracking-wide shadow-lg hover:shadow-crimson/20 group overflow-hidden touch-manipulation`}
+            )}
             title={sidebarCollapsed ? 'Sign Out' : ''}
           >
-            <span className='relative z-10 text-xl group-hover:animate-pulse'>
-              🚪
-            </span>
-            {!sidebarCollapsed && (
-              <span className='relative z-10'>Sign Out</span>
-            )}
-
-            {/* Hover glow effect */}
-            <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
+            <span className='text-xl'>🚪</span>
+            {!sidebarCollapsed && <span>Sign Out</span>}
           </button>
         </div>
       </div>
@@ -174,9 +160,10 @@ function SidebarLayout({ onLogout }) {
         className='lg:hidden fixed top-4 left-4 z-50 p-3 rounded-xl bg-charcoal-light/60 hover:bg-charcoal-light/80 text-muted-gray hover:text-cream transition-all duration-300 border border-gray-600/30'
       >
         <svg
-          className={`w-6 h-6 transition-transform duration-300 ${
-            isMobileMenuOpen ? 'rotate-90' : ''
-          }`}
+          className={cx(
+            'w-6 h-6 transition-transform duration-300',
+            isMobileMenuOpen && 'rotate-90'
+          )}
           fill='none'
           stroke='currentColor'
           viewBox='0 0 24 24'
@@ -201,9 +188,10 @@ function SidebarLayout({ onLogout }) {
 
       {/* Main Content */}
       <div
-        className={`flex-1 transition-all duration-300 ${
+        className={cx(
+          'flex-1 transition-all duration-300',
           sidebarCollapsed ? 'lg:ml-16' : 'lg:ml-64'
-        }`}
+        )}
       >
         <main className='relative z-10'>
           <Outlet />
