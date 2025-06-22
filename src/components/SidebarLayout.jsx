@@ -2,6 +2,7 @@ import { Outlet, useLocation, Link } from 'react-router-dom'
 import { useState } from 'react'
 import { ToastContainer } from './Toast'
 import useToast from '../hooks/useToast'
+import useSwipeGesture from '../hooks/useSwipeGesture'
 import cx from 'clsx'
 
 function SidebarLayout({ onLogout }) {
@@ -9,6 +10,13 @@ function SidebarLayout({ onLogout }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true)
   const { toasts, removeToast } = useToast()
+
+  // Swipe gestures for mobile
+  const swipeHandlers = useSwipeGesture(
+    () => setIsMobileMenuOpen(false), // swipe left to close
+    () => setIsMobileMenuOpen(true), // swipe right to open
+    { minSwipeDistance: 75 }
+  )
 
   const navigation = [
     { name: 'Home', href: '/home', icon: '🏠' },
@@ -19,7 +27,7 @@ function SidebarLayout({ onLogout }) {
     location.pathname === path || location.pathname.startsWith(path)
 
   return (
-    <div className='min-h-screen bg-gray-900 flex'>
+    <div className='min-h-screen bg-gray-900 flex' {...swipeHandlers}>
       {/* Film Strip Background Pattern */}
       <div className='fixed inset-0 opacity-5'>
         <div
@@ -81,13 +89,13 @@ function SidebarLayout({ onLogout }) {
               key={item.name}
               to={item.href}
               className={cx(
-                'relative flex items-center py-3 font-medium text-sm transition-all duration-200 group touch-manipulation whitespace-nowrap',
+                'relative flex items-center font-medium text-sm transition-all duration-200 group touch-manipulation whitespace-nowrap',
                 {
                   'bg-gray-800 text-gray-50': isActive(item.href),
-                  'text-gray-400 hover:text-gray-50 hover:bg-gray-800/50 active:bg-gray-800':
+                  'text-gray-400 hover:text-gray-50 hover:bg-gray-800/50 active:bg-gray-800 active:scale-95':
                     !isActive(item.href),
-                  'justify-center px-2': sidebarCollapsed,
-                  'space-x-3 px-4': !sidebarCollapsed,
+                  'justify-center px-2 py-4': sidebarCollapsed, // Larger touch targets on mobile
+                  'space-x-3 px-4 py-4 lg:py-3': !sidebarCollapsed, // Larger on mobile, normal on desktop
                 }
               )}
               onClick={() => setIsMobileMenuOpen(false)}
@@ -193,8 +201,15 @@ function SidebarLayout({ onLogout }) {
 
       {/* Mobile menu button */}
       <button
-        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        className='lg:hidden fixed top-4 left-4 z-50 p-3 rounded-xl bg-gray-800/60 hover:bg-gray-800/80 text-gray-400 hover:text-gray-50 transition-all duration-300 border border-gray-600/30'
+        onClick={() => {
+          setIsMobileMenuOpen(!isMobileMenuOpen)
+          // Haptic feedback on supported devices
+          if ('vibrate' in navigator) {
+            navigator.vibrate(50)
+          }
+        }}
+        className='lg:hidden fixed top-safe left-4 z-50 p-4 rounded-xl bg-gray-800/60 hover:bg-gray-800/80 active:bg-gray-800/90 active:scale-95 text-gray-400 hover:text-gray-50 transition-all duration-200 border border-gray-600/30 shadow-lg'
+        style={{ top: 'max(1rem, env(safe-area-inset-top))' }}
         aria-label={
           isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'
         }

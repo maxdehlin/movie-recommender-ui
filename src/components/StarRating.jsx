@@ -24,6 +24,10 @@ function StarRating({
   const handleClick = (rating) => {
     if (!readOnly && onRate) {
       onRate(movie, rating)
+      // Haptic feedback on mobile
+      if ('vibrate' in navigator) {
+        navigator.vibrate(30)
+      }
     }
   }
 

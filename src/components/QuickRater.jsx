@@ -36,24 +36,24 @@ function QuickRater({
 
   const sizeClasses = {
     compact: {
-      input: 'px-4 py-2 text-sm',
+      input: 'px-4 py-3 text-sm sm:px-4 sm:py-2',
       poster: 'w-10 h-15',
       title: 'text-sm',
-      container: 'p-2',
+      container: 'p-3 sm:p-2',
       stars: 'text-sm',
     },
     default: {
-      input: 'px-6 py-4 text-lg',
+      input: 'px-6 py-4 text-lg sm:px-6 sm:py-4',
       poster: 'w-16 h-24',
       title: 'text-base',
-      container: 'p-4',
+      container: 'p-5 sm:p-4',
       stars: 'text-2xl',
     },
     large: {
-      input: 'px-6 py-4 text-lg',
+      input: 'px-6 py-5 text-lg sm:px-6 sm:py-4',
       poster: 'w-20 h-30',
       title: 'text-lg',
-      container: 'p-4',
+      container: 'p-5 sm:p-4',
       stars: 'text-2xl',
     },
   }

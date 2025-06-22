@@ -4,6 +4,7 @@ import useRecommendations from '../hooks/useRecommendations'
 import useToast from '../hooks/useToast'
 import StarRating from '../components/StarRating'
 import SkeletonLoader from '../components/SkeletonLoader'
+import MobileTabs from '../components/MobileTabs'
 
 function Movies() {
   const { showToast } = useToast()
@@ -196,7 +197,7 @@ function Movies() {
     <div className='flex h-screen'>
       {/* Secondary Sidebar */}
       <aside
-        className={`w-64 bg-gray-800/60 backdrop-blur-xl border-r border-gray-600/30 flex flex-col transition-all duration-300`}
+        className={`w-64 bg-gray-800/60 backdrop-blur-xl border-r border-gray-600/30 flex flex-col transition-all duration-300 hidden lg:flex`}
         role='complementary'
         aria-label='Movie categories'
       >
@@ -284,7 +285,7 @@ function Movies() {
         </header>
 
         {/* Movie List */}
-        <div className='flex-1 p-6 overflow-y-auto'>
+        <div className='flex-1 p-6 overflow-y-auto pb-24 lg:pb-6'>
           {/* Loading State */}
           {isLoadingRecommendations && activeSection === 'recommendations' && (
             <div className='space-y-4'>
@@ -327,6 +328,13 @@ function Movies() {
           )}
         </div>
       </main>
+
+      {/* Mobile Navigation Tabs */}
+      <MobileTabs
+        tabs={sections}
+        activeTab={activeSection}
+        onTabChange={setActiveSection}
+      />
     </div>
   )
 }
