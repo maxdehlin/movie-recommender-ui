@@ -523,16 +523,11 @@ function RatingPage() {
         ) : (
           /* AI Recommendations Section */
           <div className='space-y-16'>
-            <div className='text-center space-y-8'>
-              <h2 className='text-6xl font-serif text-cream tracking-wide'>
-                Your AI-Curated
-                <span className='block text-teal italic'>Cinematic Picks</span>
-              </h2>
-              <p className='text-xl text-muted-gray font-light max-w-3xl mx-auto'>
-                Based on your ratings, our AI has discovered these exceptional
-                films that match your unique cinematic taste
-              </p>
-            </div>
+            <FilmHeader
+              title={['Your AI-Curated', 'Cinematic Picks']}
+              subtitle='Based on your ratings, our AI has discovered these exceptional films that match your unique cinematic taste'
+              accentColor='teal'
+            />
 
             {/* Recommendations Grid */}
             <div className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>

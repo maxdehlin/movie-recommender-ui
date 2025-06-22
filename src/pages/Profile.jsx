@@ -1,3 +1,5 @@
+import FilmHeader from '../components/FilmHeader'
+
 function Profile() {
   return (
     <div className='min-h-screen pt-12 pb-20 px-8'>
@@ -13,16 +15,11 @@ function Profile() {
               <div className='absolute inset-1 rounded-full border border-crimson/30'></div>
             </div>
 
-            <div className='space-y-8'>
-              <h1 className='text-5xl md:text-6xl font-serif text-cream tracking-wide leading-tight'>
-                Director's
-                <span className='block text-teal italic'>Studio</span>
-              </h1>
-              <p className='text-xl text-muted-gray font-light max-w-3xl mx-auto leading-relaxed'>
-                Your personal command center for managing preferences, viewing
-                history, and cinematic profile
-              </p>
-            </div>
+            <FilmHeader
+              title={["Director's", 'Studio']}
+              subtitle='Your personal command center for managing preferences, viewing history, and cinematic profile'
+              accentColor='teal'
+            />
           </div>
         </section>
 

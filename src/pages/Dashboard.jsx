@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import FilmHeader from '../components/FilmHeader'
 
 function Dashboard() {
   const [stats, setStats] = useState({
@@ -86,16 +87,11 @@ function Dashboard() {
               <div className='absolute inset-2 rounded-full border border-crimson/30'></div>
             </div>
 
-            <div className='space-y-6'>
-              <h1 className='text-5xl md:text-6xl font-serif text-cream tracking-wide leading-tight'>
-                Welcome to Your
-                <span className='block text-teal italic'>Cinema Archive</span>
-              </h1>
-              <p className='text-xl text-muted-gray font-light max-w-3xl mx-auto leading-relaxed'>
-                Your personal vault of cinematic discoveries, where every film
-                tells a story and AI crafts the perfect next chapter
-              </p>
-            </div>
+            <FilmHeader
+              title={['Welcome to Your', 'Cinema Archive']}
+              subtitle='Your personal vault of cinematic discoveries, where every film tells a story and AI crafts the perfect next chapter'
+              accentColor='teal'
+            />
           </div>
         </section>
 
@@ -161,14 +157,10 @@ function Dashboard() {
 
         {/* Quick Actions - Cinema Hall */}
         <section className='space-y-12'>
-          <div className='text-center space-y-4'>
-            <h2 className='text-4xl font-serif text-cream tracking-wide'>
-              Your Cinema Hall
-            </h2>
-            <p className='text-muted-gray text-xl font-light'>
-              Choose your next cinematic adventure
-            </p>
-          </div>
+          <FilmHeader
+            title='Your Cinema Hall'
+            subtitle='Choose your next cinematic adventure'
+          />
 
           <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
             {quickActions.map((action, index) => (
@@ -235,14 +227,10 @@ function Dashboard() {
         {/* Recent Activity - Film Archive */}
         {recentActivity.length > 0 && (
           <section className='space-y-12'>
-            <div className='text-center space-y-4'>
-              <h2 className='text-4xl font-serif text-cream tracking-wide'>
-                Recent Screenings
-              </h2>
-              <p className='text-muted-gray text-xl font-light'>
-                Your latest film ratings and discoveries
-              </p>
-            </div>
+            <FilmHeader
+              title='Recent Screenings'
+              subtitle='Your latest film ratings and discoveries'
+            />
 
             <div className='bg-charcoal-light/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 p-10 shadow-2xl'>
               <div className='space-y-6'>

@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom'
+import FilmHeader from '../components/FilmHeader'
 
 function MovieDetails() {
   const { id } = useParams()
@@ -17,16 +18,11 @@ function MovieDetails() {
               <div className='absolute inset-1 rounded-full border border-teal/30'></div>
             </div>
 
-            <div className='space-y-8'>
-              <h1 className='text-5xl md:text-6xl font-serif text-cream tracking-wide leading-tight'>
-                Film
-                <span className='block text-crimson italic'>Archive</span>
-              </h1>
-              <p className='text-xl text-muted-gray font-light max-w-3xl mx-auto leading-relaxed'>
-                Deep dive into cinematic details, cast information, and critical
-                analysis
-              </p>
-            </div>
+            <FilmHeader
+              title={['Film', 'Archive']}
+              subtitle='Deep dive into cinematic details, cast information, and critical analysis'
+              accentColor='crimson'
+            />
           </div>
         </section>
 
