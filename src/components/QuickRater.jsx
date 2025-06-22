@@ -13,6 +13,8 @@ function QuickRater({
     useMovieSearch()
 
   const [ratedMovies, setRatedMovies] = useState({})
+  const [hoveredMovieId, setHoveredMovieId] = useState(null)
+  const [hoveredStar, setHoveredStar] = useState(0)
 
   const handleRating = (movie, rating) => {
     onRate(movie, rating)
@@ -152,34 +154,43 @@ function QuickRater({
                   </div>
                 </div>
 
-                <div className='flex items-center space-x-1 ml-4'>
+                <div
+                  className='flex items-center space-x-1 ml-4'
+                  onMouseLeave={() => {
+                    setHoveredMovieId(null)
+                    setHoveredStar(0)
+                  }}
+                >
                   {[1, 2, 3, 4, 5].map((star) => {
-                    const movieRating = ratedMovies[movie.id]
-                    const isRated = movieRating && movieRating >= star
+                    const movieRating = ratedMovies[movie.id] || 0
+                    const isCurrentlyHovered =
+                      hoveredMovieId === movie.id && hoveredStar >= star
+                    const isFilledStar = movieRating >= star
+                    const shouldShowGold = isCurrentlyHovered || isFilledStar
+                    const hasAnyRating = movieRating > 0
 
                     return (
                       <button
                         key={star}
                         onClick={() => handleRating(movie, star)}
+                        onMouseEnter={() => {
+                          setHoveredMovieId(movie.id)
+                          setHoveredStar(star)
+                        }}
                         className={`transition-all duration-200 hover:scale-110 transform ${
                           currentSize.stars
                         } ${
-                          isRated
+                          shouldShowGold
                             ? 'text-yellow-400'
-                            : movieRating
-                            ? 'text-gray-400 hover:text-yellow-300'
-                            : 'text-gray-600 hover:text-yellow-300'
+                            : hasAnyRating
+                            ? 'text-gray-500'
+                            : 'text-gray-600'
                         }`}
                       >
-                        ⭐
+                        {shouldShowGold ? '⭐' : '☆'}
                       </button>
                     )
                   })}
-                  {ratedMovies[movie.id] && (
-                    <span className='ml-2 text-xs text-teal bg-teal/20 px-2 py-1 rounded-full'>
-                      Rated {ratedMovies[movie.id]}★
-                    </span>
-                  )}
                 </div>
               </div>
             </div>

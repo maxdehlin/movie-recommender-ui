@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import useRatings from '../hooks/useRatings'
 import useRecommendations from '../hooks/useRecommendations'
 import useToast from '../hooks/useToast'
@@ -6,9 +6,51 @@ import useToast from '../hooks/useToast'
 function Movies() {
   const { showToast } = useToast()
 
-  const { ratings, addRating, userRatedMovies, watchlist, toggleWatchlist } =
-    useRatings()
+  const { ratings, addRating } = useRatings()
   const { recommendations, generateRecommendations } = useRecommendations()
+
+  // Watchlist state (from localStorage)
+  const [watchlist, setWatchlist] = useState([])
+
+  // Load watchlist from localStorage
+  useEffect(() => {
+    const saved = JSON.parse(
+      localStorage.getItem('savedRecommendations') || '[]'
+    )
+    setWatchlist(saved)
+  }, [])
+
+  // Create userRatedMovies from ratings (this would need movie data)
+  const userRatedMovies = useMemo(() => {
+    // For now, return empty array since we need movie data to show
+    // In a real app, you'd fetch movie details for rated movie IDs
+    return []
+  }, [ratings])
+
+  const toggleWatchlist = (movie) => {
+    const movieTitle = movie.title || movie
+    const isInWatchlist = watchlist.some((item) => {
+      const itemTitle = typeof item === 'string' ? item : item.title || item
+      return itemTitle === movieTitle
+    })
+
+    let updatedWatchlist
+    if (isInWatchlist) {
+      updatedWatchlist = watchlist.filter((item) => {
+        const itemTitle = typeof item === 'string' ? item : item.title || item
+        return itemTitle !== movieTitle
+      })
+    } else {
+      updatedWatchlist = [...watchlist, movie]
+    }
+
+    setWatchlist(updatedWatchlist)
+    localStorage.setItem(
+      'savedRecommendations',
+      JSON.stringify(updatedWatchlist)
+    )
+    return !isInWatchlist
+  }
 
   const [searchQuery, setSearchQuery] = useState('')
   const [activeSection, setActiveSection] = useState('rated')
@@ -175,13 +217,6 @@ function Movies() {
     <div className='flex h-screen'>
       {/* Secondary Sidebar */}
       <div className='w-64 bg-charcoal-light/60 backdrop-blur-xl border-r border-gray-600/30 flex flex-col'>
-        <div className='p-6 border-b border-gray-600/30'>
-          <h1 className='text-2xl font-serif text-cream'>Movies</h1>
-          <p className='text-muted-gray text-sm mt-1'>
-            Manage your film collection
-          </p>
-        </div>
-
         <nav className='flex-1 px-4 py-6 space-y-2'>
           {sections.map((section) => (
             <button
