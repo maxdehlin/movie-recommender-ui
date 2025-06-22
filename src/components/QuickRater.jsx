@@ -15,13 +15,8 @@ function QuickRater({
   const [ratedMovies, setRatedMovies] = useState({})
   const [hoveredMovieId, setHoveredMovieId] = useState(null)
   const [hoveredStar, setHoveredStar] = useState(0)
-  const [clickedStar, setClickedStar] = useState(null)
 
   const handleRating = (movie, rating) => {
-    // Trigger click effect
-    setClickedStar(`${movie.id}-${rating}`)
-    setTimeout(() => setClickedStar(null), 200)
-
     onRate(movie, rating)
     // Track that this movie has been rated for visual feedback
     setRatedMovies((prev) => ({
@@ -174,8 +169,6 @@ function QuickRater({
                     const shouldShowGold = isCurrentlyHovered || isFilledStar
                     const hasAnyRating = movieRating > 0
 
-                    const isClicked = clickedStar === `${movie.id}-${star}`
-
                     return (
                       <button
                         key={star}
@@ -184,7 +177,7 @@ function QuickRater({
                           setHoveredMovieId(movie.id)
                           setHoveredStar(star)
                         }}
-                        className={`transition-all duration-200 hover:scale-105 transform ${
+                        className={`transition-all duration-200 ${
                           currentSize.stars
                         } ${
                           shouldShowGold
@@ -192,7 +185,7 @@ function QuickRater({
                             : hasAnyRating
                             ? 'text-gray-500'
                             : 'text-gray-600'
-                        } ${isClicked ? 'scale-95' : ''}`}
+                        }`}
                       >
                         ★
                       </button>
