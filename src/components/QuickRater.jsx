@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import useMovieSearch from '../hooks/useMovieSearch'
+import StarRating from './StarRating'
 
 function QuickRater({
   onRate,
@@ -13,8 +14,6 @@ function QuickRater({
     useMovieSearch()
 
   const [ratedMovies, setRatedMovies] = useState({})
-  const [hoveredMovieId, setHoveredMovieId] = useState(null)
-  const [hoveredStar, setHoveredStar] = useState(0)
 
   const handleRating = (movie, rating) => {
     onRate(movie, rating)
@@ -154,43 +153,20 @@ function QuickRater({
                   </div>
                 </div>
 
-                <div
-                  className='flex items-center space-x-1 ml-4'
-                  onMouseLeave={() => {
-                    setHoveredMovieId(null)
-                    setHoveredStar(0)
-                  }}
-                >
-                  {[1, 2, 3, 4, 5].map((star) => {
-                    const movieRating = ratedMovies[movie.id] || 0
-                    const isCurrentlyHovered =
-                      hoveredMovieId === movie.id && hoveredStar >= star
-                    const isFilledStar = movieRating >= star
-                    const shouldShowGold = isCurrentlyHovered || isFilledStar
-                    const hasAnyRating = movieRating > 0
-
-                    return (
-                      <button
-                        key={star}
-                        onClick={() => handleRating(movie, star)}
-                        onMouseEnter={() => {
-                          setHoveredMovieId(movie.id)
-                          setHoveredStar(star)
-                        }}
-                        className={`transition-all duration-200 ${
-                          currentSize.stars
-                        } ${
-                          shouldShowGold
-                            ? 'text-yellow-400'
-                            : hasAnyRating
-                            ? 'text-gray-500'
-                            : 'text-gray-600'
-                        }`}
-                      >
-                        ★
-                      </button>
-                    )
-                  })}
+                <div className='ml-4'>
+                  <StarRating
+                    movie={movie}
+                    currentRating={ratedMovies[movie.id] || 0}
+                    onRate={handleRating}
+                    size={
+                      size === 'compact'
+                        ? 'small'
+                        : size === 'large'
+                        ? 'large'
+                        : 'default'
+                    }
+                    className={currentSize.stars}
+                  />
                 </div>
               </div>
             </div>

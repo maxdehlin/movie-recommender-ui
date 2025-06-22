@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react'
 import useRatings from '../hooks/useRatings'
 import useRecommendations from '../hooks/useRecommendations'
 import useToast from '../hooks/useToast'
+import StarRating from '../components/StarRating'
 
 function Movies() {
   const { showToast } = useToast()
@@ -115,30 +116,6 @@ function Movies() {
         ? `Added "${movie.title}" to watchlist`
         : `Removed "${movie.title}" from watchlist`,
       'success'
-    )
-  }
-
-  const StarRating = ({ movie, currentRating, onRate }) => {
-    const [hover, setHover] = useState(0)
-
-    return (
-      <div className='flex items-center space-x-1'>
-        {[1, 2, 3, 4, 5].map((star) => (
-          <button
-            key={star}
-            onClick={() => onRate(movie, star)}
-            onMouseEnter={() => setHover(star)}
-            onMouseLeave={() => setHover(0)}
-            className={`text-lg transition-all duration-200 ${
-              star <= (hover || currentRating)
-                ? 'text-yellow-400'
-                : 'text-gray-600 hover:text-yellow-300'
-            }`}
-          >
-            ⭐
-          </button>
-        ))}
-      </div>
     )
   }
 
