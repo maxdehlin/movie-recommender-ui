@@ -72,22 +72,6 @@ function SidebarLayout({ onLogout }) {
           )}
         </div>
 
-        {/* Toggle Button */}
-        <div className='p-4'>
-          <button
-            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-            className='w-full flex items-center justify-center p-2 text-muted-gray hover:text-cream hover:bg-charcoal-light/60 rounded-lg transition-all duration-300'
-          >
-            <span
-              className={`transform transition-transform duration-300 ${
-                sidebarCollapsed ? 'rotate-0' : 'rotate-180'
-              }`}
-            >
-              ▶
-            </span>
-          </button>
-        </div>
-
         {/* Navigation */}
         <nav className='flex-1 py-6'>
           {navigation.map((item) => (
@@ -96,13 +80,16 @@ function SidebarLayout({ onLogout }) {
               to={item.href}
               className={cx(
                 'relative flex items-center py-3 font-medium text-sm transition-all duration-200 group touch-manipulation',
-                sidebarCollapsed ? 'justify-center px-2' : 'space-x-3 px-4',
-                isActive(item.href)
-                  ? 'bg-charcoal-900 text-cream'
-                  : 'text-muted-gray hover:text-cream hover:bg-charcoal-900 active:bg-charcoal-900'
+                {
+                  'bg-gray-100 text-cream': isActive(item.href),
+                  'text-muted-gray hover:text-cream hover:bg-gray-50 active:bg-gray-100':
+                    !isActive(item.href),
+                  'justify-center px-2': sidebarCollapsed,
+                  'space-x-3 px-4': !sidebarCollapsed,
+                }
               )}
               onClick={() => setIsMobileMenuOpen(false)}
-              title={sidebarCollapsed ? item.name : ''}
+              title={item.name}
             >
               <span className='text-xl'>{item.icon}</span>
               {!sidebarCollapsed && (
@@ -112,8 +99,38 @@ function SidebarLayout({ onLogout }) {
           ))}
         </nav>
 
+        <div
+          className={cx(
+            'absolute top-1/2 -translate-y-1/2 translate-x-1/2 right-0 w-4 h-10 rounded-full transition-all z-10'
+          )}
+        >
+          <button
+            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            className={cx(
+              'flex items-center justify-center p-2 text-muted-gray hover:text-cream hover:bg-charcoal-light/60 rounded-lg transition-all duration-300 bg-gray-300 w-1 cursor-pointer',
+              sidebarCollapsed ? 'h-2' : 'h-10'
+            )}
+          />
+        </div>
+
+        {/* Toggle Button */}
+        {/* <div className='p-4'>
+          <button
+            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            className='w-full flex items-center justify-center p-2 text-muted-gray hover:text-cream hover:bg-charcoal-light/60 rounded-lg transition-all duration-300'
+          >
+            <span
+              className={`transform transition-transform duration-300 text-gray-600/30 ${
+                sidebarCollapsed ? 'rotate-0' : 'rotate-180'
+              }`}
+            >
+              ▶
+            </span>
+          </button>
+        </div> */}
+
         {/* User Actions at Bottom */}
-        <div className='border-t border-gray-600/30'>
+        <div className='border-t border-gray-600/30 relative'>
           <Link
             to='/profile'
             className={cx(
