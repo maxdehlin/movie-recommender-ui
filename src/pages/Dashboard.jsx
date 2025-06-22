@@ -89,7 +89,7 @@ function Dashboard() {
         {/* Progressive Stats & Onboarding */}
         {userState.isNewUser && (
           <section className='space-y-8'>
-            <div className='bg-gray-900-light/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 p-8 sm:p-12 shadow-2xl'>
+            <div className='bg-gray-800/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 p-8 sm:p-12 shadow-2xl'>
               <div className='text-center space-y-8'>
                 <div className='space-y-4'>
                   <h2 className='text-2xl font-serif text-gray-50'>
@@ -171,7 +171,7 @@ function Dashboard() {
                       {stats.moviesRated}/{userState.nextMilestone} films rated
                     </span>
                   </div>
-                  <div className='w-full bg-gray-900-light/50 rounded-full h-3 overflow-hidden'>
+                  <div className='w-full bg-gray-800/50 rounded-full h-3 overflow-hidden'>
                     <div
                       className='h-full bg-gradient-to-r from-teal-500 to-red-600 rounded-full transition-all duration-700 ease-out'
                       style={{ width: `${userState.progressPercent}%` }}
@@ -279,7 +279,7 @@ function Dashboard() {
                   <button
                     onClick={handleGenerateRecommendations}
                     disabled={isGenerating || isLoadingRecommendations}
-                    className='px-6 py-3 bg-gradient-to-r from-red-600 to-red-600-dark rounded-xl text-gray-50 font-medium hover:from-red-600-dark hover:to-red-600 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100'
+                    className='px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 rounded-xl text-gray-50 font-medium hover:from-red-700 hover:to-red-600 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100'
                   >
                     {isGenerating || isLoadingRecommendations ? (
                       <div className='flex items-center space-x-2'>

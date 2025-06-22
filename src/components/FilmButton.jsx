@@ -11,15 +11,15 @@ function FilmButton({
   const getVariantStyles = () => {
     switch (variant) {
       case 'primary':
-        return 'bg-gradient-to-r from-red-600 to-red-600-dark hover:from-red-600-dark hover:to-red-600 text-gray-50 border-red-600/50 hover:border-red-600/70 shadow-xl hover:shadow-red-600/30'
+        return 'bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-600 text-gray-50 border-red-600/50 hover:border-red-600/70 shadow-xl hover:shadow-red-600/30'
       case 'secondary':
-        return 'bg-gradient-to-r from-teal-500 to-teal-500-dark hover:from-teal-500-dark hover:to-teal-500 text-gray-900 border-teal-500/50 hover:border-teal-500-500/70 shadow-xl hover:shadow-teal-500/30'
+        return 'bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-500 text-gray-900 border-teal-500/50 hover:border-teal-500/70 shadow-xl hover:shadow-teal-500/30'
       case 'ghost':
-        return 'bg-gray-900-light/60 hover:bg-gray-900-light/80 text-gray-50 border-gray-600/50 hover:border-gray-500/70 shadow-xl backdrop-blur-xl'
+        return 'bg-gray-800/60 hover:bg-gray-800/80 text-gray-50 border-gray-600/50 hover:border-gray-500/70 shadow-xl backdrop-blur-xl'
       case 'danger':
         return 'bg-red-600/80 hover:bg-red-600 text-gray-50 border-red-600/50 hover:border-red-600 shadow-lg hover:shadow-red-600/25'
       default:
-        return 'bg-gradient-to-r from-red-600 to-red-600-dark hover:from-red-600-dark hover:to-red-600 text-gray-50 border-red-600/50 hover:border-red-600/70 shadow-xl hover:shadow-red-600/30'
+        return 'bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-600 text-gray-50 border-red-600/50 hover:border-red-600/70 shadow-xl hover:shadow-red-600/30'
     }
   }
 

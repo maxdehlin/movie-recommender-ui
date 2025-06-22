@@ -57,7 +57,7 @@ function SidebarLayout({ onLogout }) {
             sidebarCollapsed ? 'justify-center p-4' : 'space-x-3 p-6'
           )}
         >
-          <div className='w-10 h-10 bg-gradient-to-br from-red-600 to-red-600-dark rounded-full flex items-center justify-center shadow-xl border-2 border-red-600/20'>
+          <div className='w-10 h-10 bg-gradient-to-br from-red-600 to-red-700 rounded-full flex items-center justify-center shadow-xl border-2 border-red-600/20'>
             <span className='text-gray-50 font-bold text-lg'>🎬</span>
           </div>
           {!sidebarCollapsed && (
@@ -81,8 +81,8 @@ function SidebarLayout({ onLogout }) {
               className={cx(
                 'relative flex items-center py-3 font-medium text-sm transition-all duration-200 group touch-manipulation',
                 {
-                  'bg-gray-100 text-gray-50': isActive(item.href),
-                  'text-gray-400 hover:text-gray-50 hover:bg-gray-50 active:bg-gray-100':
+                  'bg-gray-800 text-gray-50': isActive(item.href),
+                  'text-gray-400 hover:text-gray-50 hover:bg-gray-800/50 active:bg-gray-800':
                     !isActive(item.href),
                   'justify-center px-2': sidebarCollapsed,
                   'space-x-3 px-4': !sidebarCollapsed,
@@ -107,7 +107,7 @@ function SidebarLayout({ onLogout }) {
           <button
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
             className={cx(
-              'flex items-center justify-center p-2 text-gray-400 hover:text-gray-50 hover:bg-gray-900-light/60 rounded-lg transition-all duration-300 bg-gray-300 w-1 cursor-pointer',
+              'flex items-center justify-center p-2 text-gray-400 hover:text-gray-50 hover:bg-gray-800/60 rounded-lg transition-all duration-300 bg-gray-600 w-1 cursor-pointer',
               sidebarCollapsed ? 'h-2' : 'h-10'
             )}
           />
@@ -117,7 +117,7 @@ function SidebarLayout({ onLogout }) {
         {/* <div className='p-4'>
           <button
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-            className='w-full flex items-center justify-center p-2 text-gray-400 hover:text-gray-50 hover:bg-gray-900-light/60 rounded-lg transition-all duration-300'
+            className='w-full flex items-center justify-center p-2 text-gray-400 hover:text-gray-50 hover:bg-gray-800/60 rounded-lg transition-all duration-300'
           >
             <span
               className={`transform transition-transform duration-300 text-gray-600/30 ${
@@ -137,8 +137,8 @@ function SidebarLayout({ onLogout }) {
               'relative flex items-center py-3 font-medium text-sm transition-all duration-200 group touch-manipulation',
               sidebarCollapsed ? 'justify-center px-2' : 'space-x-3 px-4',
               isActive('/profile')
-                ? 'bg-gray-900-light text-gray-50'
-                : 'text-gray-400 hover:text-gray-50 hover:bg-gray-900-light/100 active:bg-gray-900-light/100'
+                ? 'bg-gray-800 text-gray-50'
+                : 'text-gray-400 hover:text-gray-50 hover:bg-gray-800/50 active:bg-gray-800'
             )}
             onClick={() => setIsMobileMenuOpen(false)}
             title={sidebarCollapsed ? 'Profile' : ''}
@@ -152,7 +152,7 @@ function SidebarLayout({ onLogout }) {
           <button
             onClick={onLogout}
             className={cx(
-              'relative w-full flex items-center py-3 bg-gradient-to-r from-red-600/40 to-red-600-dark/40 hover:from-red-600/60 hover:to-red-600-dark/60 active:from-red-600/70 active:to-red-600-dark/70 text-gray-50 backdrop-blur-sm font-medium text-sm tracking-wide transition-all duration-200 group touch-manipulation',
+              'relative w-full flex items-center py-3 bg-gradient-to-r from-red-600/40 to-red-700/40 hover:from-red-600/60 hover:to-red-700/60 active:from-red-600/70 active:to-red-700/70 text-gray-50 backdrop-blur-sm font-medium text-sm tracking-wide transition-all duration-200 group touch-manipulation',
               sidebarCollapsed ? 'justify-center px-2' : 'space-x-3 px-4'
             )}
             title={sidebarCollapsed ? 'Sign Out' : ''}
@@ -174,7 +174,7 @@ function SidebarLayout({ onLogout }) {
       {/* Mobile menu button */}
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        className='lg:hidden fixed top-4 left-4 z-50 p-3 rounded-xl bg-gray-900-light/60 hover:bg-gray-900-light/80 text-gray-400 hover:text-gray-50 transition-all duration-300 border border-gray-600/30'
+        className='lg:hidden fixed top-4 left-4 z-50 p-3 rounded-xl bg-gray-800/60 hover:bg-gray-800/80 text-gray-400 hover:text-gray-50 transition-all duration-300 border border-gray-600/30'
       >
         <svg
           className={cx(

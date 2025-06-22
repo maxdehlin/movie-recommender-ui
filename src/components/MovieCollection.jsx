@@ -22,7 +22,7 @@ function MovieCollection({
     <div
       key={movie.id || index}
       className={`
-        bg-gradient-to-br from-gray-900/40 to-gray-900-light/40 
+        bg-gradient-to-br from-gray-900/40 to-gray-800/40 
         rounded-2xl p-6 border border-gray-600/30 
         hover:border-gray-500/50 hover:shadow-xl 
         transition-all duration-300 hover:scale-105
@@ -33,7 +33,7 @@ function MovieCollection({
       <div className='space-y-4'>
         {/* Movie poster thumbnail */}
         {movie.poster && (
-          <div className='aspect-[2/3] bg-gradient-to-br from-gray-900-light to-gray-900 rounded-xl overflow-hidden'>
+          <div className='aspect-[2/3] bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl overflow-hidden'>
             <img
               src={movie.poster}
               alt={movie.title}

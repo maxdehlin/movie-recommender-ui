@@ -59,7 +59,7 @@ function Watchlist() {
 
         {savedMovies.length > 0 && (
           <div className='flex items-center justify-center space-x-6'>
-            <div className='flex items-center space-x-3 bg-gray-900-light/60 px-6 py-3 rounded-2xl border border-gray-600/30 backdrop-blur-xl'>
+            <div className='flex items-center space-x-3 bg-gray-800/60 px-6 py-3 rounded-2xl border border-gray-600/30 backdrop-blur-xl'>
               <div className='w-3 h-3 bg-red-600 rounded-full animate-pulse'></div>
               <span className='text-gray-400 font-medium tracking-wider uppercase text-sm'>
                 {savedMovies.length} Films Archived

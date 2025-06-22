@@ -32,7 +32,7 @@ function Home() {
         </div>
 
         {/* Search & Quick Rating */}
-        <div className='bg-gray-900-light/60 backdrop-blur-xl rounded-2xl border border-gray-600/30 p-8'>
+        <div className='bg-gray-800/60 backdrop-blur-xl rounded-2xl border border-gray-600/30 p-8'>
           <div className='space-y-6'>
             <div className='text-center space-y-2'>
               <h3 className='text-2xl font-serif text-gray-50'>

@@ -31,12 +31,12 @@ function LandingPage() {
       </div>
 
       {/* Header - Cinema Marquee Style */}
-      <header className='relative z-10 backdrop-blur-xl bg-gray-900-light/90 border-b border-gray-600/30 shadow-2xl'>
+      <header className='relative z-10 backdrop-blur-xl bg-gray-800/90 border-b border-gray-600/30 shadow-2xl'>
         <div className='max-w-7xl mx-auto px-6 lg:px-8 py-6'>
           <div className='flex items-center justify-between'>
             <div className='flex items-center space-x-4'>
               <div className='relative'>
-                <div className='w-14 h-14 bg-gradient-to-br from-red-600 via-red-600-dark to-teal-500 rounded-full flex items-center justify-center shadow-2xl border-2 border-red-600/30'>
+                <div className='w-14 h-14 bg-gradient-to-br from-red-600 via-red-700 to-teal-500 rounded-full flex items-center justify-center shadow-2xl border-2 border-red-600/30'>
                   <div className='absolute inset-3 rounded-full border border-gray-50/20'></div>
                   <span className='text-gray-50 font-bold text-2xl relative z-10'>
                     🎬
@@ -58,7 +58,7 @@ function LandingPage() {
 
             <Link
               to='/login'
-              className='relative px-8 py-4 bg-gradient-to-r from-teal-500 to-teal-500-dark hover:from-teal-500-dark hover:to-teal-500 text-gray-900 rounded-2xl font-bold text-lg transition-all duration-500 hover:scale-105 shadow-xl hover:shadow-teal-500/30 border border-teal-500/50 group overflow-hidden'
+              className='relative px-8 py-4 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-500 text-gray-900 rounded-2xl font-bold text-lg transition-all duration-500 hover:scale-105 shadow-xl hover:shadow-teal-500/30 border border-teal-500/50 group overflow-hidden'
             >
               <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
               <span className='relative z-10 flex items-center space-x-2'>
@@ -102,7 +102,7 @@ function LandingPage() {
               <div className='flex flex-col sm:flex-row items-center justify-center gap-8'>
                 <Link
                   to='/login'
-                  className='relative px-16 py-6 bg-gradient-to-r from-red-600 via-red-600-dark to-teal-500 hover:from-red-600-dark hover:via-teal-500 hover:to-red-600 text-gray-50 rounded-3xl font-bold text-xl transition-all duration-500 hover:scale-105 shadow-2xl hover:shadow-red-600/30 border border-red-600/50 tracking-wide overflow-hidden group'
+                  className='relative px-16 py-6 bg-gradient-to-r from-red-600 via-red-700 to-teal-500 hover:from-red-700 hover:via-teal-500 hover:to-red-600 text-gray-50 rounded-3xl font-bold text-xl transition-all duration-500 hover:scale-105 shadow-2xl hover:shadow-red-600/30 border border-red-600/50 tracking-wide overflow-hidden group'
                 >
                   <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
                   <span className='relative z-10 flex items-center space-x-3'>
@@ -137,9 +137,9 @@ function LandingPage() {
 
             {/* Features - Cinema Experience */}
             <div className='grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto pt-24'>
-              <div className='group text-center space-y-8 bg-gray-900-light/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 hover:border-red-600/40 p-10 transition-all duration-500 hover:scale-105 shadow-2xl hover:shadow-red-600/10'>
+              <div className='group text-center space-y-8 bg-gray-800/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 hover:border-red-600/40 p-10 transition-all duration-500 hover:scale-105 shadow-2xl hover:shadow-red-600/10'>
                 <div className='relative'>
-                  <div className='w-20 h-20 bg-gradient-to-br from-red-600/20 to-red-600-dark/20 rounded-full flex items-center justify-center mx-auto border-2 border-red-600/30 group-hover:border-red-600/50 transition-all duration-300'>
+                  <div className='w-20 h-20 bg-gradient-to-br from-red-600/20 to-red-700/20 rounded-full flex items-center justify-center mx-auto border-2 border-red-600/30 group-hover:border-red-600/50 transition-all duration-300'>
                     <span className='text-4xl group-hover:animate-pulse'>
                       🎭
                     </span>
@@ -160,9 +160,9 @@ function LandingPage() {
                 </div>
               </div>
 
-              <div className='group text-center space-y-8 bg-gray-900-light/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 hover:border-teal-500-500/40 p-10 transition-all duration-500 hover:scale-105 shadow-2xl hover:shadow-teal-500/10'>
+              <div className='group text-center space-y-8 bg-gray-800/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 hover:border-teal-500/40 p-10 transition-all duration-500 hover:scale-105 shadow-2xl hover:shadow-teal-500/10'>
                 <div className='relative'>
-                  <div className='w-20 h-20 bg-gradient-to-br from-teal-500/20 to-teal-500-dark/20 rounded-full flex items-center justify-center mx-auto border-2 border-teal-500/30 group-hover:border-teal-500-500/50 transition-all duration-300'>
+                  <div className='w-20 h-20 bg-gradient-to-br from-teal-500/20 to-teal-600/20 rounded-full flex items-center justify-center mx-auto border-2 border-teal-500/30 group-hover:border-teal-500/50 transition-all duration-300'>
                     <span className='text-4xl group-hover:animate-pulse'>
                       🤖
                     </span>
@@ -172,7 +172,7 @@ function LandingPage() {
                   <div className='absolute -bottom-2 -right-2 w-2 h-2 bg-red-600/30 rounded-full animate-pulse'></div>
                 </div>
                 <div className='space-y-4'>
-                  <h3 className='text-2xl font-serif text-gray-50 group-hover:text-teal-500-500 transition-colors duration-300 tracking-wide'>
+                  <h3 className='text-2xl font-serif text-gray-50 group-hover:text-teal-500 transition-colors duration-300 tracking-wide'>
                     AI Curation
                   </h3>
                   <p className='text-gray-400 group-hover:text-gray-50/80 transition-colors duration-300 leading-relaxed font-light'>
@@ -182,7 +182,7 @@ function LandingPage() {
                 </div>
               </div>
 
-              <div className='group text-center space-y-8 bg-gray-900-light/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 hover:border-red-600/40 p-10 transition-all duration-500 hover:scale-105 shadow-2xl hover:shadow-red-600/10'>
+              <div className='group text-center space-y-8 bg-gray-800/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 hover:border-red-600/40 p-10 transition-all duration-500 hover:scale-105 shadow-2xl hover:shadow-red-600/10'>
                 <div className='relative'>
                   <div className='w-20 h-20 bg-gradient-to-br from-red-600/20 to-teal-500/20 rounded-full flex items-center justify-center mx-auto border-2 border-red-600/30 group-hover:border-red-600/50 transition-all duration-300'>
                     <span className='text-4xl group-hover:animate-pulse'>
@@ -209,7 +209,7 @@ function LandingPage() {
       </main>
 
       {/* Footer - Cinema Credits */}
-      <footer className='relative z-10 border-t border-gray-600/30 backdrop-blur-xl bg-gray-900-light/80'>
+      <footer className='relative z-10 border-t border-gray-600/30 backdrop-blur-xl bg-gray-800/80'>
         <div className='max-w-7xl mx-auto px-6 lg:px-8 py-12'>
           <div className='text-center space-y-6'>
             <div className='flex items-center justify-center space-x-4'>

@@ -68,7 +68,7 @@ function QuickRater({
                 handleSearchChange('', maxResults)
                 setRatedMovies({})
               }}
-              className='text-gray-400 hover:text-gray-50 transition-colors duration-200 p-1 rounded-full hover:bg-gray-900-light/30'
+              className='text-gray-400 hover:text-gray-50 transition-colors duration-200 p-1 rounded-full hover:bg-gray-800/30'
               title='Clear search'
             >
               <svg
@@ -119,7 +119,7 @@ function QuickRater({
                   {/* Movie Poster Thumbnail */}
                   {showPoster && movie.poster && (
                     <div
-                      className={`bg-gradient-to-br from-gray-900-light to-gray-900 rounded-lg overflow-hidden flex-shrink-0 ${currentSize.poster}`}
+                      className={`bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg overflow-hidden flex-shrink-0 ${currentSize.poster}`}
                     >
                       <img
                         src={movie.poster}

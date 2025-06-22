@@ -21,7 +21,7 @@ function RecommendationCard({
       <div className='space-y-6'>
         {/* Movie Poster */}
         {showPoster && (
-          <div className='aspect-[2/3] bg-gradient-to-br from-gray-900-light to-gray-900 rounded-2xl overflow-hidden relative -mx-2 -mt-2'>
+          <div className='aspect-[2/3] bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl overflow-hidden relative -mx-2 -mt-2'>
             {movie.poster ? (
               <img
                 src={movie.poster}
@@ -71,7 +71,7 @@ function RecommendationCard({
         {reason && !isString && (
           <div className='p-4 bg-gray-900/40 rounded-2xl border border-gray-600/30'>
             <div className='flex items-start space-x-3'>
-              <div className='w-6 h-6 bg-gradient-to-br from-red-600/20 to-red-600-dark/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-red-600/30'>
+              <div className='w-6 h-6 bg-gradient-to-br from-red-600/20 to-red-700/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-red-600/30'>
                 <span className='text-xs'>✨</span>
               </div>
               <p className='text-gray-400 text-sm leading-relaxed line-clamp-3 italic'>
@@ -99,7 +99,7 @@ function RecommendationCard({
 
               <button
                 onClick={() => onDismiss(movie)}
-                className='w-10 h-10 bg-gray-900/60 hover:bg-gray-900-light/80 rounded-xl flex items-center justify-center text-gray-400 hover:text-gray-50 transition-all duration-300 hover:scale-105 border border-gray-600/30 hover:border-gray-500/50'
+                className='w-10 h-10 bg-gray-900/60 hover:bg-gray-800/80 rounded-xl flex items-center justify-center text-gray-400 hover:text-gray-50 transition-all duration-300 hover:scale-105 border border-gray-600/30 hover:border-gray-500/50'
               >
                 <svg
                   className='w-4 h-4'

@@ -34,24 +34,24 @@ function FilmCard({
         return {
           ...currentIntensity,
           hover:
-            'hover:border-red-600/50 hover:shadow-red-600/25 hover:bg-gray-900-light/70',
+            'hover:border-red-600/50 hover:shadow-red-600/25 hover:bg-gray-800/70',
           glow: 'shadow-2xl group-hover:shadow-red-600/20',
         }
       case 'secondary':
         return {
           ...currentIntensity,
           hover:
-            'hover:border-teal-500-500/50 hover:shadow-teal-500/25 hover:bg-gray-900-light/70',
+            'hover:border-teal-500/50 hover:shadow-teal-500/25 hover:bg-gray-800/70',
           glow: 'shadow-2xl group-hover:shadow-teal-500/20',
         }
       case 'glass':
         return {
-          bg: 'bg-gradient-to-br from-gray-900-light/30 via-gray-900-light/20 to-gray-900-light/40',
+          bg: 'bg-gradient-to-br from-gray-800/30 via-gray-800/20 to-gray-800/40',
           blur: 'backdrop-blur-3xl',
           border:
             'border-gradient-to-r from-gray-600/30 via-gray-500/20 to-gray-600/30',
           hover:
-            'hover:border-gray-400/50 hover:shadow-white/10 hover:bg-gradient-to-br hover:from-gray-900-light/40 hover:via-gray-900-light/30 hover:to-gray-900-light/50',
+            'hover:border-gray-400/50 hover:shadow-white/10 hover:bg-gradient-to-br hover:from-gray-800/40 hover:via-gray-800/30 hover:to-gray-800/50',
           glow: 'shadow-xl group-hover:shadow-white/15',
         }
       case 'frosted':
@@ -67,7 +67,7 @@ function FilmCard({
         return {
           ...currentIntensity,
           hover:
-            'hover:border-red-600/50 hover:shadow-red-600/25 hover:bg-gray-900-light/70',
+            'hover:border-red-600/50 hover:shadow-red-600/25 hover:bg-gray-800/70',
           glow: 'shadow-2xl group-hover:shadow-red-600/20',
         }
     }

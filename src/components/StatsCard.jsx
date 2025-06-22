@@ -1,15 +1,15 @@
 function StatsCard({ icon, value, label, color = 'teal' }) {
   const colorClasses = {
     teal: {
-      gradient: 'from-teal-500/20 to-teal-500-dark/20',
-      border: 'border-teal-500/30 group-hover:border-teal-500-500/50',
+      gradient: 'from-teal-500/20 to-teal-600/20',
+      border: 'border-teal-500/30 group-hover:border-teal-500/50',
       text: 'text-teal-500',
       shadow: 'hover:shadow-teal-500/10',
       sprocket1: 'bg-teal-500/30',
       sprocket2: 'bg-red-600/30',
     },
     crimson: {
-      gradient: 'from-red-600/20 to-red-600-dark/20',
+      gradient: 'from-red-600/20 to-red-700/20',
       border: 'border-red-600/30 group-hover:border-red-600/50',
       text: 'text-red-600',
       shadow: 'hover:shadow-red-600/10',
@@ -22,7 +22,7 @@ function StatsCard({ icon, value, label, color = 'teal' }) {
 
   return (
     <div
-      className={`group bg-gray-900-light/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 hover:border-${color}/40 p-10 text-center space-y-6 hover:scale-105 transition-all duration-500 shadow-2xl ${currentColor.shadow}`}
+      className={`group bg-gray-800/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 hover:border-${color}/40 p-10 text-center space-y-6 hover:scale-105 transition-all duration-500 shadow-2xl ${currentColor.shadow}`}
     >
       <div className='relative'>
         <div

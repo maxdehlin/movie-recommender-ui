@@ -84,12 +84,12 @@ function LoginPage({ onLogin }) {
 
       <div className='relative z-10 w-full max-w-lg'>
         {/* Main Login Card */}
-        <div className='bg-gray-900-light/80 backdrop-blur-xl border border-gray-600/40 rounded-3xl shadow-2xl overflow-hidden'>
+        <div className='bg-gray-800/80 backdrop-blur-xl border border-gray-600/40 rounded-3xl shadow-2xl overflow-hidden'>
           {/* Header */}
           <div className='relative px-8 py-12 text-center'>
             {/* Logo */}
             <div className='relative inline-block mb-8'>
-              <div className='w-20 h-20 bg-gradient-to-br from-red-600 via-red-600-dark to-teal-500 rounded-full flex items-center justify-center shadow-2xl mx-auto border-4 border-gray-600/30'>
+              <div className='w-20 h-20 bg-gradient-to-br from-red-600 via-red-700 to-teal-500 rounded-full flex items-center justify-center shadow-2xl mx-auto border-4 border-gray-600/30'>
                 <span className='text-gray-50 text-3xl font-bold relative z-10'>
                   🎬
                 </span>
@@ -167,7 +167,7 @@ function LoginPage({ onLogin }) {
                 <button
                   type='submit'
                   disabled={isLoading}
-                  className='relative w-full px-8 py-5 bg-gradient-to-r from-teal-500 to-teal-500-dark hover:from-teal-500-dark hover:to-teal-500 text-gray-900 rounded-2xl font-bold text-lg transition-all duration-500 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-2xl hover:shadow-teal-500/30 group overflow-hidden'
+                  className='relative w-full px-8 py-5 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-500 text-gray-900 rounded-2xl font-bold text-lg transition-all duration-500 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-2xl hover:shadow-teal-500/30 group overflow-hidden'
                 >
                   <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
                   <span className='relative z-10 flex items-center justify-center space-x-3'>
@@ -196,7 +196,7 @@ function LoginPage({ onLogin }) {
                     <div className='w-full border-t border-gray-600/30'></div>
                   </div>
                   <div className='relative flex justify-center text-sm'>
-                    <span className='px-4 bg-gray-900-light text-gray-400 font-medium tracking-wider'>
+                    <span className='px-4 bg-gray-800 text-gray-400 font-medium tracking-wider'>
                       OR
                     </span>
                   </div>
@@ -206,7 +206,7 @@ function LoginPage({ onLogin }) {
                   type='button'
                   onClick={handleDevLogin}
                   disabled={isLoading}
-                  className='relative w-full px-8 py-5 bg-gradient-to-r from-red-600/20 to-red-600-dark/20 hover:from-red-600/30 hover:to-red-600-dark/30 border border-red-600/30 hover:border-red-600/50 text-gray-50 rounded-2xl font-semibold text-lg transition-all duration-500 hover:scale-105 disabled:opacity-50 shadow-xl hover:shadow-red-600/20 backdrop-blur-sm group overflow-hidden'
+                  className='relative w-full px-8 py-5 bg-gradient-to-r from-red-600/20 to-red-700/20 hover:from-red-600/30 hover:to-red-700/30 border border-red-600/30 hover:border-red-600/50 text-gray-50 rounded-2xl font-semibold text-lg transition-all duration-500 hover:scale-105 disabled:opacity-50 shadow-xl hover:shadow-red-600/20 backdrop-blur-sm group overflow-hidden'
                 >
                   <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
                   <span className='relative z-10 flex items-center justify-center space-x-3'>

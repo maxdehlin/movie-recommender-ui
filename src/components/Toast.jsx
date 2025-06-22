@@ -29,16 +29,16 @@ function Toast({ message, type = 'info', duration = 4000, onClose }) {
     switch (type) {
       case 'success':
         return {
-          bg: 'bg-gradient-to-r from-teal-500/20 to-teal-500-dark/20',
+          bg: 'bg-gradient-to-r from-teal-500/20 to-teal-600/20',
           border: 'border-teal-500/40',
           shadow: 'shadow-teal-500/20',
           icon: '✓',
           iconBg: 'bg-teal-500/30',
-          iconColor: 'text-teal-500-light',
+          iconColor: 'text-teal-400',
         }
       case 'error':
         return {
-          bg: 'bg-gradient-to-r from-red-600/20 to-red-600-dark/20',
+          bg: 'bg-gradient-to-r from-red-600/20 to-red-700/20',
           border: 'border-red-600/40',
           shadow: 'shadow-red-600/20',
           icon: '✕',

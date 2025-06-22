@@ -124,7 +124,7 @@ function Movies() {
     const isInWatchlist = watchlist?.some((w) => w.id === movie.id)
 
     return (
-      <div className='bg-gray-900-light/40 backdrop-blur-sm rounded-xl border border-gray-600/30 p-4 hover:bg-gray-900-light/60 transition-all duration-300'>
+      <div className='bg-gray-800/40 backdrop-blur-sm rounded-xl border border-gray-600/30 p-4 hover:bg-gray-800/60 transition-all duration-300'>
         <div className='flex items-center justify-between'>
           <div className='flex items-center space-x-4 flex-1'>
             {/* Poster */}
@@ -194,7 +194,7 @@ function Movies() {
     <div className='flex h-screen'>
       {/* Secondary Sidebar */}
       <div
-        className={`w-64 bg-gray-900-light/60 backdrop-blur-xl border-r border-gray-600/30 flex flex-col transition-all duration-300`}
+        className={`w-64 bg-gray-800/60 backdrop-blur-xl border-r border-gray-600/30 flex flex-col transition-all duration-300`}
       >
         <nav className='flex-1 py-6'>
           {sections.map((section) => (
@@ -204,7 +204,7 @@ function Movies() {
               className={`relative w-full flex items-center ${'justify-between px-4'} py-3 font-medium text-sm transition-all duration-500 text-left group overflow-hidden touch-manipulation ${
                 activeSection === section.id
                   ? 'bg-gradient-to-r from-teal-500/20 to-red-600/20 text-gray-50 border border-teal-500/30 shadow-lg shadow-teal-500/10'
-                  : 'text-gray-400 hover:text-gray-50 hover:bg-gray-900-light/60 backdrop-blur-sm border border-transparent hover:border-gray-600/30'
+                  : 'text-gray-400 hover:text-gray-50 hover:bg-gray-800/60 backdrop-blur-sm border border-transparent hover:border-gray-600/30'
               }`}
               title={section.name}
             >
@@ -244,7 +244,7 @@ function Movies() {
       {/* Main Content */}
       <div className='flex-1 flex flex-col'>
         {/* Header with Search */}
-        <div className='p-6 border-b border-gray-600/30 bg-gray-900-light/30 backdrop-blur-sm'>
+        <div className='p-6 border-b border-gray-600/30 bg-gray-800/30 backdrop-blur-sm'>
           <div className='flex items-center justify-between mb-4'>
             <div>
               <h2 className='text-xl font-serif text-gray-50'>
@@ -265,7 +265,7 @@ function Movies() {
                 ?.name.toLowerCase()}...`}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className='w-full px-4 py-3 bg-gray-900-light/60 border border-gray-600/30 rounded-xl text-gray-50 placeholder-gray-400 focus:border-teal-500/50 focus:ring-1 focus:ring-teal/30 transition-all duration-300'
+              className='w-full px-4 py-3 bg-gray-800/60 border border-gray-600/30 rounded-xl text-gray-50 placeholder-gray-400 focus:border-teal-500/50 focus:ring-1 focus:ring-teal/30 transition-all duration-300'
             />
             <span className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400'>
               🔍
