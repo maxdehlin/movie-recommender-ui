@@ -88,7 +88,7 @@ function QuickRater({
                 handleSearchChange('', maxResults)
                 setRatedMovies({})
               }}
-              className='text-gray-400 hover:text-gray-50 transition-colors duration-200 p-1 rounded-full hover:bg-gray-800/30'
+              className='text-gray-400 hover:text-gray-50 transition-colors duration-200 p-1 rounded-full hover:bg-gray-800/30 cursor-pointer'
               title='Clear search'
             >
               <svg

@@ -21,7 +21,7 @@ function MobileTabs({ tabs = [], activeTab, onTabChange, className = '' }) {
               }
             }}
             className={cx(
-              'flex flex-col items-center justify-center px-3 py-2 rounded-xl transition-all duration-200 min-w-0 flex-1 max-w-[100px] active:scale-95',
+              'flex flex-col items-center justify-center px-3 py-2 rounded-xl transition-all duration-200 min-w-0 flex-1 max-w-[100px] active:scale-95 cursor-pointer',
               activeTab === tab.id
                 ? 'bg-gradient-to-t from-teal-500/20 to-red-600/20 text-gray-50 border border-teal-500/30'
                 : 'text-gray-400 hover:text-gray-50 hover:bg-gray-700/50'

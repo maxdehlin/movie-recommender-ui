@@ -171,7 +171,7 @@ function Movies() {
             {activeSection !== 'watchlist' && (
               <button
                 onClick={() => handleWatchlistToggle(movie)}
-                className={`p-2 rounded-lg transition-all duration-300 ${
+                className={`p-2 rounded-lg transition-all duration-300 cursor-pointer ${
                   isInWatchlist
                     ? 'text-red-600 bg-red-600/20 border border-red-600/30'
                     : 'text-gray-400 hover:text-red-600 hover:bg-red-600/10'
@@ -210,7 +210,7 @@ function Movies() {
             <button
               key={section.id}
               onClick={() => setActiveSection(section.id)}
-              className={`relative w-full flex items-center ${'justify-between px-4'} py-3 font-medium text-sm transition-all duration-500 text-left group overflow-hidden touch-manipulation ${
+              className={`relative w-full flex items-center ${'justify-between px-4'} py-3 font-medium text-sm transition-all duration-500 text-left group overflow-hidden touch-manipulation cursor-pointer ${
                 activeSection === section.id
                   ? 'bg-gradient-to-r from-teal-500/20 to-red-600/20 text-gray-50 border border-teal-500/30 shadow-lg shadow-teal-500/10'
                   : 'text-gray-400 hover:text-gray-50 hover:bg-gray-800/60 backdrop-blur-sm border border-transparent hover:border-gray-600/30'
@@ -240,7 +240,7 @@ function Movies() {
           <div className='p-4 border-t border-gray-600/30'>
             <button
               onClick={() => generateRecommendations(ratings)}
-              className='relative w-full px-4 py-2 bg-red-600/20 hover:bg-red-600/30 border border-red-600/30 hover:border-red-600/50 text-gray-50 rounded-lg text-sm font-medium transition-all duration-500 hover:scale-105 backdrop-blur-sm shadow-lg hover:shadow-red-600/20 group overflow-hidden touch-manipulation'
+              className='relative w-full px-4 py-2 bg-red-600/20 hover:bg-red-600/30 border border-red-600/30 hover:border-red-600/50 text-gray-50 rounded-lg text-sm font-medium transition-all duration-500 hover:scale-105 backdrop-blur-sm shadow-lg hover:shadow-red-600/20 group overflow-hidden touch-manipulation cursor-pointer'
               title={'Generate New Recommendations'}
             >
               <span className='relative z-10'>{'Generate New'}</span>

@@ -161,7 +161,7 @@ function SidebarLayout({ onLogout }) {
           <button
             onClick={onLogout}
             className={cx(
-              'relative w-full flex items-center py-3 bg-gradient-to-r from-red-600/40 to-red-700/40 hover:from-red-600/60 hover:to-red-700/60 active:from-red-600/70 active:to-red-700/70 text-gray-50 backdrop-blur-sm font-medium text-sm tracking-wide transition-all duration-200 group touch-manipulation whitespace-nowrap',
+              'relative w-full flex items-center py-3 bg-gradient-to-r from-red-600/40 to-red-700/40 hover:from-red-600/60 hover:to-red-700/60 active:from-red-600/70 active:to-red-700/70 text-gray-50 backdrop-blur-sm font-medium text-sm tracking-wide transition-all duration-200 group touch-manipulation whitespace-nowrap cursor-pointer',
               sidebarCollapsed ? 'justify-center px-2' : 'space-x-3 px-4'
             )}
             title={sidebarCollapsed ? 'Sign Out' : undefined}
@@ -194,7 +194,7 @@ function SidebarLayout({ onLogout }) {
       {/* Mobile overlay */}
       {isMobileMenuOpen && (
         <div
-          className='fixed inset-0 bg-black/50 z-40 lg:hidden'
+          className='fixed inset-0 bg-black/50 z-40 lg:hidden cursor-pointer'
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}

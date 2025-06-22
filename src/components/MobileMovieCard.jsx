@@ -87,7 +87,7 @@ function MobileMovieCard({
                 <button
                   onClick={() => onWatchlistToggle(movie)}
                   className={cx(
-                    'ml-3 p-3 rounded-xl transition-all duration-300 active:scale-90',
+                    'ml-3 p-3 rounded-xl transition-all duration-300 active:scale-90 cursor-pointer',
                     isInWatchlist
                       ? 'text-red-500 bg-red-500/20 border border-red-500/30'
                       : 'text-gray-400 hover:text-red-500 hover:bg-red-500/10 border border-gray-600/30'
