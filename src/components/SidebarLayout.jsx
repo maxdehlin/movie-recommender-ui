@@ -64,17 +64,24 @@ function SidebarLayout({ onLogout }) {
             <Link
               key={item.name}
               to={item.href}
-              className={`flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-300 group ${
+              className={`relative flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-500 hover:scale-105 group overflow-hidden touch-manipulation ${
                 isActive(item.href)
-                  ? 'bg-gradient-to-r from-teal/20 to-crimson/20 text-cream border border-teal/30 shadow-lg'
-                  : 'text-muted-gray hover:text-cream hover:bg-charcoal-light/60'
+                  ? 'bg-gradient-to-r from-teal/20 to-crimson/20 text-cream border border-teal/30 shadow-lg shadow-teal/10'
+                  : 'text-muted-gray hover:text-cream hover:bg-charcoal-light/60 backdrop-blur-sm border border-transparent hover:border-gray-600/30'
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <span className='text-xl group-hover:animate-pulse'>
+              {/* Film strip perforations */}
+              <div className='absolute left-1 top-1/2 w-1 h-1 bg-current opacity-20 rounded-full transform -translate-y-1/2'></div>
+              <div className='absolute right-1 top-1/2 w-1 h-1 bg-current opacity-20 rounded-full transform -translate-y-1/2'></div>
+
+              <span className='relative z-10 text-xl group-hover:animate-pulse'>
                 {item.icon}
               </span>
-              <span className='tracking-wide'>{item.name}</span>
+              <span className='relative z-10 tracking-wide'>{item.name}</span>
+
+              {/* Hover glow effect */}
+              <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
             </Link>
           ))}
         </nav>
@@ -83,23 +90,37 @@ function SidebarLayout({ onLogout }) {
         <div className='p-4 space-y-2 border-t border-gray-600/30'>
           <Link
             to='/profile'
-            className={`flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-300 group ${
+            className={`relative flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-500 hover:scale-105 group overflow-hidden touch-manipulation ${
               isActive('/profile')
-                ? 'bg-gradient-to-r from-teal/20 to-crimson/20 text-cream border border-teal/30 shadow-lg'
-                : 'text-muted-gray hover:text-cream hover:bg-charcoal-light/60'
+                ? 'bg-gradient-to-r from-teal/20 to-crimson/20 text-cream border border-teal/30 shadow-lg shadow-teal/10'
+                : 'text-muted-gray hover:text-cream hover:bg-charcoal-light/60 backdrop-blur-sm border border-transparent hover:border-gray-600/30'
             }`}
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            <span className='text-xl group-hover:animate-pulse'>👤</span>
-            <span className='tracking-wide'>Profile</span>
+            {/* Film strip perforations */}
+            <div className='absolute left-1 top-1/2 w-1 h-1 bg-current opacity-20 rounded-full transform -translate-y-1/2'></div>
+            <div className='absolute right-1 top-1/2 w-1 h-1 bg-current opacity-20 rounded-full transform -translate-y-1/2'></div>
+
+            <span className='relative z-10 text-xl group-hover:animate-pulse'>
+              👤
+            </span>
+            <span className='relative z-10 tracking-wide'>Profile</span>
+
+            {/* Hover glow effect */}
+            <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
           </Link>
 
           <button
             onClick={onLogout}
-            className='w-full flex items-center space-x-3 px-4 py-3 bg-gradient-to-r from-crimson/20 to-crimson-dark/20 hover:from-crimson/30 hover:to-crimson-dark/30 text-cream border border-crimson/30 hover:border-crimson/50 rounded-xl transition-all duration-300 font-medium text-sm tracking-wide shadow-lg hover:shadow-crimson/20 group'
+            className='relative w-full flex items-center space-x-3 px-4 py-3 bg-gradient-to-r from-crimson/20 to-crimson-dark/20 hover:from-crimson/30 hover:to-crimson-dark/30 text-cream border border-crimson/30 hover:border-crimson/50 rounded-xl transition-all duration-500 hover:scale-105 backdrop-blur-sm font-medium text-sm tracking-wide shadow-lg hover:shadow-crimson/20 group overflow-hidden touch-manipulation'
           >
-            <span className='text-xl group-hover:animate-pulse'>🚪</span>
-            <span>Sign Out</span>
+            <span className='relative z-10 text-xl group-hover:animate-pulse'>
+              🚪
+            </span>
+            <span className='relative z-10'>Sign Out</span>
+
+            {/* Hover glow effect */}
+            <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
           </button>
         </div>
       </div>
