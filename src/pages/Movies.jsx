@@ -55,6 +55,7 @@ function Movies() {
 
   const [searchQuery, setSearchQuery] = useState('')
   const [activeSection, setActiveSection] = useState('rated')
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(true)
 
   const sections = [
     {
@@ -193,31 +194,62 @@ function Movies() {
   return (
     <div className='flex h-screen'>
       {/* Secondary Sidebar */}
-      <div className='w-64 bg-charcoal-light/60 backdrop-blur-xl border-r border-gray-600/30 flex flex-col'>
+      <div
+        className={`${
+          sidebarCollapsed ? 'w-16' : 'w-64'
+        } bg-charcoal-light/60 backdrop-blur-xl border-r border-gray-600/30 flex flex-col transition-all duration-300`}
+      >
+        {/* Toggle Button */}
+        <div className='p-4 border-b border-gray-600/30'>
+          <button
+            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            className='w-full flex items-center justify-center p-2 text-muted-gray hover:text-cream hover:bg-charcoal-light/60 rounded-lg transition-all duration-300'
+          >
+            <span
+              className={`transform transition-transform duration-300 ${
+                sidebarCollapsed ? 'rotate-0' : 'rotate-180'
+              }`}
+            >
+              ▶
+            </span>
+          </button>
+        </div>
+
         <nav className='flex-1 px-4 py-6 space-y-2'>
           {sections.map((section) => (
             <button
               key={section.id}
               onClick={() => setActiveSection(section.id)}
-              className={`relative w-full flex items-center justify-between px-4 py-3 rounded-xl font-medium text-sm transition-all duration-500 hover:scale-105 text-left group overflow-hidden touch-manipulation ${
+              className={`relative w-full flex items-center ${
+                sidebarCollapsed
+                  ? 'justify-center px-2'
+                  : 'justify-between px-4'
+              } py-3 rounded-xl font-medium text-sm transition-all duration-500 hover:scale-105 text-left group overflow-hidden touch-manipulation ${
                 activeSection === section.id
                   ? 'bg-gradient-to-r from-teal/20 to-crimson/20 text-cream border border-teal/30 shadow-lg shadow-teal/10'
                   : 'text-muted-gray hover:text-cream hover:bg-charcoal-light/60 backdrop-blur-sm border border-transparent hover:border-gray-600/30'
               }`}
+              title={sidebarCollapsed ? section.name : ''}
             >
               {/* Film strip perforations */}
               <div className='absolute left-1 top-1/2 w-1 h-1 bg-current opacity-20 rounded-full transform -translate-y-1/2'></div>
               <div className='absolute right-1 top-1/2 w-1 h-1 bg-current opacity-20 rounded-full transform -translate-y-1/2'></div>
 
-              <div className='relative z-10 flex items-center space-x-3'>
+              <div
+                className={`relative z-10 flex items-center ${
+                  sidebarCollapsed ? '' : 'space-x-3'
+                }`}
+              >
                 <span className='text-lg group-hover:animate-pulse'>
                   {section.icon}
                 </span>
-                <span>{section.name}</span>
+                {!sidebarCollapsed && <span>{section.name}</span>}
               </div>
-              <span className='relative z-10 text-xs bg-gray-600/30 px-2 py-1 rounded-full'>
-                {section.count}
-              </span>
+              {!sidebarCollapsed && (
+                <span className='relative z-10 text-xs bg-gray-600/30 px-2 py-1 rounded-full'>
+                  {section.count}
+                </span>
+              )}
 
               {/* Hover glow effect */}
               <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
@@ -230,8 +262,11 @@ function Movies() {
             <button
               onClick={() => generateRecommendations(ratings)}
               className='relative w-full px-4 py-2 bg-crimson/20 hover:bg-crimson/30 border border-crimson/30 hover:border-crimson/50 text-cream rounded-lg text-sm font-medium transition-all duration-500 hover:scale-105 backdrop-blur-sm shadow-lg hover:shadow-crimson/20 group overflow-hidden touch-manipulation'
+              title={sidebarCollapsed ? 'Generate New Recommendations' : ''}
             >
-              <span className='relative z-10'>Generate New</span>
+              <span className='relative z-10'>
+                {sidebarCollapsed ? '✨' : 'Generate New'}
+              </span>
 
               {/* Hover glow effect */}
               <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
