@@ -96,8 +96,8 @@ function SidebarLayout({ onLogout }) {
                 sidebarCollapsed ? 'justify-center px-2' : 'space-x-3 px-4'
               } py-3 rounded-xl font-medium text-sm transition-all duration-500 hover:scale-105 group overflow-hidden touch-manipulation ${
                 isActive(item.href)
-                  ? 'bg-gradient-to-r from-teal/20 to-crimson/20 text-cream border border-teal/30 shadow-lg shadow-teal/10'
-                  : 'text-muted-gray hover:text-cream hover:bg-charcoal-light/60 backdrop-blur-sm border border-transparent hover:border-gray-600/30'
+                  ? 'bg-gradient-to-r from-teal/30 to-crimson/30 text-cream shadow-lg shadow-teal/20'
+                  : 'text-muted-gray hover:text-cream hover:bg-charcoal-light/60 backdrop-blur-sm'
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
               title={sidebarCollapsed ? item.name : ''}
@@ -123,8 +123,8 @@ function SidebarLayout({ onLogout }) {
               sidebarCollapsed ? 'justify-center px-2' : 'space-x-3 px-4'
             } py-3 rounded-xl font-medium text-sm transition-all duration-500 hover:scale-105 group overflow-hidden touch-manipulation ${
               isActive('/profile')
-                ? 'bg-gradient-to-r from-teal/20 to-crimson/20 text-cream border border-teal/30 shadow-lg shadow-teal/10'
-                : 'text-muted-gray hover:text-cream hover:bg-charcoal-light/60 backdrop-blur-sm border border-transparent hover:border-gray-600/30'
+                ? 'bg-gradient-to-r from-teal/30 to-crimson/30 text-cream shadow-lg shadow-teal/20'
+                : 'text-muted-gray hover:text-cream hover:bg-charcoal-light/60 backdrop-blur-sm'
             }`}
             onClick={() => setIsMobileMenuOpen(false)}
             title={sidebarCollapsed ? 'Profile' : ''}
