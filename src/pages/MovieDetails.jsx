@@ -10,14 +10,6 @@ function MovieDetails() {
         {/* Header - Film Archive */}
         <section className='text-center space-y-12'>
           <div className='relative inline-block'>
-            {/* Film reel decorations */}
-            <div className='absolute -left-16 top-4 w-10 h-10 rounded-full border-4 border-crimson/20 animate-spin-slow hidden lg:block'>
-              <div className='absolute inset-2 rounded-full border-2 border-crimson/30'></div>
-            </div>
-            <div className='absolute -right-16 bottom-4 w-8 h-8 rounded-full border-3 border-teal/20 animate-spin-slow hidden lg:block'>
-              <div className='absolute inset-1 rounded-full border border-teal/30'></div>
-            </div>
-
             <FilmHeader
               title={['Film', 'Archive']}
               subtitle='Deep dive into cinematic details, cast information, and critical analysis'
@@ -152,10 +144,6 @@ function MovieDetails() {
 
         .animate-float-delay {
           animation: float-delay 3s ease-in-out infinite 1.5s;
-        }
-
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
         }
       `}</style>
     </div>

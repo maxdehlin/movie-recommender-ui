@@ -9,7 +9,7 @@ import './App.css'
 import LoginPage from './pages/LoginPage'
 import RatingPage from './pages/RatingPage'
 import LandingPage from './pages/LandingPage'
-import Dashboard from './pages/Dashboard'
+import Home from './pages/Home'
 import MovieDetails from './pages/MovieDetails'
 import Watchlist from './pages/Watchlist'
 import Profile from './pages/Profile'
@@ -78,7 +78,7 @@ function App() {
       <div className='min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-950 flex items-center justify-center'>
         <div className='flex items-center space-x-4'>
           <div className='w-8 h-8 border-4 border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin'></div>
-          <span className='text-white font-medium'>Loading MovieMind...</span>
+          <span className='text-white font-medium'>Loading CinemaVault...</span>
         </div>
       </div>
     )
@@ -91,18 +91,14 @@ function App() {
         <Route
           path='/'
           element={
-            isAuthenticated ? (
-              <Navigate to='/dashboard' replace />
-            ) : (
-              <LandingPage />
-            )
+            isAuthenticated ? <Navigate to='/home' replace /> : <LandingPage />
           }
         />
         <Route
           path='/login'
           element={
             isAuthenticated ? (
-              <Navigate to='/dashboard' replace />
+              <Navigate to='/home' replace />
             ) : (
               <LoginPage onLogin={handleLogin} />
             )
@@ -112,7 +108,11 @@ function App() {
         {/* Protected Routes */}
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
           <Route element={<Layout onLogout={handleLogout} />}>
-            <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/home' element={<Home />} />
+            <Route
+              path='/dashboard'
+              element={<Navigate to='/home' replace />}
+            />
             <Route
               path='/rate'
               element={<RatingPage onLogout={handleLogout} />}

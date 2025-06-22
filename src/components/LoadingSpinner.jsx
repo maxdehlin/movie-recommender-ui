@@ -30,13 +30,13 @@ function LoadingSpinner({
     return (
       <div className={containerClass}>
         <div className='text-center space-y-12 opacity-0 animate-fade-in-up'>
-          {/* Film Reel Loader */}
+          {/* Simple Loader */}
           <div
             className='relative mx-auto'
             style={{ width: '80px', height: '80px' }}
           >
             {/* Outer ring */}
-            <div className='absolute inset-0 border-4 border-teal/20 rounded-full animate-spin-slow'></div>
+            <div className='absolute inset-0 border-4 border-teal/20 rounded-full'></div>
 
             {/* Inner spinning element */}
             <div className='absolute inset-2 border-3 border-transparent border-t-teal border-r-teal rounded-full animate-spin'></div>
@@ -45,21 +45,6 @@ function LoadingSpinner({
             <div className='absolute inset-6 bg-gradient-to-br from-teal/30 to-crimson/30 rounded-full flex items-center justify-center'>
               <div className='w-4 h-4 bg-cream/80 rounded-full animate-pulse-glow'></div>
             </div>
-
-            {/* Film sprocket holes */}
-            <div className='absolute -top-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-teal/40 rounded-full animate-pulse-glow'></div>
-            <div
-              className='absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-crimson/40 rounded-full animate-pulse-glow'
-              style={{ animationDelay: '1s' }}
-            ></div>
-            <div
-              className='absolute -left-2 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-teal/30 rounded-full animate-pulse-glow'
-              style={{ animationDelay: '0.5s' }}
-            ></div>
-            <div
-              className='absolute -right-2 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-crimson/30 rounded-full animate-pulse-glow'
-              style={{ animationDelay: '1.5s' }}
-            ></div>
           </div>
 
           {/* Loading dots */}

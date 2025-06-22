@@ -7,14 +7,6 @@ function Profile() {
         {/* Header - Director's Studio */}
         <section className='text-center space-y-12'>
           <div className='relative inline-block'>
-            {/* Film reel decorations */}
-            <div className='absolute -left-16 top-4 w-10 h-10 rounded-full border-4 border-teal/20 animate-spin-slow hidden lg:block'>
-              <div className='absolute inset-2 rounded-full border-2 border-teal/30'></div>
-            </div>
-            <div className='absolute -right-16 bottom-4 w-8 h-8 rounded-full border-3 border-crimson/20 animate-spin-slow hidden lg:block'>
-              <div className='absolute inset-1 rounded-full border border-crimson/30'></div>
-            </div>
-
             <FilmHeader
               title={["Director's", 'Studio']}
               subtitle='Your personal command center for managing preferences, viewing history, and cinematic profile'
@@ -129,25 +121,12 @@ function Profile() {
           }
         }
 
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
         .animate-float {
           animation: float 3s ease-in-out infinite;
         }
 
         .animate-float-delay {
           animation: float-delay 3s ease-in-out infinite 1.5s;
-        }
-
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
         }
       `}</style>
     </div>

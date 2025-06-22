@@ -83,16 +83,6 @@ function LandingPage() {
             {/* Hero Content */}
             <div className='space-y-12'>
               <div className='relative inline-block'>
-                {/* Decorative film reels */}
-                <div className='absolute -left-20 top-8 w-12 h-12 rounded-full border-4 border-crimson/20 animate-spin-slow hidden xl:block'>
-                  <div className='absolute inset-2 rounded-full border-2 border-crimson/30'></div>
-                  <div className='absolute inset-4 rounded-full border border-crimson/50'></div>
-                </div>
-                <div className='absolute -right-20 bottom-8 w-10 h-10 rounded-full border-3 border-teal/20 animate-spin-slow hidden xl:block'>
-                  <div className='absolute inset-2 rounded-full border border-teal/30'></div>
-                  <div className='absolute inset-3 rounded-full border border-teal/50'></div>
-                </div>
-
                 <div className='space-y-8'>
                   <h1 className='text-6xl md:text-8xl font-serif text-cream tracking-wide leading-tight'>
                     Discover Your Next
@@ -259,25 +249,12 @@ function LandingPage() {
           }
         }
 
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
         .animate-float {
           animation: float 3s ease-in-out infinite;
         }
 
         .animate-float-delay {
           animation: float-delay 3s ease-in-out infinite 1.5s;
-        }
-
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
         }
       `}</style>
     </div>

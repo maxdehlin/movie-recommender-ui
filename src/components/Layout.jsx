@@ -7,7 +7,7 @@ function Layout({ onLogout }) {
   const [isScrolled, setIsScrolled] = useState(false)
 
   const navigation = [
-    { name: 'Dashboard', href: '/dashboard', icon: '🏠' },
+    { name: 'Home', href: '/home', icon: '🏠' },
     { name: 'Rate Movies', href: '/rate', icon: '⭐' },
     { name: 'Watchlist', href: '/watchlist', icon: '❤️' },
     { name: 'Profile', href: '/profile', icon: '👤' },
@@ -66,9 +66,9 @@ function Layout({ onLogout }) {
       >
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='flex items-center justify-between h-16'>
-            {/* Logo with Film Reel Design - Mobile Optimized */}
+            {/* Logo - Mobile Optimized */}
             <Link
-              to='/dashboard'
+              to='/home'
               className='flex items-center space-x-3 group flex-shrink-0'
             >
               <div className='relative'>
@@ -81,8 +81,6 @@ function Layout({ onLogout }) {
                   touch-manipulation
                 `}
                 >
-                  <div className='absolute inset-2 rounded-full border border-cream/20'></div>
-                  <div className='absolute inset-3 rounded-full border border-cream/10'></div>
                   <span
                     className={`text-cream font-bold relative z-10 ${
                       isScrolled ? 'text-lg' : 'text-xl'
@@ -91,9 +89,6 @@ function Layout({ onLogout }) {
                     🎬
                   </span>
                 </div>
-                {/* Film sprocket holes */}
-                <div className='absolute -left-1 top-1 w-2 h-2 bg-teal/30 rounded-full animate-pulse'></div>
-                <div className='absolute -right-1 bottom-1 w-2 h-2 bg-crimson/30 rounded-full animate-pulse'></div>
               </div>
               <div className='hidden sm:block'>
                 <h1
@@ -267,6 +262,39 @@ function Layout({ onLogout }) {
 
       {/* Ambient Bottom Glow */}
       <div className='fixed bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-crimson/5 via-teal/5 to-transparent pointer-events-none'></div>
+
+      {/* Floating action styles for mobile */}
+      <style jsx>{`
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slide-in-right {
+          from {
+            opacity: 0;
+            transform: translateX(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fade-in-up 0.3s ease-out;
+        }
+
+        .animate-slide-in-right {
+          animation: slide-in-right 0.4s ease-out;
+        }
+      `}</style>
     </div>
   )
 }

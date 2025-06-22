@@ -85,22 +85,15 @@ function LoginPage({ onLogin }) {
       <div className='relative z-10 w-full max-w-lg'>
         {/* Main Login Card */}
         <div className='bg-charcoal-light/80 backdrop-blur-xl border border-gray-600/40 rounded-3xl shadow-2xl overflow-hidden'>
-          {/* Header with Film Reel */}
+          {/* Header */}
           <div className='relative px-8 py-12 text-center'>
-            {/* Film Reel Logo */}
+            {/* Logo */}
             <div className='relative inline-block mb-8'>
               <div className='w-20 h-20 bg-gradient-to-br from-crimson via-crimson-dark to-teal rounded-full flex items-center justify-center shadow-2xl mx-auto border-4 border-gray-600/30'>
-                <div className='absolute inset-4 rounded-full border-2 border-cream/20'></div>
-                <div className='absolute inset-6 rounded-full border border-cream/10'></div>
                 <span className='text-cream text-3xl font-bold relative z-10'>
                   🎬
                 </span>
               </div>
-              {/* Decorative sprocket holes */}
-              <div className='absolute -top-2 -left-2 w-4 h-4 bg-teal/30 rounded-full animate-pulse'></div>
-              <div className='absolute -top-2 -right-2 w-4 h-4 bg-crimson/30 rounded-full animate-pulse'></div>
-              <div className='absolute -bottom-2 -left-2 w-3 h-3 bg-crimson/20 rounded-full animate-pulse'></div>
-              <div className='absolute -bottom-2 -right-2 w-3 h-3 bg-teal/20 rounded-full animate-pulse'></div>
             </div>
 
             <h1 className='text-4xl font-serif text-cream mb-4 tracking-wide leading-tight'>
