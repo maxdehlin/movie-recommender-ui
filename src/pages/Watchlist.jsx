@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import FilmHeader from '../components/FilmHeader'
+import FilmCard from '../components/FilmCard'
+import FilmButton from '../components/FilmButton'
 
 function Watchlist() {
   const [savedMovies, setSavedMovies] = useState([])
@@ -45,175 +48,254 @@ function Watchlist() {
   }
 
   return (
-    <div className='min-h-screen pt-8 pb-16 px-8 w-screen'>
-      <div className='max-w-7xl mx-auto space-y-12'>
-        <section className='text-center space-y-6'>
-          <h1 className='text-4xl md:text-5xl font-bold text-white tracking-tight'>
-            Your
-            <span className='bg-gradient-to-r from-pink-400 via-rose-400 to-red-400 bg-clip-text text-transparent'>
-              {' '}
-              Watchlist
-            </span>
-          </h1>
-          <p className='text-xl text-white/70 font-light max-w-2xl mx-auto'>
-            Movies you've saved to watch later
-          </p>
-          {savedMovies.length > 0 && (
-            <div className='flex items-center justify-center space-x-4 text-white/60'>
-              <div className='flex items-center space-x-2'>
-                <div className='w-2 h-2 bg-pink-400 rounded-full'></div>
-                <span className='text-sm font-medium'>
-                  {savedMovies.length} saved
-                </span>
-              </div>
+    <div className='min-h-screen pt-12 pb-20 px-8'>
+      <div className='max-w-7xl mx-auto space-y-16'>
+        <FilmHeader
+          title={['Your Personal', 'Film Vault']}
+          subtitle='A curated collection of cinematic treasures, handpicked by AI and saved for your viewing pleasure'
+          accentColor='crimson'
+        />
+
+        {savedMovies.length > 0 && (
+          <div className='flex items-center justify-center space-x-6'>
+            <div className='flex items-center space-x-3 bg-charcoal-light/60 px-6 py-3 rounded-2xl border border-gray-600/30 backdrop-blur-xl'>
+              <div className='w-3 h-3 bg-crimson rounded-full animate-pulse'></div>
+              <span className='text-muted-gray font-medium tracking-wider uppercase text-sm'>
+                {savedMovies.length} Films Archived
+              </span>
             </div>
-          )}
-        </section>
+          </div>
+        )}
 
         {savedMovies.length === 0 ? (
-          <div className='text-center py-20'>
-            <div className='w-32 h-32 mx-auto mb-8 bg-gradient-to-br from-pink-500/10 to-rose-500/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-pink-400/20'>
-              <span className='text-6xl opacity-60'>❤️</span>
+          <div className='text-center py-32'>
+            <div className='relative inline-block mb-12'>
+              <div className='w-48 h-48 mx-auto bg-gradient-to-br from-crimson/10 to-teal/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-gray-600/30 shadow-2xl'>
+                <div className='absolute inset-8 rounded-full border-2 border-cream/20'></div>
+                <div className='absolute inset-12 rounded-full border border-cream/10'></div>
+                <span className='text-8xl opacity-40 relative z-10'>🎬</span>
+              </div>
+              <div className='absolute -top-4 -left-4 w-8 h-8 bg-crimson/20 rounded-full animate-float'></div>
+              <div className='absolute -top-4 -right-4 w-6 h-6 bg-teal/20 rounded-full animate-float-delay'></div>
+              <div className='absolute -bottom-4 -left-4 w-6 h-6 bg-teal/15 rounded-full animate-float'></div>
+              <div className='absolute -bottom-4 -right-4 w-4 h-4 bg-crimson/15 rounded-full animate-float-delay'></div>
             </div>
-            <div className='space-y-6'>
-              <div>
-                <h3 className='text-2xl font-semibold text-white mb-4'>
-                  No movies saved yet
+
+            <div className='space-y-8'>
+              <div className='space-y-6'>
+                <h3 className='text-3xl font-serif text-cream tracking-wide'>
+                  Your Vault Awaits
                 </h3>
-                <p className='text-white/60 text-lg max-w-md mx-auto leading-relaxed'>
-                  Save movies from your recommendations to build your
-                  personalized watchlist
+                <p className='text-muted-gray text-xl font-light max-w-lg mx-auto leading-relaxed'>
+                  Begin rating films to receive AI recommendations, then save
+                  your favorites to build your personal cinema collection
                 </p>
               </div>
-              <Link
-                to='/rate'
-                className='inline-flex px-8 py-4 bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-700 hover:to-rose-700 text-white rounded-2xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-pink-500/25 border border-pink-400/30 overflow-hidden group bg-no-repeat'
-              >
-                <div className='absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300'></div>
-                <span className='relative z-10 drop-shadow-sm'>
-                  Get Recommendations
-                </span>
+
+              <Link to='/rate'>
+                <FilmButton
+                  size='xlarge'
+                  variant='primary'
+                  icon={
+                    <svg
+                      className='w-6 h-6'
+                      fill='currentColor'
+                      viewBox='0 0 24 24'
+                    >
+                      <path d='M8 5v14l11-7z' />
+                    </svg>
+                  }
+                >
+                  Discover Films
+                </FilmButton>
               </Link>
             </div>
           </div>
         ) : (
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-            {savedMovies.map((movie, index) => {
-              const title = getMovieTitle(movie)
-              const year = getMovieYear(movie)
-              const genres = getMovieGenres(movie)
-              const rating = getMovieRating(movie)
-              const reason = getMovieReason(movie)
+          <div className='space-y-12'>
+            <div className='text-center'>
+              <h2 className='text-3xl font-serif text-cream mb-4 tracking-wide'>
+                Archived Collection
+              </h2>
+              <p className='text-muted-gray text-lg font-light'>
+                Your personally curated selection of cinematic excellence
+              </p>
+            </div>
 
-              return (
-                <article
-                  key={index}
-                  className='group backdrop-blur-2xl bg-gradient-to-br from-pink-500/10 to-rose-500/10 rounded-3xl border border-pink-400/20 p-8 hover:from-pink-500/15 hover:to-rose-500/15 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-pink-400/30 shadow-lg'
-                >
-                  <div className='flex items-start justify-between mb-6'>
-                    <h3 className='text-xl font-bold text-white leading-tight flex-1 pr-4 line-clamp-2'>
-                      {title}
-                    </h3>
-                    <button
-                      onClick={() => removeFromWatchlist(title)}
-                      className='w-10 h-10 bg-red-500/20 hover:bg-red-500/30 rounded-full flex items-center justify-center text-red-300 hover:text-white transition-all duration-300 hover:scale-110 backdrop-blur-md border border-red-400/30 hover:border-red-300/50 shadow-lg hover:shadow-red-500/25 group bg-no-repeat'
-                    >
-                      <svg
-                        className='w-5 h-5 group-hover:scale-110 transition-transform'
-                        fill='none'
-                        stroke='currentColor'
-                        viewBox='0 0 24 24'
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+              {savedMovies.map((movie, index) => {
+                const title = getMovieTitle(movie)
+                const year = getMovieYear(movie)
+                const genres = getMovieGenres(movie)
+                const rating = getMovieRating(movie)
+                const reason = getMovieReason(movie)
+
+                return (
+                  <FilmCard key={index} variant='primary'>
+                    <div className='flex items-start justify-between mb-8'>
+                      <h3 className='text-xl font-serif text-cream leading-tight flex-1 pr-4 line-clamp-2 group-hover:text-crimson transition-colors duration-300 tracking-wide'>
+                        {title}
+                      </h3>
+                      <button
+                        onClick={() => removeFromWatchlist(title)}
+                        className='w-12 h-12 bg-charcoal/60 hover:bg-crimson/80 rounded-full flex items-center justify-center text-muted-gray hover:text-cream transition-all duration-300 hover:scale-110 backdrop-blur-md border border-gray-600/50 hover:border-crimson/50 shadow-lg hover:shadow-crimson/25'
                       >
-                        <path
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                          strokeWidth={2}
-                          d='M6 18L18 6M6 6l12 12'
-                        />
-                      </svg>
-                    </button>
-                  </div>
-
-                  {(year || genres) && (
-                    <div className='flex items-center space-x-2 mb-4 text-sm text-white/60'>
-                      {year && <span>{year}</span>}
-                      {year && genres && (
-                        <div className='w-1 h-1 bg-white/30 rounded-full'></div>
-                      )}
-                      {genres && <span className='line-clamp-1'>{genres}</span>}
+                        <svg
+                          className='w-5 h-5 group-hover:scale-110 transition-transform'
+                          fill='none'
+                          stroke='currentColor'
+                          viewBox='0 0 24 24'
+                        >
+                          <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            strokeWidth={2}
+                            d='M6 18L18 6M6 6l12 12'
+                          />
+                        </svg>
+                      </button>
                     </div>
-                  )}
 
-                  {reason && (
-                    <p className='text-white/70 text-sm mb-4 leading-relaxed line-clamp-3'>
-                      {reason}
-                    </p>
-                  )}
-
-                  <div className='flex items-center justify-between pt-4 border-t border-pink-400/20'>
-                    <div className='flex items-center space-x-2'>
-                      <div className='w-2 h-2 bg-gradient-to-r from-pink-400 to-rose-400 rounded-full'></div>
-                      <span className='text-sm text-white/60 font-medium'>
-                        Saved to watchlist
-                      </span>
-                    </div>
-                    {rating ? (
-                      <div className='flex items-center space-x-1'>
-                        <span className='text-amber-400 text-sm'>★</span>
-                        <span className='text-white/70 text-sm font-medium'>
-                          {rating}
-                        </span>
-                      </div>
-                    ) : (
-                      <div className='text-pink-400 text-sm font-medium'>
-                        ❤️ Saved
+                    {(year || genres) && (
+                      <div className='flex items-center space-x-3 mb-6 text-sm text-muted-gray'>
+                        {year && <span className='font-medium'>{year}</span>}
+                        {year && genres && (
+                          <div className='w-1 h-1 bg-crimson/50 rounded-full'></div>
+                        )}
+                        {genres && (
+                          <span className='line-clamp-1'>{genres}</span>
+                        )}
                       </div>
                     )}
-                  </div>
-                </article>
-              )
-            })}
+
+                    {reason && (
+                      <div className='mb-6 p-4 bg-charcoal/40 rounded-2xl border border-gray-600/30'>
+                        <p className='text-muted-gray text-sm leading-relaxed line-clamp-3 italic'>
+                          "{reason}"
+                        </p>
+                      </div>
+                    )}
+
+                    <div className='flex items-center justify-between pt-6 border-t border-gray-600/30'>
+                      <div className='flex items-center space-x-3'>
+                        <div className='w-3 h-3 bg-gradient-to-r from-crimson to-teal rounded-full'></div>
+                        <span className='text-xs text-muted-gray font-medium tracking-wider uppercase'>
+                          Vault Collection
+                        </span>
+                      </div>
+                      {rating ? (
+                        <div className='flex items-center space-x-2'>
+                          <span className='text-crimson text-lg'>★</span>
+                          <span className='text-cream font-semibold text-sm'>
+                            {rating}
+                          </span>
+                        </div>
+                      ) : (
+                        <div className='flex items-center space-x-2'>
+                          <span className='text-crimson text-lg'>❤️</span>
+                          <span className='text-cream font-medium text-sm'>
+                            Saved
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </FilmCard>
+                )
+              })}
+            </div>
           </div>
         )}
 
-        {/* Action Buttons */}
         {savedMovies.length > 0 && (
-          <section className='flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 pt-8'>
-            <Link
-              to='/rate'
-              className='relative px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-2xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-indigo-500/25 border border-indigo-400/30 overflow-hidden group bg-no-repeat'
-            >
-              <div className='absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300'></div>
-              <span className='relative z-10 drop-shadow-sm'>
-                Get More Recommendations
-              </span>
+          <section className='flex flex-col sm:flex-row items-center justify-center space-y-6 sm:space-y-0 sm:space-x-8 pt-12'>
+            <Link to='/rate'>
+              <FilmButton
+                size='large'
+                variant='secondary'
+                icon={
+                  <svg
+                    className='w-6 h-6'
+                    fill='currentColor'
+                    viewBox='0 0 24 24'
+                  >
+                    <path d='M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z' />
+                  </svg>
+                }
+              >
+                Discover More Films
+              </FilmButton>
             </Link>
-            <button
+
+            <FilmButton
+              size='large'
+              variant='ghost'
               onClick={() => {
                 setSavedMovies([])
                 localStorage.removeItem('savedRecommendations')
               }}
-              className='px-8 py-4 bg-gradient-to-r from-slate-600/30 to-slate-500/30 hover:from-slate-600/40 hover:to-slate-500/40 text-white rounded-2xl font-semibold border border-slate-400/30 hover:border-slate-400/50 transition-all duration-300 hover:scale-105 tracking-wide shadow-lg hover:shadow-slate-500/20 backdrop-blur-sm bg-no-repeat'
             >
-              Clear All
-            </button>
+              Clear Vault
+            </FilmButton>
           </section>
         )}
       </div>
 
       <style jsx>{`
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-12px);
+          }
+        }
+
+        @keyframes float-delay {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-8px);
+          }
+        }
+
+        @keyframes spin-slow {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-float-delay {
+          animation: float-delay 3s ease-in-out infinite 1.5s;
+        }
+
+        .animate-spin-slow {
+          animation: spin-slow 20s linear infinite;
+        }
+
         .line-clamp-1 {
           display: -webkit-box;
           -webkit-line-clamp: 1;
           -webkit-box-orient: vertical;
           overflow: hidden;
         }
+
         .line-clamp-2 {
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
         }
+
         .line-clamp-3 {
           display: -webkit-box;
           -webkit-line-clamp: 3;

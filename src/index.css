@@ -12,3 +12,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Global font definitions */
+.font-serif {
+  font-family: 'Playfair Display', serif;
+}

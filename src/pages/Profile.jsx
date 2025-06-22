@@ -1,37 +1,158 @@
 function Profile() {
   return (
-    <div className='min-h-screen pt-8 pb-16 px-8 w-screen'>
-      <div className='max-w-4xl mx-auto space-y-12'>
-        <section className='text-center space-y-6'>
-          <h1 className='text-4xl md:text-5xl font-bold text-white tracking-tight'>
-            Your
-            <span className='bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent'>
-              {' '}
-              Profile
-            </span>
-          </h1>
-          <p className='text-xl text-white/70 font-light max-w-2xl mx-auto'>
-            Manage your account settings and preferences
-          </p>
-        </section>
-
-        <div className='backdrop-blur-2xl bg-white/5 rounded-3xl border border-white/10 p-12'>
-          <div className='text-center space-y-8'>
-            <div className='w-24 h-24 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-full flex items-center justify-center mx-auto'>
-              <span className='text-4xl'>👤</span>
+    <div className='min-h-screen pt-12 pb-20 px-8'>
+      <div className='max-w-5xl mx-auto space-y-16'>
+        {/* Header - Director's Studio */}
+        <section className='text-center space-y-12'>
+          <div className='relative inline-block'>
+            {/* Film reel decorations */}
+            <div className='absolute -left-16 top-4 w-10 h-10 rounded-full border-4 border-teal/20 animate-spin-slow hidden lg:block'>
+              <div className='absolute inset-2 rounded-full border-2 border-teal/30'></div>
             </div>
-            <div className='space-y-4'>
-              <h2 className='text-2xl font-bold text-white'>
-                Profile Settings
-              </h2>
-              <p className='text-white/60 text-lg'>
-                Profile customization and user preferences will be available
-                soon.
+            <div className='absolute -right-16 bottom-4 w-8 h-8 rounded-full border-3 border-crimson/20 animate-spin-slow hidden lg:block'>
+              <div className='absolute inset-1 rounded-full border border-crimson/30'></div>
+            </div>
+
+            <div className='space-y-8'>
+              <h1 className='text-5xl md:text-6xl font-serif text-cream tracking-wide leading-tight'>
+                Director's
+                <span className='block text-teal italic'>Studio</span>
+              </h1>
+              <p className='text-xl text-muted-gray font-light max-w-3xl mx-auto leading-relaxed'>
+                Your personal command center for managing preferences, viewing
+                history, and cinematic profile
               </p>
             </div>
           </div>
+        </section>
+
+        {/* Profile Content - Coming Soon */}
+        <div className='relative bg-charcoal-light/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 p-16 shadow-2xl overflow-hidden'>
+          {/* Film strip perforations */}
+          <div className='absolute left-4 top-8 bottom-8 flex flex-col justify-center space-y-4'>
+            <div className='w-3 h-3 bg-teal/20 rounded-full'></div>
+            <div className='w-3 h-3 bg-crimson/20 rounded-full'></div>
+            <div className='w-3 h-3 bg-teal/20 rounded-full'></div>
+            <div className='w-3 h-3 bg-crimson/20 rounded-full'></div>
+            <div className='w-3 h-3 bg-teal/20 rounded-full'></div>
+          </div>
+          <div className='absolute right-4 top-8 bottom-8 flex flex-col justify-center space-y-4'>
+            <div className='w-3 h-3 bg-crimson/20 rounded-full'></div>
+            <div className='w-3 h-3 bg-teal/20 rounded-full'></div>
+            <div className='w-3 h-3 bg-crimson/20 rounded-full'></div>
+            <div className='w-3 h-3 bg-teal/20 rounded-full'></div>
+            <div className='w-3 h-3 bg-crimson/20 rounded-full'></div>
+          </div>
+
+          <div className='relative z-10 text-center space-y-12'>
+            <div className='relative inline-block'>
+              <div className='w-32 h-32 bg-gradient-to-br from-teal/20 to-crimson/20 rounded-full flex items-center justify-center mx-auto border-2 border-gray-600/50 shadow-2xl'>
+                <div className='absolute inset-8 rounded-full border border-cream/20'></div>
+                <span className='text-6xl relative z-10 opacity-60'>🎭</span>
+              </div>
+              {/* Floating elements */}
+              <div className='absolute -top-3 -right-3 w-6 h-6 bg-teal/20 rounded-full animate-float'></div>
+              <div className='absolute -bottom-3 -left-3 w-4 h-4 bg-crimson/20 rounded-full animate-float-delay'></div>
+            </div>
+
+            <div className='space-y-8'>
+              <div className='space-y-6'>
+                <h2 className='text-3xl font-serif text-cream tracking-wide'>
+                  Profile Customization
+                </h2>
+                <p className='text-muted-gray text-lg font-light max-w-2xl mx-auto leading-relaxed'>
+                  Your personal director's studio is currently in
+                  post-production. Soon you'll be able to customize your viewing
+                  preferences, manage your film history, and fine-tune your AI
+                  recommendations.
+                </p>
+              </div>
+
+              {/* Feature Preview Cards */}
+              <div className='grid grid-cols-1 md:grid-cols-3 gap-8 mt-16'>
+                <div className='bg-charcoal/40 rounded-2xl border border-gray-600/30 p-8 space-y-4'>
+                  <div className='w-12 h-12 bg-gradient-to-br from-teal/20 to-teal-dark/20 rounded-full flex items-center justify-center mx-auto'>
+                    <span className='text-2xl'>⚙️</span>
+                  </div>
+                  <h3 className='text-lg font-serif text-cream'>Preferences</h3>
+                  <p className='text-muted-gray text-sm leading-relaxed'>
+                    Customize your AI recommendation settings and viewing
+                    preferences
+                  </p>
+                </div>
+
+                <div className='bg-charcoal/40 rounded-2xl border border-gray-600/30 p-8 space-y-4'>
+                  <div className='w-12 h-12 bg-gradient-to-br from-crimson/20 to-crimson-dark/20 rounded-full flex items-center justify-center mx-auto'>
+                    <span className='text-2xl'>📊</span>
+                  </div>
+                  <h3 className='text-lg font-serif text-cream'>Analytics</h3>
+                  <p className='text-muted-gray text-sm leading-relaxed'>
+                    View detailed insights about your viewing patterns and taste
+                    profile
+                  </p>
+                </div>
+
+                <div className='bg-charcoal/40 rounded-2xl border border-gray-600/30 p-8 space-y-4'>
+                  <div className='w-12 h-12 bg-gradient-to-br from-teal/20 to-crimson/20 rounded-full flex items-center justify-center mx-auto'>
+                    <span className='text-2xl'>🎬</span>
+                  </div>
+                  <h3 className='text-lg font-serif text-cream'>History</h3>
+                  <p className='text-muted-gray text-sm leading-relaxed'>
+                    Access your complete rating history and recommendation
+                    timeline
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Hover shimmer effect */}
+          <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/3 to-transparent translate-x-[-100%] hover:translate-x-[100%] transition-transform duration-2000'></div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-12px);
+          }
+        }
+
+        @keyframes float-delay {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-8px);
+          }
+        }
+
+        @keyframes spin-slow {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-float-delay {
+          animation: float-delay 3s ease-in-out infinite 1.5s;
+        }
+
+        .animate-spin-slow {
+          animation: spin-slow 20s linear infinite;
+        }
+      `}</style>
     </div>
   )
 }

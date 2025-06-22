@@ -1,118 +1,323 @@
-import React from 'react'
+import React, { useState } from 'react'
 import api from '../utils/api'
 
-const BACKEND_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
-const isDevelopment = import.meta.env.DEV
-
 function LoginPage({ onLogin }) {
-  const handleGoogleLogin = () => {
-    window.location.href = `${BACKEND_URL}/auth/google/login`
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setIsLoading(true)
+    setError('')
+
+    try {
+      const result = await api.devLogin({ username, password })
+      if (result.success) {
+        onLogin(result.token)
+      } else {
+        setError(result.error || 'Login failed')
+      }
+    } catch (err) {
+      console.error('Login error:', err)
+      setError('Login failed. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const handleDevLogin = async () => {
+    setIsLoading(true)
+    setError('')
+
     try {
-      const data = await api.devLogin()
-      localStorage.setItem('authToken', data.access_token)
-      onLogin()
-    } catch (error) {
-      console.error('Development login failed:', error)
+      const result = await api.devLogin({ username: 'demo', password: 'demo' })
+      if (result.success) {
+        onLogin(result.token)
+      } else {
+        setError('Development login failed')
+      }
+    } catch (err) {
+      console.error('Development login error:', err)
+      setError('Development login failed')
+    } finally {
+      setIsLoading(false)
     }
   }
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-950 relative overflow-hidden w-screen flex items-center justify-center'>
-      {/* Background Pattern */}
-      <div
-        className='absolute inset-0 opacity-20'
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.02'%3E%3Cpath d='m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      />
-
-      {/* Animated background elements */}
-      <div className='absolute inset-0 overflow-hidden'>
-        <div className='absolute -top-4 -left-4 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse'></div>
-        <div className='absolute top-1/3 -right-4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-1000'></div>
-        <div className='absolute -bottom-8 left-1/3 w-80 h-80 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-2000'></div>
+    <div className='min-h-screen bg-charcoal flex items-center justify-center p-8'>
+      {/* Film Strip Background Pattern */}
+      <div className='fixed inset-0 opacity-5'>
+        <div
+          className='absolute inset-0'
+          style={{
+            backgroundImage: `repeating-linear-gradient(45deg, #dc2626 0px, #dc2626 4px, transparent 4px, transparent 24px)`,
+            backgroundSize: '32px 32px',
+          }}
+        ></div>
       </div>
 
-      <div className='relative z-10 max-w-md w-full mx-6'>
-        <div className='backdrop-blur-2xl bg-white/8 rounded-3xl border border-white/15 p-8 shadow-2xl'>
-          <div className='text-center space-y-8'>
-            {/* Logo */}
-            <div className='space-y-4'>
-              <div className='w-20 h-20 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto shadow-lg'>
-                <span className='text-white font-bold text-2xl'>🎬</span>
+      {/* Cinematic Grain Overlay */}
+      <div className='fixed inset-0 opacity-30 pointer-events-none'>
+        <div
+          className='absolute inset-0'
+          style={{
+            backgroundImage: `radial-gradient(circle at 25% 25%, rgba(220, 38, 38, 0.1) 0%, transparent 2px), radial-gradient(circle at 75% 75%, rgba(20, 184, 166, 0.1) 0%, transparent 2px)`,
+            backgroundSize: '4px 4px',
+          }}
+        ></div>
+      </div>
+
+      {/* Floating Film Elements */}
+      <div className='fixed inset-0 pointer-events-none'>
+        <div className='absolute top-20 left-10 w-4 h-4 bg-crimson/20 rounded-full animate-float'></div>
+        <div className='absolute top-40 right-20 w-3 h-3 bg-teal/20 rounded-full animate-float-delay'></div>
+        <div className='absolute bottom-32 left-1/4 w-2 h-2 bg-crimson/15 rounded-full animate-float'></div>
+        <div className='absolute bottom-20 right-1/3 w-5 h-5 bg-teal/15 rounded-full animate-float-delay'></div>
+      </div>
+
+      <div className='relative z-10 w-full max-w-lg'>
+        {/* Main Login Card */}
+        <div className='bg-charcoal-light/80 backdrop-blur-xl border border-gray-600/40 rounded-3xl shadow-2xl overflow-hidden'>
+          {/* Header with Film Reel */}
+          <div className='relative px-8 py-12 text-center'>
+            {/* Film Reel Logo */}
+            <div className='relative inline-block mb-8'>
+              <div className='w-20 h-20 bg-gradient-to-br from-crimson via-crimson-dark to-teal rounded-full flex items-center justify-center shadow-2xl mx-auto border-4 border-gray-600/30'>
+                <div className='absolute inset-4 rounded-full border-2 border-cream/20'></div>
+                <div className='absolute inset-6 rounded-full border border-cream/10'></div>
+                <span className='text-cream text-3xl font-bold relative z-10'>
+                  🎬
+                </span>
+              </div>
+              {/* Decorative sprocket holes */}
+              <div className='absolute -top-2 -left-2 w-4 h-4 bg-teal/30 rounded-full animate-pulse'></div>
+              <div className='absolute -top-2 -right-2 w-4 h-4 bg-crimson/30 rounded-full animate-pulse'></div>
+              <div className='absolute -bottom-2 -left-2 w-3 h-3 bg-crimson/20 rounded-full animate-pulse'></div>
+              <div className='absolute -bottom-2 -right-2 w-3 h-3 bg-teal/20 rounded-full animate-pulse'></div>
+            </div>
+
+            <h1 className='text-4xl font-serif text-cream mb-4 tracking-wide leading-tight'>
+              Welcome to
+              <span className='block text-teal italic'>CinemaVault</span>
+            </h1>
+            <p className='text-muted-gray text-lg font-light leading-relaxed'>
+              Enter the archive of cinematic excellence, where AI meets artistry
+            </p>
+          </div>
+
+          {/* Login Form */}
+          <div className='px-8 pb-12'>
+            {error && (
+              <div className='mb-8 p-6 bg-crimson/10 border border-crimson/30 rounded-2xl text-cream animate-fade-in shadow-lg'>
+                <div className='flex items-center space-x-4'>
+                  <div className='w-6 h-6 rounded-full bg-crimson/20 flex items-center justify-center'>
+                    <div className='w-3 h-3 bg-crimson rounded-full animate-pulse'></div>
+                  </div>
+                  <span className='font-medium'>{error}</span>
+                </div>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className='space-y-8'>
+              <div className='space-y-6'>
+                <div className='relative group'>
+                  <label className='block text-sm font-medium text-muted-gray mb-3 tracking-wide uppercase'>
+                    Username
+                  </label>
+                  <div className='relative'>
+                    <input
+                      type='text'
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      required
+                      className='w-full px-6 py-4 bg-charcoal/60 border border-gray-600/40 rounded-2xl text-cream placeholder-muted-gray focus:outline-none focus:border-teal/50 focus:ring-2 focus:ring-teal/20 transition-all duration-300 backdrop-blur-sm text-lg tracking-wide group-hover:border-gray-500/50'
+                      placeholder='Enter your username'
+                    />
+                    {/* Decorative film perforations */}
+                    <div className='absolute right-4 top-1/2 transform -translate-y-1/2 flex space-x-1'>
+                      <div className='w-1 h-1 bg-teal/30 rounded-full'></div>
+                      <div className='w-1 h-1 bg-crimson/30 rounded-full'></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='relative group'>
+                  <label className='block text-sm font-medium text-muted-gray mb-3 tracking-wide uppercase'>
+                    Password
+                  </label>
+                  <div className='relative'>
+                    <input
+                      type='password'
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      className='w-full px-6 py-4 bg-charcoal/60 border border-gray-600/40 rounded-2xl text-cream placeholder-muted-gray focus:outline-none focus:border-teal/50 focus:ring-2 focus:ring-teal/20 transition-all duration-300 backdrop-blur-sm text-lg tracking-wide group-hover:border-gray-500/50'
+                      placeholder='Enter your password'
+                    />
+                    {/* Decorative film perforations */}
+                    <div className='absolute right-4 top-1/2 transform -translate-y-1/2 flex space-x-1'>
+                      <div className='w-1 h-1 bg-crimson/30 rounded-full'></div>
+                      <div className='w-1 h-1 bg-teal/30 rounded-full'></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className='space-y-4'>
+                <button
+                  type='submit'
+                  disabled={isLoading}
+                  className='relative w-full px-8 py-5 bg-gradient-to-r from-teal to-teal-dark hover:from-teal-dark hover:to-teal text-charcoal rounded-2xl font-bold text-lg transition-all duration-500 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-2xl hover:shadow-teal/30 group overflow-hidden'
+                >
+                  <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
+                  <span className='relative z-10 flex items-center justify-center space-x-3'>
+                    {isLoading ? (
+                      <>
+                        <div className='w-6 h-6 border-3 border-charcoal/30 border-t-charcoal rounded-full animate-spin'></div>
+                        <span>Accessing Archive...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Enter CinemaVault</span>
+                        <svg
+                          className='w-6 h-6'
+                          fill='currentColor'
+                          viewBox='0 0 24 24'
+                        >
+                          <path d='M8 5v14l11-7z' />
+                        </svg>
+                      </>
+                    )}
+                  </span>
+                </button>
+
+                <div className='relative'>
+                  <div className='absolute inset-0 flex items-center'>
+                    <div className='w-full border-t border-gray-600/30'></div>
+                  </div>
+                  <div className='relative flex justify-center text-sm'>
+                    <span className='px-4 bg-charcoal-light text-muted-gray font-medium tracking-wider'>
+                      OR
+                    </span>
+                  </div>
+                </div>
+
+                <button
+                  type='button'
+                  onClick={handleDevLogin}
+                  disabled={isLoading}
+                  className='relative w-full px-8 py-5 bg-gradient-to-r from-crimson/20 to-crimson-dark/20 hover:from-crimson/30 hover:to-crimson-dark/30 border border-crimson/30 hover:border-crimson/50 text-cream rounded-2xl font-semibold text-lg transition-all duration-500 hover:scale-105 disabled:opacity-50 shadow-xl hover:shadow-crimson/20 backdrop-blur-sm group overflow-hidden'
+                >
+                  <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
+                  <span className='relative z-10 flex items-center justify-center space-x-3'>
+                    <span>Demo Access</span>
+                    <svg
+                      className='w-6 h-6'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z'
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        {/* Feature Preview */}
+        <div className='mt-12 text-center'>
+          <div className='grid grid-cols-3 gap-6'>
+            <div className='text-center space-y-3'>
+              <div className='w-12 h-12 bg-teal/10 rounded-full flex items-center justify-center mx-auto border border-teal/20'>
+                <span className='text-teal text-xl'>🤖</span>
               </div>
               <div>
-                <h1 className='text-3xl font-bold text-white tracking-tight'>
-                  Welcome to MovieRecs
-                </h1>
-                <p className='text-white/70 mt-2'>
-                  Sign in to get personalized movie recommendations
+                <h3 className='text-cream font-serif text-lg'>AI Curator</h3>
+                <p className='text-muted-gray text-sm'>
+                  Intelligent recommendations
                 </p>
               </div>
             </div>
 
-            {/* Login Buttons */}
-            <div className='space-y-4'>
-              <button
-                onClick={handleGoogleLogin}
-                className='w-full relative px-6 py-4 bg-white/10 hover:bg-white/15 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-2xl font-semibold text-white transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center space-x-3 group'
-              >
-                <img
-                  src='https://www.google.com/favicon.ico'
-                  alt='Google'
-                  className='w-5 h-5'
-                />
-                <span>Sign in with Google</span>
-              </button>
-
-              {isDevelopment && (
-                <button
-                  onClick={handleDevLogin}
-                  className='w-full relative px-6 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white rounded-2xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg border border-emerald-400/30 overflow-hidden group bg-no-repeat'
-                >
-                  <div className='absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300'></div>
-                  <span className='relative z-10 drop-shadow-sm'>
-                    Quick Dev Login
-                  </span>
-                </button>
-              )}
+            <div className='text-center space-y-3'>
+              <div className='w-12 h-12 bg-crimson/10 rounded-full flex items-center justify-center mx-auto border border-crimson/20'>
+                <span className='text-crimson text-xl'>🎭</span>
+              </div>
+              <div>
+                <h3 className='text-cream font-serif text-lg'>
+                  Cinema Archive
+                </h3>
+                <p className='text-muted-gray text-sm'>Vast film collection</p>
+              </div>
             </div>
 
-            {/* Features */}
-            <div className='pt-6 border-t border-white/10'>
-              <div className='grid grid-cols-3 gap-4'>
-                <div className='text-center space-y-2'>
-                  <div className='w-10 h-10 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-xl flex items-center justify-center mx-auto'>
-                    <span className='text-lg'>⭐</span>
-                  </div>
-                  <p className='text-white/60 text-xs font-medium'>
-                    Rate Movies
-                  </p>
-                </div>
-                <div className='text-center space-y-2'>
-                  <div className='w-10 h-10 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl flex items-center justify-center mx-auto'>
-                    <span className='text-lg'>🤖</span>
-                  </div>
-                  <p className='text-white/60 text-xs font-medium'>
-                    AI Powered
-                  </p>
-                </div>
-                <div className='text-center space-y-2'>
-                  <div className='w-10 h-10 bg-gradient-to-br from-pink-500/20 to-rose-500/20 rounded-xl flex items-center justify-center mx-auto'>
-                    <span className='text-lg'>✨</span>
-                  </div>
-                  <p className='text-white/60 text-xs font-medium'>
-                    Personalized
-                  </p>
-                </div>
+            <div className='text-center space-y-3'>
+              <div className='w-12 h-12 bg-teal/10 rounded-full flex items-center justify-center mx-auto border border-teal/20'>
+                <span className='text-teal text-xl'>⭐</span>
+              </div>
+              <div>
+                <h3 className='text-cream font-serif text-lg'>Rate & Save</h3>
+                <p className='text-muted-gray text-sm'>Personal watchlist</p>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(-12px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-12px);
+          }
+        }
+
+        @keyframes float-delay {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-8px);
+          }
+        }
+
+        .animate-fade-in {
+          animation: fade-in 0.4s ease-out;
+        }
+
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-float-delay {
+          animation: float-delay 3s ease-in-out infinite 1.5s;
+        }
+      `}</style>
     </div>
   )
 }

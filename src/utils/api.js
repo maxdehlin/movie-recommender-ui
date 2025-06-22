@@ -55,12 +55,24 @@ const api = {
 
     const response = await fetch(`${API_BASE_URL}/auth/dev-login`, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
 
     if (!response.ok) {
-      throw new Error('Dev login failed')
+      const errorText = await response.text()
+      throw new Error(`Dev login failed: ${errorText}`)
     }
-    return response.json()
+
+    const data = await response.json()
+
+    // Convert backend response format to frontend expected format
+    return {
+      success: true,
+      token: data.access_token,
+      user: data.user,
+    }
   },
 }
 
