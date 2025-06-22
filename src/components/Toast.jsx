@@ -29,21 +29,21 @@ function Toast({ message, type = 'info', duration = 4000, onClose }) {
     switch (type) {
       case 'success':
         return {
-          bg: 'bg-gradient-to-r from-teal/20 to-teal-dark/20',
-          border: 'border-teal/40',
-          shadow: 'shadow-teal/20',
+          bg: 'bg-gradient-to-r from-teal-500/20 to-teal-500-dark/20',
+          border: 'border-teal-500/40',
+          shadow: 'shadow-teal-500/20',
           icon: '✓',
-          iconBg: 'bg-teal/30',
-          iconColor: 'text-teal-light',
+          iconBg: 'bg-teal-500/30',
+          iconColor: 'text-teal-500-light',
         }
       case 'error':
         return {
-          bg: 'bg-gradient-to-r from-crimson/20 to-crimson-dark/20',
-          border: 'border-crimson/40',
-          shadow: 'shadow-crimson/20',
+          bg: 'bg-gradient-to-r from-red-600/20 to-red-600-dark/20',
+          border: 'border-red-600/40',
+          shadow: 'shadow-red-600/20',
           icon: '✕',
-          iconBg: 'bg-crimson/30',
-          iconColor: 'text-crimson-light',
+          iconBg: 'bg-red-600/30',
+          iconColor: 'text-red-600-light',
         }
       case 'warning':
         return {
@@ -56,7 +56,7 @@ function Toast({ message, type = 'info', duration = 4000, onClose }) {
         }
       default:
         return {
-          bg: 'bg-gradient-to-r from-teal/20 to-crimson/20',
+          bg: 'bg-gradient-to-r from-teal-500/20 to-red-600/20',
           border: 'border-gray-500/40',
           shadow: 'shadow-gray-500/20',
           icon: 'ℹ',
@@ -99,7 +99,7 @@ function Toast({ message, type = 'info', duration = 4000, onClose }) {
 
           {/* Content */}
           <div className='flex-1 pt-1'>
-            <p className='text-cream text-sm font-medium leading-relaxed'>
+            <p className='text-gray-50 text-sm font-medium leading-relaxed'>
               {message}
             </p>
           </div>
@@ -107,7 +107,7 @@ function Toast({ message, type = 'info', duration = 4000, onClose }) {
           {/* Close button */}
           <button
             onClick={handleClose}
-            className='flex-shrink-0 w-6 h-6 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-200 text-cream/60 hover:text-cream/80 text-xs font-bold ml-2'
+            className='flex-shrink-0 w-6 h-6 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-200 text-gray-50/60 hover:text-gray-50/80 text-xs font-bold ml-2'
           >
             ✕
           </button>
@@ -118,9 +118,9 @@ function Toast({ message, type = 'info', duration = 4000, onClose }) {
           <div
             className={`h-full ${
               type === 'success'
-                ? 'bg-teal'
+                ? 'bg-teal-500'
                 : type === 'error'
-                ? 'bg-crimson'
+                ? 'bg-red-600'
                 : type === 'warning'
                 ? 'bg-orange-500'
                 : 'bg-gray-500'

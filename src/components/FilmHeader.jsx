@@ -7,20 +7,20 @@ function FilmHeader({
   const getAccentColorClass = () => {
     switch (accentColor) {
       case 'crimson':
-        return 'text-crimson'
+        return 'text-red-600'
       case 'teal':
-        return 'text-teal'
+        return 'text-teal-500'
       case 'cream':
-        return 'text-cream'
+        return 'text-gray-50'
       default:
-        return 'text-crimson'
+        return 'text-red-600'
     }
   }
 
   return (
     <section className={`text-center space-y-6 ${className}`}>
       <div className='space-y-4'>
-        <h1 className='text-3xl md:text-4xl font-serif text-cream tracking-wide leading-tight'>
+        <h1 className='text-3xl md:text-4xl font-serif text-gray-50 tracking-wide leading-tight'>
           {Array.isArray(title) ? (
             <>
               {title[0]}
@@ -33,7 +33,7 @@ function FilmHeader({
           )}
         </h1>
         {subtitle && (
-          <p className='text-lg text-muted-gray font-light max-w-2xl mx-auto leading-relaxed'>
+          <p className='text-lg text-gray-400 font-light max-w-2xl mx-auto leading-relaxed'>
             {subtitle}
           </p>
         )}

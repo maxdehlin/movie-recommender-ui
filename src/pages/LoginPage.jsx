@@ -51,7 +51,7 @@ function LoginPage({ onLogin }) {
   }
 
   return (
-    <div className='min-h-screen bg-charcoal flex items-center justify-center p-8'>
+    <div className='min-h-screen bg-gray-900 flex items-center justify-center p-8'>
       {/* Film Strip Background Pattern */}
       <div className='fixed inset-0 opacity-5'>
         <div
@@ -76,31 +76,31 @@ function LoginPage({ onLogin }) {
 
       {/* Floating Film Elements */}
       <div className='fixed inset-0 pointer-events-none'>
-        <div className='absolute top-20 left-10 w-4 h-4 bg-crimson/20 rounded-full animate-float'></div>
-        <div className='absolute top-40 right-20 w-3 h-3 bg-teal/20 rounded-full animate-float-delay'></div>
-        <div className='absolute bottom-32 left-1/4 w-2 h-2 bg-crimson/15 rounded-full animate-float'></div>
-        <div className='absolute bottom-20 right-1/3 w-5 h-5 bg-teal/15 rounded-full animate-float-delay'></div>
+        <div className='absolute top-20 left-10 w-4 h-4 bg-red-600/20 rounded-full animate-float'></div>
+        <div className='absolute top-40 right-20 w-3 h-3 bg-teal-500/20 rounded-full animate-float-delay'></div>
+        <div className='absolute bottom-32 left-1/4 w-2 h-2 bg-red-600/15 rounded-full animate-float'></div>
+        <div className='absolute bottom-20 right-1/3 w-5 h-5 bg-teal-500/15 rounded-full animate-float-delay'></div>
       </div>
 
       <div className='relative z-10 w-full max-w-lg'>
         {/* Main Login Card */}
-        <div className='bg-charcoal-light/80 backdrop-blur-xl border border-gray-600/40 rounded-3xl shadow-2xl overflow-hidden'>
+        <div className='bg-gray-900-light/80 backdrop-blur-xl border border-gray-600/40 rounded-3xl shadow-2xl overflow-hidden'>
           {/* Header */}
           <div className='relative px-8 py-12 text-center'>
             {/* Logo */}
             <div className='relative inline-block mb-8'>
-              <div className='w-20 h-20 bg-gradient-to-br from-crimson via-crimson-dark to-teal rounded-full flex items-center justify-center shadow-2xl mx-auto border-4 border-gray-600/30'>
-                <span className='text-cream text-3xl font-bold relative z-10'>
+              <div className='w-20 h-20 bg-gradient-to-br from-red-600 via-red-600-dark to-teal-500 rounded-full flex items-center justify-center shadow-2xl mx-auto border-4 border-gray-600/30'>
+                <span className='text-gray-50 text-3xl font-bold relative z-10'>
                   🎬
                 </span>
               </div>
             </div>
 
-            <h1 className='text-4xl font-serif text-cream mb-4 tracking-wide leading-tight'>
+            <h1 className='text-4xl font-serif text-gray-50 mb-4 tracking-wide leading-tight'>
               Welcome to
-              <span className='block text-teal italic'>CinemaVault</span>
+              <span className='block text-teal-500 italic'>CinemaVault</span>
             </h1>
-            <p className='text-muted-gray text-lg font-light leading-relaxed'>
+            <p className='text-gray-400 text-lg font-light leading-relaxed'>
               Enter the archive of cinematic excellence, where AI meets artistry
             </p>
           </div>
@@ -108,10 +108,10 @@ function LoginPage({ onLogin }) {
           {/* Login Form */}
           <div className='px-8 pb-12'>
             {error && (
-              <div className='mb-8 p-6 bg-crimson/10 border border-crimson/30 rounded-2xl text-cream animate-fade-in shadow-lg'>
+              <div className='mb-8 p-6 bg-red-600/10 border border-red-600/30 rounded-2xl text-gray-50 animate-fade-in shadow-lg'>
                 <div className='flex items-center space-x-4'>
-                  <div className='w-6 h-6 rounded-full bg-crimson/20 flex items-center justify-center'>
-                    <div className='w-3 h-3 bg-crimson rounded-full animate-pulse'></div>
+                  <div className='w-6 h-6 rounded-full bg-red-600/20 flex items-center justify-center'>
+                    <div className='w-3 h-3 bg-red-600 rounded-full animate-pulse'></div>
                   </div>
                   <span className='font-medium'>{error}</span>
                 </div>
@@ -121,7 +121,7 @@ function LoginPage({ onLogin }) {
             <form onSubmit={handleSubmit} className='space-y-8'>
               <div className='space-y-6'>
                 <div className='relative group'>
-                  <label className='block text-sm font-medium text-muted-gray mb-3 tracking-wide uppercase'>
+                  <label className='block text-sm font-medium text-gray-400 mb-3 tracking-wide uppercase'>
                     Username
                   </label>
                   <div className='relative'>
@@ -130,19 +130,19 @@ function LoginPage({ onLogin }) {
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                       required
-                      className='w-full px-6 py-4 bg-charcoal/60 border border-gray-600/40 rounded-2xl text-cream placeholder-muted-gray focus:outline-none focus:border-teal/50 focus:ring-2 focus:ring-teal/20 transition-all duration-300 backdrop-blur-sm text-lg tracking-wide group-hover:border-gray-500/50'
+                      className='w-full px-6 py-4 bg-gray-900/60 border border-gray-600/40 rounded-2xl text-gray-50 placeholder-gray-400 focus:outline-none focus:border-teal-500/50 focus:ring-2 focus:ring-teal/20 transition-all duration-300 backdrop-blur-sm text-lg tracking-wide group-hover:border-gray-500/50'
                       placeholder='Enter your username'
                     />
                     {/* Decorative film perforations */}
                     <div className='absolute right-4 top-1/2 transform -translate-y-1/2 flex space-x-1'>
-                      <div className='w-1 h-1 bg-teal/30 rounded-full'></div>
-                      <div className='w-1 h-1 bg-crimson/30 rounded-full'></div>
+                      <div className='w-1 h-1 bg-teal-500/30 rounded-full'></div>
+                      <div className='w-1 h-1 bg-red-600/30 rounded-full'></div>
                     </div>
                   </div>
                 </div>
 
                 <div className='relative group'>
-                  <label className='block text-sm font-medium text-muted-gray mb-3 tracking-wide uppercase'>
+                  <label className='block text-sm font-medium text-gray-400 mb-3 tracking-wide uppercase'>
                     Password
                   </label>
                   <div className='relative'>
@@ -151,13 +151,13 @@ function LoginPage({ onLogin }) {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
-                      className='w-full px-6 py-4 bg-charcoal/60 border border-gray-600/40 rounded-2xl text-cream placeholder-muted-gray focus:outline-none focus:border-teal/50 focus:ring-2 focus:ring-teal/20 transition-all duration-300 backdrop-blur-sm text-lg tracking-wide group-hover:border-gray-500/50'
+                      className='w-full px-6 py-4 bg-gray-900/60 border border-gray-600/40 rounded-2xl text-gray-50 placeholder-gray-400 focus:outline-none focus:border-teal-500/50 focus:ring-2 focus:ring-teal/20 transition-all duration-300 backdrop-blur-sm text-lg tracking-wide group-hover:border-gray-500/50'
                       placeholder='Enter your password'
                     />
                     {/* Decorative film perforations */}
                     <div className='absolute right-4 top-1/2 transform -translate-y-1/2 flex space-x-1'>
-                      <div className='w-1 h-1 bg-crimson/30 rounded-full'></div>
-                      <div className='w-1 h-1 bg-teal/30 rounded-full'></div>
+                      <div className='w-1 h-1 bg-red-600/30 rounded-full'></div>
+                      <div className='w-1 h-1 bg-teal-500/30 rounded-full'></div>
                     </div>
                   </div>
                 </div>
@@ -167,13 +167,13 @@ function LoginPage({ onLogin }) {
                 <button
                   type='submit'
                   disabled={isLoading}
-                  className='relative w-full px-8 py-5 bg-gradient-to-r from-teal to-teal-dark hover:from-teal-dark hover:to-teal text-charcoal rounded-2xl font-bold text-lg transition-all duration-500 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-2xl hover:shadow-teal/30 group overflow-hidden'
+                  className='relative w-full px-8 py-5 bg-gradient-to-r from-teal-500 to-teal-500-dark hover:from-teal-500-dark hover:to-teal-500 text-gray-900 rounded-2xl font-bold text-lg transition-all duration-500 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-2xl hover:shadow-teal-500/30 group overflow-hidden'
                 >
                   <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
                   <span className='relative z-10 flex items-center justify-center space-x-3'>
                     {isLoading ? (
                       <>
-                        <div className='w-6 h-6 border-3 border-charcoal/30 border-t-charcoal rounded-full animate-spin'></div>
+                        <div className='w-6 h-6 border-3 border-gray-900/30 border-t-charcoal rounded-full animate-spin'></div>
                         <span>Accessing Archive...</span>
                       </>
                     ) : (
@@ -196,7 +196,7 @@ function LoginPage({ onLogin }) {
                     <div className='w-full border-t border-gray-600/30'></div>
                   </div>
                   <div className='relative flex justify-center text-sm'>
-                    <span className='px-4 bg-charcoal-light text-muted-gray font-medium tracking-wider'>
+                    <span className='px-4 bg-gray-900-light text-gray-400 font-medium tracking-wider'>
                       OR
                     </span>
                   </div>
@@ -206,7 +206,7 @@ function LoginPage({ onLogin }) {
                   type='button'
                   onClick={handleDevLogin}
                   disabled={isLoading}
-                  className='relative w-full px-8 py-5 bg-gradient-to-r from-crimson/20 to-crimson-dark/20 hover:from-crimson/30 hover:to-crimson-dark/30 border border-crimson/30 hover:border-crimson/50 text-cream rounded-2xl font-semibold text-lg transition-all duration-500 hover:scale-105 disabled:opacity-50 shadow-xl hover:shadow-crimson/20 backdrop-blur-sm group overflow-hidden'
+                  className='relative w-full px-8 py-5 bg-gradient-to-r from-red-600/20 to-red-600-dark/20 hover:from-red-600/30 hover:to-red-600-dark/30 border border-red-600/30 hover:border-red-600/50 text-gray-50 rounded-2xl font-semibold text-lg transition-all duration-500 hover:scale-105 disabled:opacity-50 shadow-xl hover:shadow-red-600/20 backdrop-blur-sm group overflow-hidden'
                 >
                   <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
                   <span className='relative z-10 flex items-center justify-center space-x-3'>
@@ -235,36 +235,36 @@ function LoginPage({ onLogin }) {
         <div className='mt-12 text-center'>
           <div className='grid grid-cols-3 gap-6'>
             <div className='text-center space-y-3'>
-              <div className='w-12 h-12 bg-teal/10 rounded-full flex items-center justify-center mx-auto border border-teal/20'>
-                <span className='text-teal text-xl'>🤖</span>
+              <div className='w-12 h-12 bg-teal-500/10 rounded-full flex items-center justify-center mx-auto border border-teal-500/20'>
+                <span className='text-teal-500 text-xl'>🤖</span>
               </div>
               <div>
-                <h3 className='text-cream font-serif text-lg'>AI Curator</h3>
-                <p className='text-muted-gray text-sm'>
+                <h3 className='text-gray-50 font-serif text-lg'>AI Curator</h3>
+                <p className='text-gray-400 text-sm'>
                   Intelligent recommendations
                 </p>
               </div>
             </div>
 
             <div className='text-center space-y-3'>
-              <div className='w-12 h-12 bg-crimson/10 rounded-full flex items-center justify-center mx-auto border border-crimson/20'>
-                <span className='text-crimson text-xl'>🎭</span>
+              <div className='w-12 h-12 bg-red-600/10 rounded-full flex items-center justify-center mx-auto border border-red-600/20'>
+                <span className='text-red-600 text-xl'>🎭</span>
               </div>
               <div>
-                <h3 className='text-cream font-serif text-lg'>
+                <h3 className='text-gray-50 font-serif text-lg'>
                   Cinema Archive
                 </h3>
-                <p className='text-muted-gray text-sm'>Vast film collection</p>
+                <p className='text-gray-400 text-sm'>Vast film collection</p>
               </div>
             </div>
 
             <div className='text-center space-y-3'>
-              <div className='w-12 h-12 bg-teal/10 rounded-full flex items-center justify-center mx-auto border border-teal/20'>
-                <span className='text-teal text-xl'>⭐</span>
+              <div className='w-12 h-12 bg-teal-500/10 rounded-full flex items-center justify-center mx-auto border border-teal-500/20'>
+                <span className='text-teal-500 text-xl'>⭐</span>
               </div>
               <div>
-                <h3 className='text-cream font-serif text-lg'>Rate & Save</h3>
-                <p className='text-muted-gray text-sm'>Personal watchlist</p>
+                <h3 className='text-gray-50 font-serif text-lg'>Rate & Save</h3>
+                <p className='text-gray-400 text-sm'>Personal watchlist</p>
               </div>
             </div>
           </div>

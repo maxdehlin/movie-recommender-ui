@@ -13,17 +13,17 @@ function LoadingSpinner({
   }
 
   const colorClasses = {
-    teal: 'border-teal/30 border-t-teal',
-    crimson: 'border-crimson/30 border-t-crimson',
+    teal: 'border-teal-500/30 border-t-teal',
+    crimson: 'border-red-600/30 border-t-crimson',
   }
 
   const innerColorClasses = {
-    teal: 'bg-teal/20',
-    crimson: 'bg-crimson/20',
+    teal: 'bg-teal-500/20',
+    crimson: 'bg-red-600/20',
   }
 
   const containerClass = fullScreen
-    ? 'min-h-screen bg-charcoal flex items-center justify-center'
+    ? 'min-h-screen bg-gray-900 flex items-center justify-center'
     : 'flex items-center justify-center py-12'
 
   if (variant === 'cinematic') {
@@ -36,29 +36,29 @@ function LoadingSpinner({
             style={{ width: '80px', height: '80px' }}
           >
             {/* Outer ring */}
-            <div className='absolute inset-0 border-4 border-teal/20 rounded-full'></div>
+            <div className='absolute inset-0 border-4 border-teal-500/20 rounded-full'></div>
 
             {/* Inner spinning element */}
             <div className='absolute inset-2 border-3 border-transparent border-t-teal border-r-teal rounded-full animate-spin'></div>
 
             {/* Center hub */}
-            <div className='absolute inset-6 bg-gradient-to-br from-teal/30 to-crimson/30 rounded-full flex items-center justify-center'>
-              <div className='w-4 h-4 bg-cream/80 rounded-full animate-pulse-glow'></div>
+            <div className='absolute inset-6 bg-gradient-to-br from-teal-500/30 to-red-600/30 rounded-full flex items-center justify-center'>
+              <div className='w-4 h-4 bg-gray-50/80 rounded-full animate-pulse-glow'></div>
             </div>
           </div>
 
           {/* Loading dots */}
           <div className='flex items-center justify-center space-x-2'>
             <div
-              className='w-2 h-2 bg-teal/60 rounded-full animate-bounce'
+              className='w-2 h-2 bg-teal-500/60 rounded-full animate-bounce'
               style={{ animationDelay: '0s' }}
             ></div>
             <div
-              className='w-2 h-2 bg-crimson/60 rounded-full animate-bounce'
+              className='w-2 h-2 bg-red-600/60 rounded-full animate-bounce'
               style={{ animationDelay: '0.2s' }}
             ></div>
             <div
-              className='w-2 h-2 bg-teal/60 rounded-full animate-bounce'
+              className='w-2 h-2 bg-teal-500/60 rounded-full animate-bounce'
               style={{ animationDelay: '0.4s' }}
             ></div>
           </div>
@@ -69,12 +69,12 @@ function LoadingSpinner({
               style={{ animationDelay: '0.5s' }}
             >
               {title && (
-                <h3 className='text-2xl font-serif text-cream tracking-wide'>
+                <h3 className='text-2xl font-serif text-gray-50 tracking-wide'>
                   {title}
                 </h3>
               )}
               {subtitle && (
-                <p className='text-muted-gray text-lg font-light leading-relaxed'>
+                <p className='text-gray-400 text-lg font-light leading-relaxed'>
                   {subtitle}
                 </p>
               )}
@@ -125,7 +125,7 @@ function LoadingSpinner({
           >
             {title && (
               <h3
-                className={`font-serif text-cream tracking-wide ${
+                className={`font-serif text-gray-50 tracking-wide ${
                   size === 'small'
                     ? 'text-lg'
                     : size === 'medium'
@@ -138,7 +138,7 @@ function LoadingSpinner({
             )}
             {subtitle && (
               <p
-                className={`text-muted-gray font-light ${
+                className={`text-gray-400 font-light ${
                   size === 'small' ? 'text-sm' : 'text-lg'
                 }`}
               >

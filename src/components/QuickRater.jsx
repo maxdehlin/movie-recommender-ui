@@ -59,7 +59,7 @@ function QuickRater({
           placeholder={placeholder}
           value={searchQuery}
           onChange={(e) => handleSearchChange(e.target.value, maxResults)}
-          className={`w-full bg-charcoal/60 border border-gray-600/30 rounded-2xl text-cream placeholder-muted-gray focus:outline-none focus:border-teal/50 focus:bg-charcoal/80 transition-all duration-300 ${currentSize.input}`}
+          className={`w-full bg-gray-900/60 border border-gray-600/30 rounded-2xl text-gray-50 placeholder-gray-400 focus:outline-none focus:border-teal-500/50 focus:bg-gray-900/80 transition-all duration-300 ${currentSize.input}`}
         />
         <div className='absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center space-x-2'>
           {searchQuery && (
@@ -68,7 +68,7 @@ function QuickRater({
                 handleSearchChange('', maxResults)
                 setRatedMovies({})
               }}
-              className='text-muted-gray hover:text-cream transition-colors duration-200 p-1 rounded-full hover:bg-charcoal-light/30'
+              className='text-gray-400 hover:text-gray-50 transition-colors duration-200 p-1 rounded-full hover:bg-gray-900-light/30'
               title='Clear search'
             >
               <svg
@@ -87,7 +87,7 @@ function QuickRater({
             </button>
           )}
           <svg
-            className='w-6 h-6 text-muted-gray'
+            className='w-6 h-6 text-gray-400'
             fill='none'
             stroke='currentColor'
             viewBox='0 0 24 24'
@@ -104,7 +104,7 @@ function QuickRater({
 
       {/* Search Results */}
       {searchResults.length > 0 && (
-        <div className='bg-charcoal/80 rounded-2xl border border-gray-600/30 overflow-hidden'>
+        <div className='bg-gray-900/80 rounded-2xl border border-gray-600/30 overflow-hidden'>
           {searchResults.map((movie, index) => (
             <div
               key={movie.id}
@@ -119,7 +119,7 @@ function QuickRater({
                   {/* Movie Poster Thumbnail */}
                   {showPoster && movie.poster && (
                     <div
-                      className={`bg-gradient-to-br from-charcoal-light to-charcoal rounded-lg overflow-hidden flex-shrink-0 ${currentSize.poster}`}
+                      className={`bg-gradient-to-br from-gray-900-light to-gray-900 rounded-lg overflow-hidden flex-shrink-0 ${currentSize.poster}`}
                     >
                       <img
                         src={movie.poster}
@@ -131,7 +131,7 @@ function QuickRater({
                         }}
                       />
                       <div
-                        className='w-full h-full flex items-center justify-center text-lg opacity-30 bg-charcoal'
+                        className='w-full h-full flex items-center justify-center text-lg opacity-30 bg-gray-900'
                         style={{
                           display: 'none',
                         }}
@@ -143,12 +143,12 @@ function QuickRater({
 
                   <div className='flex-1 min-w-0'>
                     <h4
-                      className={`text-cream font-medium truncate ${currentSize.title}`}
+                      className={`text-gray-50 font-medium truncate ${currentSize.title}`}
                     >
                       {movie.title}
                     </h4>
                     {movie.year && (
-                      <p className='text-muted-gray text-xs'>{movie.year}</p>
+                      <p className='text-gray-400 text-xs'>{movie.year}</p>
                     )}
                   </div>
                 </div>
@@ -176,8 +176,8 @@ function QuickRater({
 
       {/* Error Display */}
       {searchError && (
-        <div className='text-center p-4 bg-crimson/10 border border-crimson/30 rounded-2xl'>
-          <p className='text-crimson text-sm'>{searchError}</p>
+        <div className='text-center p-4 bg-red-600/10 border border-red-600/30 rounded-2xl'>
+          <p className='text-red-600 text-sm'>{searchError}</p>
         </div>
       )}
     </div>

@@ -76,10 +76,10 @@ function Dashboard() {
           <div className='relative inline-block'>
             <CinemaLogo className='mx-auto mb-8' />
             <div className='space-y-4'>
-              <h1 className='text-4xl md:text-6xl font-serif text-center bg-gradient-to-r from-cream via-teal to-cream bg-clip-text text-transparent leading-tight tracking-wide'>
+              <h1 className='text-4xl md:text-6xl font-serif text-center bg-gradient-to-r from-gray-50 via-teal-500 to-gray-50 bg-clip-text text-transparent leading-tight tracking-wide'>
                 {userState.title}
               </h1>
-              <p className='text-xl text-muted-gray max-w-2xl mx-auto leading-relaxed font-light'>
+              <p className='text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed font-light'>
                 {userState.description}
               </p>
             </div>
@@ -89,13 +89,13 @@ function Dashboard() {
         {/* Progressive Stats & Onboarding */}
         {userState.isNewUser && (
           <section className='space-y-8'>
-            <div className='bg-charcoal-light/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 p-8 sm:p-12 shadow-2xl'>
+            <div className='bg-gray-900-light/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 p-8 sm:p-12 shadow-2xl'>
               <div className='text-center space-y-8'>
                 <div className='space-y-4'>
-                  <h2 className='text-2xl font-serif text-cream'>
+                  <h2 className='text-2xl font-serif text-gray-50'>
                     Start Your Cinema Journey
                   </h2>
-                  <p className='text-muted-gray leading-relaxed max-w-md mx-auto'>
+                  <p className='text-gray-400 leading-relaxed max-w-md mx-auto'>
                     {userState.getMotivationalMessage()}
                   </p>
                 </div>
@@ -108,10 +108,10 @@ function Dashboard() {
                         <div
                           className={`w-12 h-12 rounded-full border-2 flex items-center justify-center text-lg font-bold transition-all duration-300 ${
                             step.completed
-                              ? 'bg-teal border-teal text-black'
+                              ? 'bg-teal-500 border-teal-500 text-black'
                               : step.active
-                              ? 'border-crimson text-crimson bg-crimson/10'
-                              : 'border-gray-600 text-muted-gray'
+                              ? 'border-red-600 text-red-600 bg-red-600/10'
+                              : 'border-gray-600 text-gray-400'
                           }`}
                         >
                           {step.completed ? '✓' : step.number}
@@ -119,7 +119,7 @@ function Dashboard() {
                         <div className='mt-2 text-xs text-center max-w-20'>
                           <p
                             className={
-                              step.active ? 'text-cream' : 'text-muted-gray'
+                              step.active ? 'text-gray-50' : 'text-gray-400'
                             }
                           >
                             {step.title}
@@ -155,10 +155,10 @@ function Dashboard() {
             <FilmCard variant='secondary'>
               <div className='text-center space-y-6'>
                 <div className='space-y-2'>
-                  <h2 className='text-2xl font-serif text-cream'>
+                  <h2 className='text-2xl font-serif text-gray-50'>
                     You're Making Progress!
                   </h2>
-                  <p className='text-muted-gray'>
+                  <p className='text-gray-400'>
                     {userState.getMotivationalMessage()}
                   </p>
                 </div>
@@ -166,14 +166,14 @@ function Dashboard() {
                 {/* Progress Bar */}
                 <div className='space-y-3'>
                   <div className='flex items-center justify-between text-sm'>
-                    <span className='text-muted-gray'>Progress</span>
-                    <span className='text-teal font-medium'>
+                    <span className='text-gray-400'>Progress</span>
+                    <span className='text-teal-500 font-medium'>
                       {stats.moviesRated}/{userState.nextMilestone} films rated
                     </span>
                   </div>
-                  <div className='w-full bg-charcoal-light/50 rounded-full h-3 overflow-hidden'>
+                  <div className='w-full bg-gray-900-light/50 rounded-full h-3 overflow-hidden'>
                     <div
-                      className='h-full bg-gradient-to-r from-teal to-crimson rounded-full transition-all duration-700 ease-out'
+                      className='h-full bg-gradient-to-r from-teal-500 to-red-600 rounded-full transition-all duration-700 ease-out'
                       style={{ width: `${userState.progressPercent}%` }}
                     ></div>
                   </div>
@@ -196,11 +196,11 @@ function Dashboard() {
             {recommendations.length > 0 && (
               <div className='space-y-6'>
                 <div className='text-center space-y-2'>
-                  <h2 className='text-2xl font-serif text-cream flex items-center justify-center space-x-2'>
+                  <h2 className='text-2xl font-serif text-gray-50 flex items-center justify-center space-x-2'>
                     <span>Basic Recommendations</span>
-                    <span className='text-crimson'>✨</span>
+                    <span className='text-red-600'>✨</span>
                   </h2>
-                  <p className='text-muted-gray text-sm'>
+                  <p className='text-gray-400 text-sm'>
                     Rate more films for better recommendations
                   </p>
                 </div>
@@ -252,11 +252,11 @@ function Dashboard() {
             {recommendations.length > 0 && (
               <div className='mb-12 space-y-6'>
                 <div className='text-center space-y-2'>
-                  <h2 className='text-2xl font-serif text-cream flex items-center justify-center space-x-2'>
+                  <h2 className='text-2xl font-serif text-gray-50 flex items-center justify-center space-x-2'>
                     <span>Curated for You by AI</span>
-                    <span className='text-crimson'>✨</span>
+                    <span className='text-red-600'>✨</span>
                   </h2>
-                  <p className='text-muted-gray'>
+                  <p className='text-gray-400'>
                     Personalized recommendations based on your taste profile
                   </p>
                 </div>
@@ -279,11 +279,11 @@ function Dashboard() {
                   <button
                     onClick={handleGenerateRecommendations}
                     disabled={isGenerating || isLoadingRecommendations}
-                    className='px-6 py-3 bg-gradient-to-r from-crimson to-crimson-dark rounded-xl text-cream font-medium hover:from-crimson-dark hover:to-crimson transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100'
+                    className='px-6 py-3 bg-gradient-to-r from-red-600 to-red-600-dark rounded-xl text-gray-50 font-medium hover:from-red-600-dark hover:to-red-600 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100'
                   >
                     {isGenerating || isLoadingRecommendations ? (
                       <div className='flex items-center space-x-2'>
-                        <div className='w-4 h-4 border-2 border-cream border-t-transparent rounded-full animate-spin'></div>
+                        <div className='w-4 h-4 border-2 border-gray-50 border-t-transparent rounded-full animate-spin'></div>
                         <span>Generating...</span>
                       </div>
                     ) : (
@@ -307,10 +307,10 @@ function Dashboard() {
               <div className='text-center space-y-4'>
                 <div className='text-4xl'>🎯</div>
                 <div>
-                  <h3 className='text-xl font-serif text-cream mb-2'>
+                  <h3 className='text-xl font-serif text-gray-50 mb-2'>
                     {userState.ctaText}
                   </h3>
-                  <p className='text-muted-gray text-sm'>
+                  <p className='text-gray-400 text-sm'>
                     {userState.isProgressingUser
                       ? 'Build your taste profile'
                       : 'Discover and rate new films'}
@@ -328,10 +328,10 @@ function Dashboard() {
             <div className='text-center space-y-4'>
               <div className='text-4xl'>❤️</div>
               <div>
-                <h3 className='text-xl font-serif text-cream mb-2'>
+                <h3 className='text-xl font-serif text-gray-50 mb-2'>
                   My Watchlist
                 </h3>
-                <p className='text-muted-gray text-sm'>
+                <p className='text-gray-400 text-sm'>
                   Saved films and recommendations
                 </p>
               </div>
@@ -341,8 +341,8 @@ function Dashboard() {
 
         {/* Error Display */}
         {recommendationError && (
-          <div className='mt-8 text-center p-4 bg-crimson/10 border border-crimson/30 rounded-2xl max-w-md mx-auto'>
-            <p className='text-crimson text-sm'>{recommendationError}</p>
+          <div className='mt-8 text-center p-4 bg-red-600/10 border border-red-600/30 rounded-2xl max-w-md mx-auto'>
+            <p className='text-red-600 text-sm'>{recommendationError}</p>
           </div>
         )}
       </div>

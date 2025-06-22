@@ -48,31 +48,31 @@ function CinemaLogo({
     <div className={`flex items-center space-x-4 ${className}`}>
       <div className='relative'>
         <div
-          className={`${styles.logo} bg-gradient-to-br from-crimson via-crimson-dark to-teal rounded-full flex items-center justify-center shadow-2xl border-2 border-crimson/30`}
+          className={`${styles.logo} bg-gradient-to-br from-red-600 via-red-600-dark to-teal-500 rounded-full flex items-center justify-center shadow-2xl border-2 border-red-600/30`}
         >
-          <div className='absolute inset-3 rounded-full border border-cream/20'></div>
-          <span className={`text-cream font-bold ${styles.icon} relative z-10`}>
+          <div className='absolute inset-3 rounded-full border border-gray-50/20'></div>
+          <span className={`text-gray-50 font-bold ${styles.icon} relative z-10`}>
             🎬
           </span>
         </div>
         {/* Film sprocket holes */}
         <div
-          className={`absolute -top-1 -left-1 ${styles.sprockets} bg-teal/30 rounded-full animate-pulse`}
+          className={`absolute -top-1 -left-1 ${styles.sprockets} bg-teal-500/30 rounded-full animate-pulse`}
         ></div>
         <div
-          className={`absolute -bottom-1 -right-1 ${styles.sprockets} bg-crimson/30 rounded-full animate-pulse`}
+          className={`absolute -bottom-1 -right-1 ${styles.sprockets} bg-red-600/30 rounded-full animate-pulse`}
         ></div>
       </div>
 
       {showTitle && (
         <div>
           <h1
-            className={`${styles.title} font-serif text-cream tracking-wide font-bold`}
+            className={`${styles.title} font-serif text-gray-50 tracking-wide font-bold`}
           >
             {title}
           </h1>
           <p
-            className={`${styles.subtitle} text-muted-gray font-light tracking-wide`}
+            className={`${styles.subtitle} text-gray-400 font-light tracking-wide`}
           >
             {subtitle}
           </p>

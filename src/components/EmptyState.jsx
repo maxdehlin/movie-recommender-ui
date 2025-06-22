@@ -32,8 +32,8 @@ function EmptyState({
   }
 
   const variantClasses = {
-    primary: 'from-crimson/10 to-teal/10',
-    secondary: 'from-teal/10 to-crimson/10',
+    primary: 'from-red-600/10 to-teal-500/10',
+    secondary: 'from-teal-500/10 to-red-600/10',
     muted: 'from-gray-600/10 to-gray-500/10',
   }
 
@@ -45,8 +45,8 @@ function EmptyState({
         <div
           className={`mx-auto bg-gradient-to-br ${variantClasses[variant]} rounded-full flex items-center justify-center backdrop-blur-sm border border-gray-600/30 shadow-2xl ${currentSize.icon}`}
         >
-          <div className='absolute inset-8 rounded-full border-2 border-cream/20'></div>
-          <div className='absolute inset-12 rounded-full border border-cream/10'></div>
+          <div className='absolute inset-8 rounded-full border-2 border-gray-50/20'></div>
+          <div className='absolute inset-12 rounded-full border border-gray-50/10'></div>
           <span
             className={`opacity-40 relative z-10 ${
               currentSize.icon.includes('text-8xl')
@@ -61,24 +61,24 @@ function EmptyState({
         </div>
 
         {/* Floating film elements */}
-        <div className='absolute -top-4 -left-4 w-8 h-8 bg-crimson/20 rounded-full animate-float'></div>
-        <div className='absolute -top-4 -right-4 w-6 h-6 bg-teal/20 rounded-full animate-float-delay'></div>
-        <div className='absolute -bottom-4 -left-4 w-6 h-6 bg-teal/15 rounded-full animate-float'></div>
-        <div className='absolute -bottom-4 -right-4 w-4 h-4 bg-crimson/15 rounded-full animate-float-delay'></div>
+        <div className='absolute -top-4 -left-4 w-8 h-8 bg-red-600/20 rounded-full animate-float'></div>
+        <div className='absolute -top-4 -right-4 w-6 h-6 bg-teal-500/20 rounded-full animate-float-delay'></div>
+        <div className='absolute -bottom-4 -left-4 w-6 h-6 bg-teal-500/15 rounded-full animate-float'></div>
+        <div className='absolute -bottom-4 -right-4 w-4 h-4 bg-red-600/15 rounded-full animate-float-delay'></div>
       </div>
 
       <div className='space-y-8'>
         <div className='space-y-6'>
           {title && (
             <h3
-              className={`font-serif text-cream tracking-wide ${currentSize.title}`}
+              className={`font-serif text-gray-50 tracking-wide ${currentSize.title}`}
             >
               {title}
             </h3>
           )}
           {subtitle && (
             <p
-              className={`text-muted-gray font-light mx-auto leading-relaxed ${currentSize.subtitle}`}
+              className={`text-gray-400 font-light mx-auto leading-relaxed ${currentSize.subtitle}`}
             >
               {subtitle}
             </p>

@@ -59,9 +59,9 @@ function Watchlist() {
 
         {savedMovies.length > 0 && (
           <div className='flex items-center justify-center space-x-6'>
-            <div className='flex items-center space-x-3 bg-charcoal-light/60 px-6 py-3 rounded-2xl border border-gray-600/30 backdrop-blur-xl'>
-              <div className='w-3 h-3 bg-crimson rounded-full animate-pulse'></div>
-              <span className='text-muted-gray font-medium tracking-wider uppercase text-sm'>
+            <div className='flex items-center space-x-3 bg-gray-900-light/60 px-6 py-3 rounded-2xl border border-gray-600/30 backdrop-blur-xl'>
+              <div className='w-3 h-3 bg-red-600 rounded-full animate-pulse'></div>
+              <span className='text-gray-400 font-medium tracking-wider uppercase text-sm'>
                 {savedMovies.length} Films Archived
               </span>
             </div>
@@ -96,12 +96,12 @@ function Watchlist() {
                 return (
                   <FilmCard key={index} variant='primary'>
                     <div className='flex items-start justify-between mb-8'>
-                      <h3 className='text-xl font-serif text-cream leading-tight flex-1 pr-4 line-clamp-2 group-hover:text-crimson transition-colors duration-300 tracking-wide'>
+                      <h3 className='text-xl font-serif text-gray-50 leading-tight flex-1 pr-4 line-clamp-2 group-hover:text-red-600 transition-colors duration-300 tracking-wide'>
                         {title}
                       </h3>
                       <button
                         onClick={() => removeFromWatchlist(title)}
-                        className='w-12 h-12 bg-charcoal/60 hover:bg-crimson/80 rounded-full flex items-center justify-center text-muted-gray hover:text-cream transition-all duration-300 hover:scale-110 backdrop-blur-md border border-gray-600/50 hover:border-crimson/50 shadow-lg hover:shadow-crimson/25'
+                        className='w-12 h-12 bg-gray-900/60 hover:bg-red-600/80 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-50 transition-all duration-300 hover:scale-110 backdrop-blur-md border border-gray-600/50 hover:border-red-600/50 shadow-lg hover:shadow-red-600/25'
                       >
                         <svg
                           className='w-5 h-5 group-hover:scale-110 transition-transform'
@@ -120,10 +120,10 @@ function Watchlist() {
                     </div>
 
                     {(year || genres) && (
-                      <div className='flex items-center space-x-3 mb-6 text-sm text-muted-gray'>
+                      <div className='flex items-center space-x-3 mb-6 text-sm text-gray-400'>
                         {year && <span className='font-medium'>{year}</span>}
                         {year && genres && (
-                          <div className='w-1 h-1 bg-crimson/50 rounded-full'></div>
+                          <div className='w-1 h-1 bg-red-600/50 rounded-full'></div>
                         )}
                         {genres && (
                           <span className='line-clamp-1'>{genres}</span>
@@ -132,8 +132,8 @@ function Watchlist() {
                     )}
 
                     {reason && (
-                      <div className='mb-6 p-4 bg-charcoal/40 rounded-2xl border border-gray-600/30'>
-                        <p className='text-muted-gray text-sm leading-relaxed line-clamp-3 italic'>
+                      <div className='mb-6 p-4 bg-gray-900/40 rounded-2xl border border-gray-600/30'>
+                        <p className='text-gray-400 text-sm leading-relaxed line-clamp-3 italic'>
                           "{reason}"
                         </p>
                       </div>
@@ -141,22 +141,22 @@ function Watchlist() {
 
                     <div className='flex items-center justify-between pt-6 border-t border-gray-600/30'>
                       <div className='flex items-center space-x-3'>
-                        <div className='w-3 h-3 bg-gradient-to-r from-crimson to-teal rounded-full'></div>
-                        <span className='text-xs text-muted-gray font-medium tracking-wider uppercase'>
+                        <div className='w-3 h-3 bg-gradient-to-r from-red-600 to-teal-500 rounded-full'></div>
+                        <span className='text-xs text-gray-400 font-medium tracking-wider uppercase'>
                           Vault Collection
                         </span>
                       </div>
                       {rating ? (
                         <div className='flex items-center space-x-2'>
-                          <span className='text-crimson text-lg'>★</span>
-                          <span className='text-cream font-semibold text-sm'>
+                          <span className='text-red-600 text-lg'>★</span>
+                          <span className='text-gray-50 font-semibold text-sm'>
                             {rating}
                           </span>
                         </div>
                       ) : (
                         <div className='flex items-center space-x-2'>
-                          <span className='text-crimson text-lg'>❤️</span>
-                          <span className='text-cream font-medium text-sm'>
+                          <span className='text-red-600 text-lg'>❤️</span>
+                          <span className='text-gray-50 font-medium text-sm'>
                             Saved
                           </span>
                         </div>

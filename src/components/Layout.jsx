@@ -30,7 +30,7 @@ function Layout({ onLogout }) {
   }, [location.pathname])
 
   return (
-    <div className='min-h-screen bg-charcoal'>
+    <div className='min-h-screen bg-gray-900'>
       {/* Film Strip Background Pattern */}
       <div className='fixed inset-0 opacity-5'>
         <div
@@ -59,8 +59,8 @@ function Layout({ onLogout }) {
         fixed top-0 left-0 right-0 z-50 transition-all duration-500
         ${
           isScrolled
-            ? 'backdrop-blur-xl bg-charcoal-light/95 border-b border-gray-600/50 shadow-2xl py-2'
-            : 'backdrop-blur-xl bg-charcoal-light/90 border-b border-gray-600/30 shadow-2xl py-4'
+            ? 'backdrop-blur-xl bg-gray-900-light/95 border-b border-gray-600/50 shadow-2xl py-2'
+            : 'backdrop-blur-xl bg-gray-900-light/90 border-b border-gray-600/30 shadow-2xl py-4'
         }
       `}
       >
@@ -75,14 +75,14 @@ function Layout({ onLogout }) {
                 <div
                   className={`
                   ${isScrolled ? 'w-10 h-10' : 'w-12 h-12'} 
-                  bg-gradient-to-br from-crimson to-crimson-dark rounded-full flex items-center justify-center 
-                  shadow-xl group-hover:shadow-crimson/30 transition-all duration-500 
-                  border-2 border-crimson/20 group-hover:border-crimson/40
+                  bg-gradient-to-br from-red-600 to-red-600-dark rounded-full flex items-center justify-center 
+                  shadow-xl group-hover:shadow-red-600/30 transition-all duration-500 
+                  border-2 border-red-600/20 group-hover:border-red-600/40
                   touch-manipulation
                 `}
                 >
                   <span
-                    className={`text-cream font-bold relative z-10 ${
+                    className={`text-gray-50 font-bold relative z-10 ${
                       isScrolled ? 'text-lg' : 'text-xl'
                     }`}
                   >
@@ -92,14 +92,14 @@ function Layout({ onLogout }) {
               </div>
               <div className='hidden sm:block'>
                 <h1
-                  className={`font-serif text-cream tracking-wide font-bold transition-all duration-300 ${
+                  className={`font-serif text-gray-50 tracking-wide font-bold transition-all duration-300 ${
                     isScrolled ? 'text-xl' : 'text-2xl'
                   }`}
                 >
                   CinemaVault
                 </h1>
                 <p
-                  className={`text-muted-gray font-light tracking-wide transition-all duration-300 ${
+                  className={`text-gray-400 font-light tracking-wide transition-all duration-300 ${
                     isScrolled ? 'text-xs' : 'text-sm'
                   }`}
                 >
@@ -116,8 +116,8 @@ function Layout({ onLogout }) {
                   to={item.href}
                   className={`relative px-4 py-2 rounded-xl font-medium text-sm transition-all duration-500 hover:scale-105 group overflow-hidden touch-manipulation ${
                     isActive(item.href)
-                      ? 'bg-gradient-to-r from-teal/20 to-crimson/20 text-cream border border-teal/30 shadow-lg shadow-teal/10'
-                      : 'text-muted-gray hover:text-cream hover:bg-charcoal-light/60 backdrop-blur-sm border border-transparent hover:border-gray-600/30'
+                      ? 'bg-gradient-to-r from-teal-500/20 to-red-600/20 text-gray-50 border border-teal-500/30 shadow-lg shadow-teal-500/10'
+                      : 'text-gray-400 hover:text-gray-50 hover:bg-gray-900-light/60 backdrop-blur-sm border border-transparent hover:border-gray-600/30'
                   }`}
                 >
                   {/* Film strip perforations */}
@@ -147,8 +147,8 @@ function Layout({ onLogout }) {
                   to={item.href}
                   className={`relative p-3 rounded-xl font-medium text-sm transition-all duration-500 hover:scale-105 group overflow-hidden touch-manipulation ${
                     isActive(item.href)
-                      ? 'bg-gradient-to-r from-teal/20 to-crimson/20 text-cream border border-teal/30 shadow-lg shadow-teal/10'
-                      : 'text-muted-gray hover:text-cream hover:bg-charcoal-light/60 backdrop-blur-sm border border-transparent hover:border-gray-600/30'
+                      ? 'bg-gradient-to-r from-teal-500/20 to-red-600/20 text-gray-50 border border-teal-500/30 shadow-lg shadow-teal-500/10'
+                      : 'text-gray-400 hover:text-gray-50 hover:bg-gray-900-light/60 backdrop-blur-sm border border-transparent hover:border-gray-600/30'
                   }`}
                 >
                   <span className='text-lg group-hover:animate-pulse'>
@@ -162,7 +162,7 @@ function Layout({ onLogout }) {
             <div className='flex items-center space-x-3'>
               <button
                 onClick={onLogout}
-                className='hidden sm:block relative px-4 py-2 bg-gradient-to-r from-crimson/20 to-crimson-dark/20 hover:from-crimson/30 hover:to-crimson-dark/30 text-cream border border-crimson/30 hover:border-crimson/50 rounded-xl transition-all duration-500 hover:scale-105 backdrop-blur-sm font-medium text-sm tracking-wide shadow-lg hover:shadow-crimson/20 group overflow-hidden touch-manipulation'
+                className='hidden sm:block relative px-4 py-2 bg-gradient-to-r from-red-600/20 to-red-600-dark/20 hover:from-red-600/30 hover:to-red-600-dark/30 text-gray-50 border border-red-600/30 hover:border-red-600/50 rounded-xl transition-all duration-500 hover:scale-105 backdrop-blur-sm font-medium text-sm tracking-wide shadow-lg hover:shadow-red-600/20 group overflow-hidden touch-manipulation'
               >
                 <span className='relative z-10'>Sign Out</span>
                 <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
@@ -171,7 +171,7 @@ function Layout({ onLogout }) {
               {/* Mobile menu button - Enhanced */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className='md:hidden p-3 rounded-xl bg-charcoal-light/60 hover:bg-charcoal-light/80 text-muted-gray hover:text-cream transition-all duration-300 border border-gray-600/30 hover:border-gray-500/50 backdrop-blur-sm touch-manipulation active:scale-95'
+                className='md:hidden p-3 rounded-xl bg-gray-900-light/60 hover:bg-gray-900-light/80 text-gray-400 hover:text-gray-50 transition-all duration-300 border border-gray-600/30 hover:border-gray-500/50 backdrop-blur-sm touch-manipulation active:scale-95'
               >
                 <svg
                   className={`w-6 h-6 transition-transform duration-300 ${
@@ -212,8 +212,8 @@ function Layout({ onLogout }) {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={`relative px-6 py-4 rounded-2xl font-medium text-base transition-all duration-300 group touch-manipulation active:scale-95 opacity-0 animate-slide-in-right ${
                       isActive(item.href)
-                        ? 'bg-gradient-to-r from-teal/20 to-crimson/20 text-cream border border-teal/30 shadow-lg'
-                        : 'text-muted-gray hover:text-cream hover:bg-charcoal-light/60 border border-transparent hover:border-gray-600/30'
+                        ? 'bg-gradient-to-r from-teal-500/20 to-red-600/20 text-gray-50 border border-teal-500/30 shadow-lg'
+                        : 'text-gray-400 hover:text-gray-50 hover:bg-gray-900-light/60 border border-transparent hover:border-gray-600/30'
                     }`}
                     style={{
                       animationDelay: `${index * 100}ms`,
@@ -237,7 +237,7 @@ function Layout({ onLogout }) {
                     setIsMobileMenuOpen(false)
                     onLogout()
                   }}
-                  className='mt-4 px-6 py-4 bg-gradient-to-r from-crimson/20 to-crimson-dark/20 hover:from-crimson/30 hover:to-crimson-dark/30 text-cream border border-crimson/30 hover:border-crimson/50 rounded-2xl transition-all duration-300 font-medium text-base tracking-wide shadow-lg hover:shadow-crimson/20 group overflow-hidden touch-manipulation active:scale-95 opacity-0 animate-slide-in-right'
+                  className='mt-4 px-6 py-4 bg-gradient-to-r from-red-600/20 to-red-600-dark/20 hover:from-red-600/30 hover:to-red-600-dark/30 text-gray-50 border border-red-600/30 hover:border-red-600/50 rounded-2xl transition-all duration-300 font-medium text-base tracking-wide shadow-lg hover:shadow-red-600/20 group overflow-hidden touch-manipulation active:scale-95 opacity-0 animate-slide-in-right'
                   style={{
                     animationDelay: '400ms',
                     animationFillMode: 'forwards',
@@ -261,7 +261,7 @@ function Layout({ onLogout }) {
       </main>
 
       {/* Ambient Bottom Glow */}
-      <div className='fixed bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-crimson/5 via-teal/5 to-transparent pointer-events-none'></div>
+      <div className='fixed bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-red-600/5 via-teal-500/5 to-transparent pointer-events-none'></div>
 
       {/* Floating action styles for mobile */}
       <style jsx>{`

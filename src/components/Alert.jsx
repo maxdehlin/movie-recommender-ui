@@ -3,22 +3,22 @@ function Alert({ type = 'info', children, onClose = null, className = '' }) {
     switch (type) {
       case 'success':
         return {
-          bg: 'bg-teal/15 border-teal/40',
-          text: 'text-cream',
-          icon: 'bg-teal/30',
-          dot: 'bg-teal',
+          bg: 'bg-teal-500/15 border-teal-500/40',
+          text: 'text-gray-50',
+          icon: 'bg-teal-500/30',
+          dot: 'bg-teal-500',
         }
       case 'error':
         return {
-          bg: 'bg-crimson/15 border-crimson/40',
-          text: 'text-cream',
-          icon: 'bg-crimson/30',
-          dot: 'bg-crimson',
+          bg: 'bg-red-600/15 border-red-600/40',
+          text: 'text-gray-50',
+          icon: 'bg-red-600/30',
+          dot: 'bg-red-600',
         }
       case 'warning':
         return {
           bg: 'bg-yellow-500/15 border-yellow-500/40',
-          text: 'text-cream',
+          text: 'text-gray-50',
           icon: 'bg-yellow-500/30',
           dot: 'bg-yellow-500',
         }
@@ -26,7 +26,7 @@ function Alert({ type = 'info', children, onClose = null, className = '' }) {
       default:
         return {
           bg: 'bg-blue-500/15 border-blue-500/40',
-          text: 'text-cream',
+          text: 'text-gray-50',
           icon: 'bg-blue-500/30',
           dot: 'bg-blue-500',
         }
@@ -130,7 +130,7 @@ function Alert({ type = 'info', children, onClose = null, className = '' }) {
         {onClose && (
           <button
             onClick={onClose}
-            className='ml-4 text-cream/60 hover:text-cream transition-colors duration-200'
+            className='ml-4 text-gray-50/60 hover:text-gray-50 transition-colors duration-200'
           >
             <svg
               className='w-5 h-5'

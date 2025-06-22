@@ -19,7 +19,7 @@ function SidebarLayout({ onLogout }) {
     location.pathname === path || location.pathname.startsWith(path)
 
   return (
-    <div className='min-h-screen bg-charcoal flex'>
+    <div className='min-h-screen bg-gray-900 flex'>
       {/* Film Strip Background Pattern */}
       <div className='fixed inset-0 opacity-5'>
         <div
@@ -45,7 +45,7 @@ function SidebarLayout({ onLogout }) {
       {/* Sidebar */}
       <div
         className={cx(
-          'fixed inset-y-0 left-0 z-50 bg-charcoal-light/95 backdrop-blur-xl border-r border-gray-600/30 flex flex-col transform transition-all duration-300 lg:translate-x-0',
+          'fixed inset-y-0 left-0 z-50 backdrop-blur-xl border-r border-gray-600/30 flex flex-col transform transition-all duration-300 lg:translate-x-0',
           sidebarCollapsed ? 'w-16' : 'w-64',
           isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
         )}
@@ -57,15 +57,15 @@ function SidebarLayout({ onLogout }) {
             sidebarCollapsed ? 'justify-center p-4' : 'space-x-3 p-6'
           )}
         >
-          <div className='w-10 h-10 bg-gradient-to-br from-crimson to-crimson-dark rounded-full flex items-center justify-center shadow-xl border-2 border-crimson/20'>
-            <span className='text-cream font-bold text-lg'>🎬</span>
+          <div className='w-10 h-10 bg-gradient-to-br from-red-600 to-red-600-dark rounded-full flex items-center justify-center shadow-xl border-2 border-red-600/20'>
+            <span className='text-gray-50 font-bold text-lg'>🎬</span>
           </div>
           {!sidebarCollapsed && (
             <div>
-              <h1 className='font-serif text-cream text-xl font-bold tracking-wide'>
+              <h1 className='font-serif text-gray-50 text-xl font-bold tracking-wide'>
                 CinemaVault
               </h1>
-              <p className='text-muted-gray text-xs font-light tracking-wide'>
+              <p className='text-gray-400 text-xs font-light tracking-wide'>
                 AI-Powered Discovery
               </p>
             </div>
@@ -81,8 +81,8 @@ function SidebarLayout({ onLogout }) {
               className={cx(
                 'relative flex items-center py-3 font-medium text-sm transition-all duration-200 group touch-manipulation',
                 {
-                  'bg-gray-100 text-cream': isActive(item.href),
-                  'text-muted-gray hover:text-cream hover:bg-gray-50 active:bg-gray-100':
+                  'bg-gray-100 text-gray-50': isActive(item.href),
+                  'text-gray-400 hover:text-gray-50 hover:bg-gray-50 active:bg-gray-100':
                     !isActive(item.href),
                   'justify-center px-2': sidebarCollapsed,
                   'space-x-3 px-4': !sidebarCollapsed,
@@ -107,7 +107,7 @@ function SidebarLayout({ onLogout }) {
           <button
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
             className={cx(
-              'flex items-center justify-center p-2 text-muted-gray hover:text-cream hover:bg-charcoal-light/60 rounded-lg transition-all duration-300 bg-gray-300 w-1 cursor-pointer',
+              'flex items-center justify-center p-2 text-gray-400 hover:text-gray-50 hover:bg-gray-900-light/60 rounded-lg transition-all duration-300 bg-gray-300 w-1 cursor-pointer',
               sidebarCollapsed ? 'h-2' : 'h-10'
             )}
           />
@@ -117,7 +117,7 @@ function SidebarLayout({ onLogout }) {
         {/* <div className='p-4'>
           <button
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-            className='w-full flex items-center justify-center p-2 text-muted-gray hover:text-cream hover:bg-charcoal-light/60 rounded-lg transition-all duration-300'
+            className='w-full flex items-center justify-center p-2 text-gray-400 hover:text-gray-50 hover:bg-gray-900-light/60 rounded-lg transition-all duration-300'
           >
             <span
               className={`transform transition-transform duration-300 text-gray-600/30 ${
@@ -137,8 +137,8 @@ function SidebarLayout({ onLogout }) {
               'relative flex items-center py-3 font-medium text-sm transition-all duration-200 group touch-manipulation',
               sidebarCollapsed ? 'justify-center px-2' : 'space-x-3 px-4',
               isActive('/profile')
-                ? 'bg-charcoal-light text-cream'
-                : 'text-muted-gray hover:text-cream hover:bg-charcoal-light/100 active:bg-charcoal-light/100'
+                ? 'bg-gray-900-light text-gray-50'
+                : 'text-gray-400 hover:text-gray-50 hover:bg-gray-900-light/100 active:bg-gray-900-light/100'
             )}
             onClick={() => setIsMobileMenuOpen(false)}
             title={sidebarCollapsed ? 'Profile' : ''}
@@ -152,7 +152,7 @@ function SidebarLayout({ onLogout }) {
           <button
             onClick={onLogout}
             className={cx(
-              'relative w-full flex items-center py-3 bg-gradient-to-r from-crimson/40 to-crimson-dark/40 hover:from-crimson/60 hover:to-crimson-dark/60 active:from-crimson/70 active:to-crimson-dark/70 text-cream backdrop-blur-sm font-medium text-sm tracking-wide transition-all duration-200 group touch-manipulation',
+              'relative w-full flex items-center py-3 bg-gradient-to-r from-red-600/40 to-red-600-dark/40 hover:from-red-600/60 hover:to-red-600-dark/60 active:from-red-600/70 active:to-red-600-dark/70 text-gray-50 backdrop-blur-sm font-medium text-sm tracking-wide transition-all duration-200 group touch-manipulation',
               sidebarCollapsed ? 'justify-center px-2' : 'space-x-3 px-4'
             )}
             title={sidebarCollapsed ? 'Sign Out' : ''}
@@ -174,7 +174,7 @@ function SidebarLayout({ onLogout }) {
       {/* Mobile menu button */}
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        className='lg:hidden fixed top-4 left-4 z-50 p-3 rounded-xl bg-charcoal-light/60 hover:bg-charcoal-light/80 text-muted-gray hover:text-cream transition-all duration-300 border border-gray-600/30'
+        className='lg:hidden fixed top-4 left-4 z-50 p-3 rounded-xl bg-gray-900-light/60 hover:bg-gray-900-light/80 text-gray-400 hover:text-gray-50 transition-all duration-300 border border-gray-600/30'
       >
         <svg
           className={cx(

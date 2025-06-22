@@ -19,10 +19,10 @@ function Home() {
       <div className='max-w-4xl mx-auto space-y-8'>
         {/* Header */}
         <div className='text-center space-y-4'>
-          <h1 className='text-4xl md:text-5xl font-serif text-cream leading-tight'>
+          <h1 className='text-4xl md:text-5xl font-serif text-gray-50 leading-tight'>
             Discover Your Next Favorite Film
           </h1>
-          <p className='text-xl text-muted-gray max-w-2xl mx-auto'>
+          <p className='text-xl text-gray-400 max-w-2xl mx-auto'>
             {userState?.isNewUser
               ? "Welcome to your cinema journey. Let's find your first great film!"
               : userState?.isProgressingUser
@@ -32,13 +32,13 @@ function Home() {
         </div>
 
         {/* Search & Quick Rating */}
-        <div className='bg-charcoal-light/60 backdrop-blur-xl rounded-2xl border border-gray-600/30 p-8'>
+        <div className='bg-gray-900-light/60 backdrop-blur-xl rounded-2xl border border-gray-600/30 p-8'>
           <div className='space-y-6'>
             <div className='text-center space-y-2'>
-              <h3 className='text-2xl font-serif text-cream'>
+              <h3 className='text-2xl font-serif text-gray-50'>
                 Search & Rate Movies
               </h3>
-              <p className='text-muted-gray'>
+              <p className='text-gray-400'>
                 Find films you've watched and rate them
               </p>
             </div>
@@ -54,7 +54,7 @@ function Home() {
         </div>
 
         {/* Welcome Message */}
-        <div className='text-center text-muted-gray'>
+        <div className='text-center text-gray-400'>
           <p>
             Rate movies to unlock personalized recommendations and explore your
             taste profile in the Movies section

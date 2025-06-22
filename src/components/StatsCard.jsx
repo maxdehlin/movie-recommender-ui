@@ -1,20 +1,20 @@
 function StatsCard({ icon, value, label, color = 'teal' }) {
   const colorClasses = {
     teal: {
-      gradient: 'from-teal/20 to-teal-dark/20',
-      border: 'border-teal/30 group-hover:border-teal/50',
-      text: 'text-teal',
-      shadow: 'hover:shadow-teal/10',
-      sprocket1: 'bg-teal/30',
-      sprocket2: 'bg-crimson/30',
+      gradient: 'from-teal-500/20 to-teal-500-dark/20',
+      border: 'border-teal-500/30 group-hover:border-teal-500-500/50',
+      text: 'text-teal-500',
+      shadow: 'hover:shadow-teal-500/10',
+      sprocket1: 'bg-teal-500/30',
+      sprocket2: 'bg-red-600/30',
     },
     crimson: {
-      gradient: 'from-crimson/20 to-crimson-dark/20',
-      border: 'border-crimson/30 group-hover:border-crimson/50',
-      text: 'text-crimson',
-      shadow: 'hover:shadow-crimson/10',
-      sprocket1: 'bg-crimson/30',
-      sprocket2: 'bg-teal/30',
+      gradient: 'from-red-600/20 to-red-600-dark/20',
+      border: 'border-red-600/30 group-hover:border-red-600/50',
+      text: 'text-red-600',
+      shadow: 'hover:shadow-red-600/10',
+      sprocket1: 'bg-red-600/30',
+      sprocket2: 'bg-teal-500/30',
     },
   }
 
@@ -22,7 +22,7 @@ function StatsCard({ icon, value, label, color = 'teal' }) {
 
   return (
     <div
-      className={`group bg-charcoal-light/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 hover:border-${color}/40 p-10 text-center space-y-6 hover:scale-105 transition-all duration-500 shadow-2xl ${currentColor.shadow}`}
+      className={`group bg-gray-900-light/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 hover:border-${color}/40 p-10 text-center space-y-6 hover:scale-105 transition-all duration-500 shadow-2xl ${currentColor.shadow}`}
     >
       <div className='relative'>
         <div
@@ -44,7 +44,7 @@ function StatsCard({ icon, value, label, color = 'teal' }) {
         >
           {value}
         </div>
-        <div className='text-muted-gray font-medium text-lg tracking-wider uppercase'>
+        <div className='text-gray-400 font-medium text-lg tracking-wider uppercase'>
           {label}
         </div>
       </div>

@@ -155,7 +155,7 @@ function RatingPage() {
   const renderCollectionMovie = (movie) => (
     <div
       key={movie.id}
-      className='group relative break-inside-avoid mb-8 bg-charcoal-light/60 backdrop-blur-xl rounded-2xl border border-gray-600/30 hover:border-crimson/40 transition-all duration-500 hover:shadow-2xl hover:shadow-crimson/10 overflow-hidden'
+      className='group relative break-inside-avoid mb-8 bg-gray-900-light/60 backdrop-blur-xl rounded-2xl border border-gray-600/30 hover:border-red-600/40 transition-all duration-500 hover:shadow-2xl hover:shadow-red-600/10 overflow-hidden'
       style={{
         filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.5))',
       }}
@@ -163,7 +163,7 @@ function RatingPage() {
       {/* Remove button */}
       <button
         onClick={() => handleRemoveMovie(movie.id)}
-        className='absolute top-4 right-4 z-20 w-10 h-10 bg-charcoal/80 hover:bg-crimson/80 rounded-full flex items-center justify-center text-muted-gray hover:text-cream transition-all duration-300 opacity-0 group-hover:opacity-100 backdrop-blur-md border border-gray-600/50 hover:border-crimson/50 shadow-lg hover:shadow-crimson/25 hover:scale-110'
+        className='absolute top-4 right-4 z-20 w-10 h-10 bg-gray-900/80 hover:bg-red-600/80 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-50 transition-all duration-300 opacity-0 group-hover:opacity-100 backdrop-blur-md border border-gray-600/50 hover:border-red-600/50 shadow-lg hover:shadow-red-600/25 hover:scale-110'
       >
         <svg
           className='w-5 h-5'
@@ -181,7 +181,7 @@ function RatingPage() {
       </button>
 
       {/* Movie Poster */}
-      <div className='aspect-[2/3] bg-gradient-to-br from-charcoal-light to-charcoal rounded-t-2xl overflow-hidden relative'>
+      <div className='aspect-[2/3] bg-gradient-to-br from-gray-900-light to-gray-900 rounded-t-2xl overflow-hidden relative'>
         {movie.poster ? (
           <img
             src={movie.poster}
@@ -200,17 +200,17 @@ function RatingPage() {
           🎬
         </div>
         {/* Gradient overlay */}
-        <div className='absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
+        <div className='absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
       </div>
 
       <div className='p-6 space-y-4'>
         <div>
-          <h3 className='text-cream font-serif text-xl mb-2 line-clamp-2 leading-tight tracking-wide group-hover:text-crimson transition-colors duration-300'>
+          <h3 className='text-gray-50 font-serif text-xl mb-2 line-clamp-2 leading-tight tracking-wide group-hover:text-red-600 transition-colors duration-300'>
             {movie.title}
           </h3>
-          <div className='flex items-center space-x-3 text-sm text-muted-gray'>
+          <div className='flex items-center space-x-3 text-sm text-gray-400'>
             <span className='font-medium'>{movie.year}</span>
-            <div className='w-1 h-1 bg-crimson/50 rounded-full'></div>
+            <div className='w-1 h-1 bg-red-600/50 rounded-full'></div>
             <span className='line-clamp-1'>{movie.genres?.join(', ')}</span>
           </div>
         </div>
@@ -223,8 +223,8 @@ function RatingPage() {
               onClick={() => handleRating(movie.id, star)}
               className={`relative p-1 rounded-lg transition-all duration-300 hover:scale-125 active:scale-110 group ${
                 ratings[movie.id] >= star
-                  ? 'text-crimson'
-                  : 'text-gray-600 hover:text-crimson/70'
+                  ? 'text-red-600'
+                  : 'text-gray-600 hover:text-red-600/70'
               }`}
             >
               <svg
@@ -239,7 +239,7 @@ function RatingPage() {
                 <path d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z' />
               </svg>
               {ratings[movie.id] >= star && (
-                <div className='absolute inset-0 bg-crimson/20 rounded-lg animate-pulse'></div>
+                <div className='absolute inset-0 bg-red-600/20 rounded-lg animate-pulse'></div>
               )}
             </button>
           ))}
@@ -274,13 +274,13 @@ function RatingPage() {
             <div className='max-w-4xl mx-auto'>
               <form onSubmit={handleAddMovie} className='relative group'>
                 {/* Film strip border effect */}
-                <div className='absolute -inset-2 bg-gradient-to-r from-crimson/20 via-teal/20 to-crimson/20 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-all duration-700'></div>
-                <div className='relative bg-charcoal-light/80 backdrop-blur-xl rounded-3xl border border-gray-600/50 p-4 shadow-2xl group-hover:border-teal/30 transition-all duration-500'>
+                <div className='absolute -inset-2 bg-gradient-to-r from-red-600/20 via-teal-500/20 to-red-600/20 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-all duration-700'></div>
+                <div className='relative bg-gray-900-light/80 backdrop-blur-xl rounded-3xl border border-gray-600/50 p-4 shadow-2xl group-hover:border-teal-500-500/30 transition-all duration-500'>
                   <div className='flex items-center space-x-6'>
                     {/* Play icon */}
-                    <div className='w-12 h-12 bg-gradient-to-br from-crimson to-crimson-dark rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300'>
+                    <div className='w-12 h-12 bg-gradient-to-br from-red-600 to-red-600-dark rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300'>
                       <svg
-                        className='w-6 h-6 text-cream ml-1'
+                        className='w-6 h-6 text-gray-50 ml-1'
                         fill='currentColor'
                         viewBox='0 0 24 24'
                       >
@@ -294,13 +294,13 @@ function RatingPage() {
                         value={searchQuery}
                         onChange={(e) => handleSearchChange(e.target.value)}
                         placeholder='Search the cinema archives...'
-                        className='w-full bg-transparent text-cream placeholder-muted-gray px-6 py-6 rounded-2xl focus:outline-none text-xl font-light tracking-wide focus:placeholder-opacity-50 transition-all duration-300'
+                        className='w-full bg-transparent text-gray-50 placeholder-gray-400 px-6 py-6 rounded-2xl focus:outline-none text-xl font-light tracking-wide focus:placeholder-opacity-50 transition-all duration-300'
                       />
                     </div>
 
                     <button
                       type='submit'
-                      className='px-12 py-6 bg-gradient-to-r from-crimson to-crimson-dark hover:from-crimson-dark hover:to-crimson text-cream rounded-2xl font-semibold text-lg transition-all duration-300 hover:scale-105 min-w-[160px] shadow-xl hover:shadow-crimson/25 border border-crimson/50 hover:border-crimson/70 group-hover:shadow-2xl'
+                      className='px-12 py-6 bg-gradient-to-r from-red-600 to-red-600-dark hover:from-red-600-dark hover:to-red-600 text-gray-50 rounded-2xl font-semibold text-lg transition-all duration-300 hover:scale-105 min-w-[160px] shadow-xl hover:shadow-red-600/25 border border-red-600/50 hover:border-red-600/70 group-hover:shadow-2xl'
                     >
                       <div className='flex items-center space-x-2'>
                         <span>Discover</span>
@@ -327,12 +327,12 @@ function RatingPage() {
             {/* Live Search Results */}
             {searchResults.length > 0 && (
               <div className='max-w-4xl mx-auto'>
-                <div className='bg-charcoal-light/80 backdrop-blur-xl rounded-2xl border border-gray-600/30 overflow-hidden shadow-2xl'>
+                <div className='bg-gray-900-light/80 backdrop-blur-xl rounded-2xl border border-gray-600/30 overflow-hidden shadow-2xl'>
                   <div className='p-4 border-b border-gray-600/30'>
-                    <h3 className='text-cream font-medium text-lg'>
+                    <h3 className='text-gray-50 font-medium text-lg'>
                       Search Results
                     </h3>
-                    <p className='text-muted-gray text-sm'>
+                    <p className='text-gray-400 text-sm'>
                       Click the stars to rate and add to your collection
                     </p>
                   </div>
@@ -343,13 +343,13 @@ function RatingPage() {
                         index !== Math.min(searchResults.length, 5) - 1
                           ? 'border-b border-gray-600/30'
                           : ''
-                      } hover:bg-charcoal/40 transition-colors duration-200`}
+                      } hover:bg-gray-900/40 transition-colors duration-200`}
                     >
                       <div className='flex items-center justify-between'>
                         <div className='flex items-center space-x-4 flex-1'>
                           {/* Movie Poster Thumbnail */}
                           {movie.poster && (
-                            <div className='w-16 h-24 bg-gradient-to-br from-charcoal-light to-charcoal rounded-lg overflow-hidden flex-shrink-0'>
+                            <div className='w-16 h-24 bg-gradient-to-br from-gray-900-light to-gray-900 rounded-lg overflow-hidden flex-shrink-0'>
                               <img
                                 src={movie.poster}
                                 alt={movie.title}
@@ -361,7 +361,7 @@ function RatingPage() {
                                 }}
                               />
                               <div
-                                className='w-full h-full flex items-center justify-center text-2xl opacity-30 bg-charcoal'
+                                className='w-full h-full flex items-center justify-center text-2xl opacity-30 bg-gray-900'
                                 style={{ display: 'none' }}
                               >
                                 🎬
@@ -370,26 +370,26 @@ function RatingPage() {
                           )}
 
                           <div className='flex-1 min-w-0'>
-                            <h4 className='text-cream font-medium text-lg truncate'>
+                            <h4 className='text-gray-50 font-medium text-lg truncate'>
                               {movie.title}
                             </h4>
                             {movie.year && (
-                              <p className='text-muted-gray text-sm'>
+                              <p className='text-gray-400 text-sm'>
                                 {movie.year}
                               </p>
                             )}
                             {movie.genres && (
-                              <p className='text-muted-gray text-xs line-clamp-1'>
+                              <p className='text-gray-400 text-xs line-clamp-1'>
                                 {movie.genres.join(', ')}
                               </p>
                             )}
                             {/* Show if already rated or in collection */}
                             {ratings[movie.id] && (
                               <div className='flex items-center space-x-1 mt-1'>
-                                <span className='text-xs text-teal'>
+                                <span className='text-xs text-teal-500'>
                                   Already rated:
                                 </span>
-                                <span className='text-xs text-teal font-medium'>
+                                <span className='text-xs text-teal-500 font-medium'>
                                   {ratings[movie.id]} stars
                                 </span>
                               </div>
@@ -412,7 +412,7 @@ function RatingPage() {
                                   key={star}
                                   className={`text-2xl ${
                                     ratings[movie.id] >= star
-                                      ? 'text-crimson'
+                                      ? 'text-red-600'
                                       : 'text-gray-600'
                                   }`}
                                 >
@@ -443,7 +443,7 @@ function RatingPage() {
                                     // Clear search after rating
                                     clearSearch()
                                   }}
-                                  className='text-2xl text-gray-500 hover:text-crimson transition-colors duration-200 hover:scale-110 transform'
+                                  className='text-2xl text-gray-500 hover:text-red-600 transition-colors duration-200 hover:scale-110 transform'
                                 >
                                   ⭐
                                 </button>
@@ -460,8 +460,8 @@ function RatingPage() {
 
             {/* Error Display */}
             {searchError && (
-              <div className='text-center p-4 bg-crimson/10 border border-crimson/30 rounded-2xl max-w-md mx-auto'>
-                <p className='text-crimson text-sm'>{searchError}</p>
+              <div className='text-center p-4 bg-red-600/10 border border-red-600/30 rounded-2xl max-w-md mx-auto'>
+                <p className='text-red-600 text-sm'>{searchError}</p>
               </div>
             )}
 
@@ -520,10 +520,10 @@ function RatingPage() {
                     </svg>
                     <div className='absolute inset-0 flex items-center justify-center'>
                       <div className='text-center'>
-                        <div className='text-5xl font-serif text-crimson mb-2'>
+                        <div className='text-5xl font-serif text-red-600 mb-2'>
                           {stats.moviesRated}
                         </div>
-                        <div className='text-sm text-muted-gray font-medium tracking-wider uppercase'>
+                        <div className='text-sm text-gray-400 font-medium tracking-wider uppercase'>
                           Films Rated
                         </div>
                       </div>
@@ -533,7 +533,7 @@ function RatingPage() {
 
                 {/* Film Collection */}
                 <div className='max-w-7xl mx-auto'>
-                  <h2 className='text-3xl font-serif text-cream mb-8 text-center tracking-wide'>
+                  <h2 className='text-3xl font-serif text-gray-50 mb-8 text-center tracking-wide'>
                     Your Film Collection
                   </h2>
                   <div className='columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-8 space-y-8'>
@@ -548,13 +548,13 @@ function RatingPage() {
                   <button
                     onClick={handleGenerateRecommendations}
                     disabled={isGenerating || stats.moviesRated < 1}
-                    className='relative px-16 py-6 bg-gradient-to-r from-teal to-teal-dark hover:from-teal-dark hover:to-teal text-charcoal rounded-3xl font-bold text-xl transition-all duration-500 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed min-w-[400px] shadow-2xl hover:shadow-teal/30 border border-teal/50 hover:border-teal/70 group overflow-hidden'
+                    className='relative px-16 py-6 bg-gradient-to-r from-teal-500 to-teal-500-dark hover:from-teal-500-dark hover:to-teal-500 text-gray-900 rounded-3xl font-bold text-xl transition-all duration-500 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed min-w-[400px] shadow-2xl hover:shadow-teal-500/30 border border-teal-500/50 hover:border-teal-500-500/70 group overflow-hidden'
                   >
                     <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
                     <span className='relative z-10 flex items-center justify-center space-x-3'>
                       {isGenerating || isLoadingRecommendations ? (
                         <>
-                          <div className='w-6 h-6 border-3 border-charcoal/30 border-t-charcoal rounded-full animate-spin'></div>
+                          <div className='w-6 h-6 border-3 border-gray-900/30 border-t-charcoal rounded-full animate-spin'></div>
                           <span>AI Curating Your Recommendations...</span>
                         </>
                       ) : (
@@ -605,11 +605,11 @@ function RatingPage() {
               <button
                 onClick={handleNewRecommendations}
                 disabled={isGenerating || isLoadingRecommendations}
-                className='px-12 py-6 bg-gradient-to-r from-teal to-teal-dark hover:from-teal-dark hover:to-teal text-charcoal rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 shadow-lg hover:shadow-teal/25 border border-teal/50 tracking-wide'
+                className='px-12 py-6 bg-gradient-to-r from-teal-500 to-teal-500-dark hover:from-teal-500-dark hover:to-teal-500 text-gray-900 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 shadow-lg hover:shadow-teal-500/25 border border-teal-500/50 tracking-wide'
               >
                 {isGenerating || isLoadingRecommendations ? (
                   <div className='flex items-center space-x-2'>
-                    <div className='w-4 h-4 border-2 border-charcoal border-t-transparent rounded-full animate-spin'></div>
+                    <div className='w-4 h-4 border-2 border-gray-900 border-t-transparent rounded-full animate-spin'></div>
                     <span>Generating...</span>
                   </div>
                 ) : (
@@ -618,7 +618,7 @@ function RatingPage() {
               </button>
               <button
                 onClick={handleReset}
-                className='px-12 py-6 bg-charcoal-light/60 hover:bg-charcoal-light/80 text-cream rounded-2xl font-semibold border border-gray-600/50 hover:border-gray-500/70 transition-all duration-300 hover:scale-105 tracking-wide shadow-lg backdrop-blur-xl'
+                className='px-12 py-6 bg-gray-900-light/60 hover:bg-gray-900-light/80 text-gray-50 rounded-2xl font-semibold border border-gray-600/50 hover:border-gray-500/70 transition-all duration-300 hover:scale-105 tracking-wide shadow-lg backdrop-blur-xl'
               >
                 Rate More Films
               </button>
@@ -628,8 +628,8 @@ function RatingPage() {
 
         {/* Error Display */}
         {recommendationError && (
-          <div className='text-center p-4 bg-crimson/10 border border-crimson/30 rounded-2xl max-w-md mx-auto'>
-            <p className='text-crimson text-sm'>{recommendationError}</p>
+          <div className='text-center p-4 bg-red-600/10 border border-red-600/30 rounded-2xl max-w-md mx-auto'>
+            <p className='text-red-600 text-sm'>{recommendationError}</p>
           </div>
         )}
       </div>

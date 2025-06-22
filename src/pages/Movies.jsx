@@ -124,7 +124,7 @@ function Movies() {
     const isInWatchlist = watchlist?.some((w) => w.id === movie.id)
 
     return (
-      <div className='bg-charcoal-light/40 backdrop-blur-sm rounded-xl border border-gray-600/30 p-4 hover:bg-charcoal-light/60 transition-all duration-300'>
+      <div className='bg-gray-900-light/40 backdrop-blur-sm rounded-xl border border-gray-600/30 p-4 hover:bg-gray-900-light/60 transition-all duration-300'>
         <div className='flex items-center justify-between'>
           <div className='flex items-center space-x-4 flex-1'>
             {/* Poster */}
@@ -141,10 +141,10 @@ function Movies() {
 
             {/* Movie Info */}
             <div className='flex-1 min-w-0'>
-              <h3 className='text-cream font-medium text-lg truncate'>
+              <h3 className='text-gray-50 font-medium text-lg truncate'>
                 {movie.title}
               </h3>
-              <p className='text-muted-gray text-sm'>
+              <p className='text-gray-400 text-sm'>
                 {movie.release_date?.split('-')[0] || 'Unknown Year'}
               </p>
               {movie.genres && (
@@ -152,7 +152,7 @@ function Movies() {
                   {movie.genres.slice(0, 3).map((genre, index) => (
                     <span
                       key={index}
-                      className='text-xs bg-teal/20 text-teal px-2 py-1 rounded-md'
+                      className='text-xs bg-teal-500/20 text-teal-500 px-2 py-1 rounded-md'
                     >
                       {genre}
                     </span>
@@ -170,8 +170,8 @@ function Movies() {
                 onClick={() => handleWatchlistToggle(movie)}
                 className={`p-2 rounded-lg transition-all duration-300 ${
                   isInWatchlist
-                    ? 'text-crimson bg-crimson/20 border border-crimson/30'
-                    : 'text-muted-gray hover:text-crimson hover:bg-crimson/10'
+                    ? 'text-red-600 bg-red-600/20 border border-red-600/30'
+                    : 'text-gray-400 hover:text-red-600 hover:bg-red-600/10'
                 }`}
               >
                 ❤️
@@ -194,7 +194,7 @@ function Movies() {
     <div className='flex h-screen'>
       {/* Secondary Sidebar */}
       <div
-        className={`w-64 bg-charcoal-light/60 backdrop-blur-xl border-r border-gray-600/30 flex flex-col transition-all duration-300`}
+        className={`w-64 bg-gray-900-light/60 backdrop-blur-xl border-r border-gray-600/30 flex flex-col transition-all duration-300`}
       >
         <nav className='flex-1 py-6'>
           {sections.map((section) => (
@@ -203,8 +203,8 @@ function Movies() {
               onClick={() => setActiveSection(section.id)}
               className={`relative w-full flex items-center ${'justify-between px-4'} py-3 font-medium text-sm transition-all duration-500 text-left group overflow-hidden touch-manipulation ${
                 activeSection === section.id
-                  ? 'bg-gradient-to-r from-teal/20 to-crimson/20 text-cream border border-teal/30 shadow-lg shadow-teal/10'
-                  : 'text-muted-gray hover:text-cream hover:bg-charcoal-light/60 backdrop-blur-sm border border-transparent hover:border-gray-600/30'
+                  ? 'bg-gradient-to-r from-teal-500/20 to-red-600/20 text-gray-50 border border-teal-500/30 shadow-lg shadow-teal-500/10'
+                  : 'text-gray-400 hover:text-gray-50 hover:bg-gray-900-light/60 backdrop-blur-sm border border-transparent hover:border-gray-600/30'
               }`}
               title={section.name}
             >
@@ -229,7 +229,7 @@ function Movies() {
           <div className='p-4 border-t border-gray-600/30'>
             <button
               onClick={() => generateRecommendations(ratings)}
-              className='relative w-full px-4 py-2 bg-crimson/20 hover:bg-crimson/30 border border-crimson/30 hover:border-crimson/50 text-cream rounded-lg text-sm font-medium transition-all duration-500 hover:scale-105 backdrop-blur-sm shadow-lg hover:shadow-crimson/20 group overflow-hidden touch-manipulation'
+              className='relative w-full px-4 py-2 bg-red-600/20 hover:bg-red-600/30 border border-red-600/30 hover:border-red-600/50 text-gray-50 rounded-lg text-sm font-medium transition-all duration-500 hover:scale-105 backdrop-blur-sm shadow-lg hover:shadow-red-600/20 group overflow-hidden touch-manipulation'
               title={'Generate New Recommendations'}
             >
               <span className='relative z-10'>{'Generate New'}</span>
@@ -244,13 +244,13 @@ function Movies() {
       {/* Main Content */}
       <div className='flex-1 flex flex-col'>
         {/* Header with Search */}
-        <div className='p-6 border-b border-gray-600/30 bg-charcoal-light/30 backdrop-blur-sm'>
+        <div className='p-6 border-b border-gray-600/30 bg-gray-900-light/30 backdrop-blur-sm'>
           <div className='flex items-center justify-between mb-4'>
             <div>
-              <h2 className='text-xl font-serif text-cream'>
+              <h2 className='text-xl font-serif text-gray-50'>
                 {sections.find((s) => s.id === activeSection)?.name}
               </h2>
-              <p className='text-muted-gray text-sm'>
+              <p className='text-gray-400 text-sm'>
                 {filteredData.length} movie
                 {filteredData.length !== 1 ? 's' : ''}
               </p>
@@ -265,9 +265,9 @@ function Movies() {
                 ?.name.toLowerCase()}...`}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className='w-full px-4 py-3 bg-charcoal-light/60 border border-gray-600/30 rounded-xl text-cream placeholder-muted-gray focus:border-teal/50 focus:ring-1 focus:ring-teal/30 transition-all duration-300'
+              className='w-full px-4 py-3 bg-gray-900-light/60 border border-gray-600/30 rounded-xl text-gray-50 placeholder-gray-400 focus:border-teal-500/50 focus:ring-1 focus:ring-teal/30 transition-all duration-300'
             />
-            <span className='absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-gray'>
+            <span className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400'>
               🔍
             </span>
           </div>
@@ -278,14 +278,14 @@ function Movies() {
           {filteredData.length === 0 ? (
             <div className='text-center py-12'>
               <div className='text-6xl mb-4'>🎬</div>
-              <h3 className='text-xl font-serif text-cream mb-2'>
+              <h3 className='text-xl font-serif text-gray-50 mb-2'>
                 {searchQuery
                   ? 'No movies found'
                   : `No ${sections
                       .find((s) => s.id === activeSection)
                       ?.name.toLowerCase()} yet`}
               </h3>
-              <p className='text-muted-gray'>
+              <p className='text-gray-400'>
                 {searchQuery
                   ? 'Try adjusting your search terms'
                   : activeSection === 'rated'
