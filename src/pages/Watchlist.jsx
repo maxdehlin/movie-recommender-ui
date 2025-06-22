@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import FilmHeader from '../components/FilmHeader'
 import FilmCard from '../components/FilmCard'
 import FilmButton from '../components/FilmButton'
+import EmptyState from '../components/EmptyState'
 
 function Watchlist() {
   const [savedMovies, setSavedMovies] = useState([])
@@ -68,49 +69,15 @@ function Watchlist() {
         )}
 
         {savedMovies.length === 0 ? (
-          <div className='text-center py-32'>
-            <div className='relative inline-block mb-12'>
-              <div className='w-48 h-48 mx-auto bg-gradient-to-br from-crimson/10 to-teal/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-gray-600/30 shadow-2xl'>
-                <div className='absolute inset-8 rounded-full border-2 border-cream/20'></div>
-                <div className='absolute inset-12 rounded-full border border-cream/10'></div>
-                <span className='text-8xl opacity-40 relative z-10'>🎬</span>
-              </div>
-              <div className='absolute -top-4 -left-4 w-8 h-8 bg-crimson/20 rounded-full animate-float'></div>
-              <div className='absolute -top-4 -right-4 w-6 h-6 bg-teal/20 rounded-full animate-float-delay'></div>
-              <div className='absolute -bottom-4 -left-4 w-6 h-6 bg-teal/15 rounded-full animate-float'></div>
-              <div className='absolute -bottom-4 -right-4 w-4 h-4 bg-crimson/15 rounded-full animate-float-delay'></div>
-            </div>
-
-            <div className='space-y-8'>
-              <div className='space-y-6'>
-                <h3 className='text-3xl font-serif text-cream tracking-wide'>
-                  Your Vault Awaits
-                </h3>
-                <p className='text-muted-gray text-xl font-light max-w-lg mx-auto leading-relaxed'>
-                  Begin rating films to receive AI recommendations, then save
-                  your favorites to build your personal cinema collection
-                </p>
-              </div>
-
-              <Link to='/rate'>
-                <FilmButton
-                  size='xlarge'
-                  variant='primary'
-                  icon={
-                    <svg
-                      className='w-6 h-6'
-                      fill='currentColor'
-                      viewBox='0 0 24 24'
-                    >
-                      <path d='M8 5v14l11-7z' />
-                    </svg>
-                  }
-                >
-                  Discover Films
-                </FilmButton>
-              </Link>
-            </div>
-          </div>
+          <EmptyState
+            icon='🎬'
+            title='Your Vault Awaits'
+            subtitle='Begin rating films to receive AI recommendations, then save your favorites to build your personal cinema collection'
+            actionText='Discover Films'
+            actionHref='/rate'
+            size='large'
+            variant='primary'
+          />
         ) : (
           <div className='space-y-12'>
             <div className='text-center'>
@@ -239,70 +206,6 @@ function Watchlist() {
           </section>
         )}
       </div>
-
-      <style jsx>{`
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-12px);
-          }
-        }
-
-        @keyframes float-delay {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-8px);
-          }
-        }
-
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
-
-        .animate-float-delay {
-          animation: float-delay 3s ease-in-out infinite 1.5s;
-        }
-
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
-        }
-
-        .line-clamp-1 {
-          display: -webkit-box;
-          -webkit-line-clamp: 1;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-
-        .line-clamp-2 {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
     </div>
   )
 }

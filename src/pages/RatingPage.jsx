@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import api from '../utils/api'
 import FilmHeader from '../components/FilmHeader'
+import LoadingSpinner from '../components/LoadingSpinner'
+import EmptyState from '../components/EmptyState'
 
 function RatingPage() {
   const [searchQuery, setSearchQuery] = useState('')
@@ -141,17 +143,31 @@ function RatingPage() {
 
     try {
       const token = localStorage.getItem('authToken')
+      console.log(
+        '🎬 Getting recommendations with token:',
+        token ? 'Present' : 'Missing'
+      )
+      console.log('🎭 Ratings to send:', ratings)
+
+      if (!token) {
+        setError('Please log in to get recommendations')
+        return
+      }
+
       const data = await api.getRecommendations(token, ratings)
+      console.log('🎯 Recommendations response:', data)
 
       if (data.success && data.detail) {
         setRecommendations(data.detail)
         localStorage.setItem('recommendations', JSON.stringify(data.detail))
+        console.log('✅ Recommendations saved:', data.detail.length, 'movies')
       } else {
+        console.error('❌ Invalid response format:', data)
         setError('Failed to generate recommendations. Please try again.')
       }
     } catch (error) {
-      console.error('Recommendation failed:', error)
-      setError('Failed to generate recommendations. Please try again.')
+      console.error('❌ Recommendation failed:', error)
+      setError(`Failed to generate recommendations: ${error.message}`)
     } finally {
       setIsLoading(false)
     }
@@ -194,24 +210,12 @@ function RatingPage() {
 
   if (isLoadingMovies) {
     return (
-      <div className='min-h-screen bg-charcoal flex items-center justify-center'>
-        <div className='text-center space-y-8'>
-          <div className='relative'>
-            <div className='w-20 h-20 border-4 border-teal/30 border-t-teal rounded-full animate-spin mx-auto'></div>
-            <div className='absolute inset-0 flex items-center justify-center'>
-              <div className='w-12 h-12 bg-teal/20 rounded-full animate-pulse'></div>
-            </div>
-          </div>
-          <div className='space-y-3'>
-            <h3 className='text-3xl font-serif text-cream tracking-wide'>
-              Loading Cinema Archives...
-            </h3>
-            <p className='text-muted-gray text-lg'>
-              Curating your personalized film experience
-            </p>
-          </div>
-        </div>
-      </div>
+      <LoadingSpinner
+        fullScreen={true}
+        title='Loading Cinema Archives...'
+        subtitle='Curating your personalized film experience'
+        color='teal'
+      />
     )
   }
 
@@ -312,26 +316,13 @@ function RatingPage() {
 
             {/* Empty State or Film Collection */}
             {displayedMovies.length === 0 ? (
-              <div className='text-center py-32 space-y-12'>
-                <div className='relative w-48 h-48 mx-auto'>
-                  <div className='absolute inset-0 bg-gradient-to-br from-crimson/10 to-teal/10 rounded-full backdrop-blur-sm border border-gray-600/30'></div>
-                  <div className='absolute inset-8 bg-charcoal-light rounded-full flex items-center justify-center'>
-                    <span className='text-8xl opacity-40'>🎬</span>
-                  </div>
-                  {/* Floating film elements */}
-                  <div className='absolute -top-4 -right-4 w-8 h-8 bg-crimson/20 rounded-full animate-float'></div>
-                  <div className='absolute -bottom-4 -left-4 w-6 h-6 bg-teal/20 rounded-full animate-float-delay'></div>
-                </div>
-                <div className='space-y-6'>
-                  <h3 className='text-4xl font-serif text-cream tracking-wide'>
-                    Your Cinema Awaits
-                  </h3>
-                  <p className='text-muted-gray text-xl font-light max-w-lg mx-auto leading-relaxed'>
-                    Begin by searching for films you've watched and rating them.
-                    Our AI will craft personalized recommendations just for you.
-                  </p>
-                </div>
-              </div>
+              <EmptyState
+                icon='🎬'
+                title='Your Cinema Awaits'
+                subtitle="Begin by searching for films you've watched and rating them. Our AI will craft personalized recommendations just for you."
+                size='large'
+                variant='primary'
+              />
             ) : (
               <div className='space-y-16'>
                 {/* Progress Ring */}
@@ -656,85 +647,6 @@ function RatingPage() {
           </div>
         )}
       </div>
-
-      <style jsx>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(-12px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-12px);
-          }
-        }
-
-        @keyframes float-delay {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-8px);
-          }
-        }
-
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
-        .animate-fade-in {
-          animation: fade-in 0.4s ease-out;
-        }
-
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
-
-        .animate-float-delay {
-          animation: float-delay 3s ease-in-out infinite 1.5s;
-        }
-
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
-        }
-
-        .line-clamp-1 {
-          display: -webkit-box;
-          -webkit-line-clamp: 1;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-
-        .line-clamp-2 {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
     </div>
   )
 }

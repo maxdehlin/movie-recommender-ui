@@ -13,9 +13,11 @@ function LoginPage({ onLogin }) {
     setError('')
 
     try {
-      const result = await api.devLogin({ username, password })
-      if (result.success) {
-        onLogin(result.token)
+      const result = await api.devLogin()
+      if (result.success && result.token) {
+        // Store the token in localStorage
+        localStorage.setItem('authToken', result.token)
+        onLogin()
       } else {
         setError(result.error || 'Login failed')
       }
@@ -32,15 +34,17 @@ function LoginPage({ onLogin }) {
     setError('')
 
     try {
-      const result = await api.devLogin({ username: 'demo', password: 'demo' })
-      if (result.success) {
-        onLogin(result.token)
+      const result = await api.devLogin()
+      if (result.success && result.token) {
+        // Store the token in localStorage
+        localStorage.setItem('authToken', result.token)
+        onLogin()
       } else {
         setError('Development login failed')
       }
     } catch (err) {
       console.error('Development login error:', err)
-      setError('Development login failed')
+      setError(`Development login failed: ${err.message}`)
     } finally {
       setIsLoading(false)
     }
