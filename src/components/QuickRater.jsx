@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import useMovieSearch from '../hooks/useMovieSearch'
 
 function QuickRater({
@@ -8,17 +9,18 @@ function QuickRater({
   showPoster = true,
   className = '',
 }) {
-  const {
-    searchQuery,
-    searchResults,
-    searchError,
-    handleSearchChange,
-    clearSearch,
-  } = useMovieSearch()
+  const { searchQuery, searchResults, searchError, handleSearchChange } =
+    useMovieSearch()
+
+  const [ratedMovies, setRatedMovies] = useState({})
 
   const handleRating = (movie, rating) => {
     onRate(movie, rating)
-    clearSearch()
+    // Track that this movie has been rated for visual feedback
+    setRatedMovies((prev) => ({
+      ...prev,
+      [movie.id]: rating,
+    }))
   }
 
   const sizeClasses = {
@@ -58,7 +60,31 @@ function QuickRater({
           onChange={(e) => handleSearchChange(e.target.value, maxResults)}
           className={`w-full bg-charcoal/60 border border-gray-600/30 rounded-2xl text-cream placeholder-muted-gray focus:outline-none focus:border-teal/50 focus:bg-charcoal/80 transition-all duration-300 ${currentSize.input}`}
         />
-        <div className='absolute right-4 top-1/2 transform -translate-y-1/2'>
+        <div className='absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center space-x-2'>
+          {searchQuery && (
+            <button
+              onClick={() => {
+                handleSearchChange('', maxResults)
+                setRatedMovies({})
+              }}
+              className='text-muted-gray hover:text-cream transition-colors duration-200 p-1 rounded-full hover:bg-charcoal-light/30'
+              title='Clear search'
+            >
+              <svg
+                className='w-4 h-4'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M6 18L18 6M6 6l12 12'
+                />
+              </svg>
+            </button>
+          )}
           <svg
             className='w-6 h-6 text-muted-gray'
             fill='none'
@@ -127,15 +153,33 @@ function QuickRater({
                 </div>
 
                 <div className='flex items-center space-x-1 ml-4'>
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <button
-                      key={star}
-                      onClick={() => handleRating(movie, star)}
-                      className={`text-gray-500 hover:text-teal transition-colors duration-200 hover:scale-110 transform ${currentSize.stars}`}
-                    >
-                      ⭐
-                    </button>
-                  ))}
+                  {[1, 2, 3, 4, 5].map((star) => {
+                    const movieRating = ratedMovies[movie.id]
+                    const isRated = movieRating && movieRating >= star
+
+                    return (
+                      <button
+                        key={star}
+                        onClick={() => handleRating(movie, star)}
+                        className={`transition-all duration-200 hover:scale-110 transform ${
+                          currentSize.stars
+                        } ${
+                          isRated
+                            ? 'text-yellow-400'
+                            : movieRating
+                            ? 'text-gray-400 hover:text-yellow-300'
+                            : 'text-gray-600 hover:text-yellow-300'
+                        }`}
+                      >
+                        ⭐
+                      </button>
+                    )
+                  })}
+                  {ratedMovies[movie.id] && (
+                    <span className='ml-2 text-xs text-teal bg-teal/20 px-2 py-1 rounded-full'>
+                      Rated {ratedMovies[movie.id]}★
+                    </span>
+                  )}
                 </div>
               </div>
             </div>

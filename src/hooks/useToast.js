@@ -35,10 +35,18 @@ function useToast() {
     [addToast]
   )
 
+  const showToast = useCallback(
+    (message, type = 'info', duration) => {
+      return addToast(message, type, duration)
+    },
+    [addToast]
+  )
+
   return {
     toasts,
     addToast,
     removeToast,
+    showToast,
     success,
     error,
     warning,

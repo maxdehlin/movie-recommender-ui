@@ -1,9 +1,12 @@
 import { Outlet, useLocation, Link } from 'react-router-dom'
 import { useState } from 'react'
+import { ToastContainer } from './Toast'
+import useToast from '../hooks/useToast'
 
 function SidebarLayout({ onLogout }) {
   const location = useLocation()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { toasts, removeToast } = useToast()
 
   const navigation = [
     { name: 'Home', href: '/home', icon: '🏠' },
@@ -170,6 +173,9 @@ function SidebarLayout({ onLogout }) {
           <Outlet />
         </main>
       </div>
+
+      {/* Toast Container */}
+      <ToastContainer toasts={toasts} removeToast={removeToast} />
     </div>
   )
 }
