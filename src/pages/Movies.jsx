@@ -187,19 +187,28 @@ function Movies() {
             <button
               key={section.id}
               onClick={() => setActiveSection(section.id)}
-              className={`w-full flex items-center justify-between px-4 py-3 rounded-xl font-medium text-sm transition-all duration-300 text-left ${
+              className={`relative w-full flex items-center justify-between px-4 py-3 rounded-xl font-medium text-sm transition-all duration-500 hover:scale-105 text-left group overflow-hidden touch-manipulation ${
                 activeSection === section.id
-                  ? 'bg-gradient-to-r from-teal/20 to-crimson/20 text-cream border border-teal/30 shadow-lg'
-                  : 'text-muted-gray hover:text-cream hover:bg-charcoal-light/60'
+                  ? 'bg-gradient-to-r from-teal/20 to-crimson/20 text-cream border border-teal/30 shadow-lg shadow-teal/10'
+                  : 'text-muted-gray hover:text-cream hover:bg-charcoal-light/60 backdrop-blur-sm border border-transparent hover:border-gray-600/30'
               }`}
             >
-              <div className='flex items-center space-x-3'>
-                <span className='text-lg'>{section.icon}</span>
+              {/* Film strip perforations */}
+              <div className='absolute left-1 top-1/2 w-1 h-1 bg-current opacity-20 rounded-full transform -translate-y-1/2'></div>
+              <div className='absolute right-1 top-1/2 w-1 h-1 bg-current opacity-20 rounded-full transform -translate-y-1/2'></div>
+
+              <div className='relative z-10 flex items-center space-x-3'>
+                <span className='text-lg group-hover:animate-pulse'>
+                  {section.icon}
+                </span>
                 <span>{section.name}</span>
               </div>
-              <span className='text-xs bg-gray-600/30 px-2 py-1 rounded-full'>
+              <span className='relative z-10 text-xs bg-gray-600/30 px-2 py-1 rounded-full'>
                 {section.count}
               </span>
+
+              {/* Hover glow effect */}
+              <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
             </button>
           ))}
         </nav>
@@ -208,9 +217,12 @@ function Movies() {
           <div className='p-4 border-t border-gray-600/30'>
             <button
               onClick={() => generateRecommendations(ratings)}
-              className='w-full px-4 py-2 bg-crimson/20 hover:bg-crimson/30 border border-crimson/30 hover:border-crimson/50 text-cream rounded-lg text-sm font-medium transition-all duration-300'
+              className='relative w-full px-4 py-2 bg-crimson/20 hover:bg-crimson/30 border border-crimson/30 hover:border-crimson/50 text-cream rounded-lg text-sm font-medium transition-all duration-500 hover:scale-105 backdrop-blur-sm shadow-lg hover:shadow-crimson/20 group overflow-hidden touch-manipulation'
             >
-              Generate New
+              <span className='relative z-10'>Generate New</span>
+
+              {/* Hover glow effect */}
+              <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
             </button>
           </div>
         )}
