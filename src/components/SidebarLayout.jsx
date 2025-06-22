@@ -45,7 +45,7 @@ function SidebarLayout({ onLogout }) {
       {/* Sidebar */}
       <div
         className={cx(
-          'fixed inset-y-0 left-0 z-50 backdrop-blur-xl border-r border-gray-600/30 flex flex-col transform transition-all duration-300 lg:translate-x-0',
+          'fixed inset-y-0 left-0 z-50 backdrop-blur-xl border-r border-gray-600/30 flex flex-col transform transition-all duration-300 lg:translate-x-0 overflow-hidden',
           sidebarCollapsed ? 'w-16' : 'w-64',
           isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
         )}
@@ -61,11 +61,11 @@ function SidebarLayout({ onLogout }) {
             <span className='text-gray-50 font-bold text-lg'>🎬</span>
           </div>
           {!sidebarCollapsed && (
-            <div>
-              <h1 className='font-serif text-gray-50 text-xl font-bold tracking-wide'>
+            <div className='transition-opacity duration-200'>
+              <h1 className='font-serif text-gray-50 text-xl font-bold tracking-wide whitespace-nowrap'>
                 CinemaVault
               </h1>
-              <p className='text-gray-400 text-xs font-light tracking-wide'>
+              <p className='text-gray-400 text-xs font-light tracking-wide whitespace-nowrap'>
                 AI-Powered Discovery
               </p>
             </div>
@@ -79,7 +79,7 @@ function SidebarLayout({ onLogout }) {
               key={item.name}
               to={item.href}
               className={cx(
-                'relative flex items-center py-3 font-medium text-sm transition-all duration-200 group touch-manipulation',
+                'relative flex items-center py-3 font-medium text-sm transition-all duration-200 group touch-manipulation whitespace-nowrap',
                 {
                   'bg-gray-800 text-gray-50': isActive(item.href),
                   'text-gray-400 hover:text-gray-50 hover:bg-gray-800/50 active:bg-gray-800':
@@ -93,25 +93,13 @@ function SidebarLayout({ onLogout }) {
             >
               <span className='text-xl'>{item.icon}</span>
               {!sidebarCollapsed && (
-                <span className='tracking-wide'>{item.name}</span>
+                <span className='tracking-wide transition-opacity duration-200'>
+                  {item.name}
+                </span>
               )}
             </Link>
           ))}
         </nav>
-
-        <div
-          className={cx(
-            'absolute top-1/2 -translate-y-1/2 translate-x-1/2 right-0 w-4 h-10 rounded-full transition-all z-10'
-          )}
-        >
-          <button
-            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-            className={cx(
-              'flex items-center justify-center p-2 text-gray-400 hover:text-gray-50 hover:bg-gray-800/60 rounded-lg transition-all duration-300 bg-gray-600 w-1 cursor-pointer',
-              sidebarCollapsed ? 'h-2' : 'h-10'
-            )}
-          />
-        </div>
 
         {/* Toggle Button */}
         {/* <div className='p-4'>
@@ -134,7 +122,7 @@ function SidebarLayout({ onLogout }) {
           <Link
             to='/profile'
             className={cx(
-              'relative flex items-center py-3 font-medium text-sm transition-all duration-200 group touch-manipulation',
+              'relative flex items-center py-3 font-medium text-sm transition-all duration-200 group touch-manipulation whitespace-nowrap',
               sidebarCollapsed ? 'justify-center px-2' : 'space-x-3 px-4',
               isActive('/profile')
                 ? 'bg-gray-800 text-gray-50'
@@ -145,22 +133,42 @@ function SidebarLayout({ onLogout }) {
           >
             <span className='text-xl'>👤</span>
             {!sidebarCollapsed && (
-              <span className='tracking-wide'>Profile</span>
+              <span className='tracking-wide transition-opacity duration-200'>
+                Profile
+              </span>
             )}
           </Link>
 
           <button
             onClick={onLogout}
             className={cx(
-              'relative w-full flex items-center py-3 bg-gradient-to-r from-red-600/40 to-red-700/40 hover:from-red-600/60 hover:to-red-700/60 active:from-red-600/70 active:to-red-700/70 text-gray-50 backdrop-blur-sm font-medium text-sm tracking-wide transition-all duration-200 group touch-manipulation',
+              'relative w-full flex items-center py-3 bg-gradient-to-r from-red-600/40 to-red-700/40 hover:from-red-600/60 hover:to-red-700/60 active:from-red-600/70 active:to-red-700/70 text-gray-50 backdrop-blur-sm font-medium text-sm tracking-wide transition-all duration-200 group touch-manipulation whitespace-nowrap',
               sidebarCollapsed ? 'justify-center px-2' : 'space-x-3 px-4'
             )}
             title={sidebarCollapsed ? 'Sign Out' : ''}
           >
             <span className='text-xl'>🚪</span>
-            {!sidebarCollapsed && <span>Sign Out</span>}
+            {!sidebarCollapsed && (
+              <span className='transition-opacity duration-200'>Sign Out</span>
+            )}
           </button>
         </div>
+      </div>
+
+      {/* Desktop Sidebar Toggle Button */}
+      <div
+        className={cx(
+          'hidden lg:block fixed top-1/2 -translate-y-1/2 z-50 transition-all duration-300',
+          sidebarCollapsed ? 'left-14' : 'left-62'
+        )}
+      >
+        <button
+          onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+          className={cx(
+            'flex items-center justify-center p-2 text-gray-400 hover:text-gray-50 hover:bg-gray-800/60 rounded-lg transition-all duration-300 bg-gray-600 w-1 cursor-pointer',
+            sidebarCollapsed ? 'h-2' : 'h-10'
+          )}
+        />
       </div>
 
       {/* Mobile overlay */}
