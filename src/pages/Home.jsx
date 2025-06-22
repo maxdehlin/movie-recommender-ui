@@ -15,10 +15,10 @@ function Home() {
   }
 
   return (
-    <div className='min-h-screen p-8'>
+    <main className='min-h-screen p-8' role='main'>
       <div className='max-w-4xl mx-auto space-y-8'>
         {/* Header */}
-        <div className='text-center space-y-4'>
+        <header className='text-center space-y-4'>
           <h1 className='text-4xl md:text-5xl font-serif text-gray-50 leading-tight'>
             Discover Your Next Favorite Film
           </h1>
@@ -29,7 +29,7 @@ function Home() {
               ? `You're building an amazing taste profile. Rate more movies to unlock full recommendations!`
               : 'Search for movies and rate them to get personalized recommendations'}
           </p>
-        </div>
+        </header>
 
         {/* Search & Quick Rating */}
         <div className='bg-gray-800/60 backdrop-blur-xl rounded-2xl border border-gray-600/30 p-8'>
@@ -61,7 +61,7 @@ function Home() {
           </p>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
 

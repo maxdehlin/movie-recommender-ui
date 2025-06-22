@@ -43,12 +43,14 @@ function SidebarLayout({ onLogout }) {
       </div>
 
       {/* Sidebar */}
-      <div
+      <nav
         className={cx(
           'fixed inset-y-0 left-0 z-50 backdrop-blur-xl border-r border-gray-600/30 flex flex-col transform transition-all duration-300 lg:translate-x-0 overflow-hidden',
           sidebarCollapsed ? 'w-16' : 'w-64',
           isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
         )}
+        role='navigation'
+        aria-label='Main navigation'
       >
         {/* Logo */}
         <div
@@ -73,7 +75,7 @@ function SidebarLayout({ onLogout }) {
         </div>
 
         {/* Navigation */}
-        <nav className='flex-1 py-6'>
+        <div className='flex-1 py-6' role='menu' aria-label='Main menu'>
           {navigation.map((item) => (
             <Link
               key={item.name}
@@ -89,7 +91,10 @@ function SidebarLayout({ onLogout }) {
                 }
               )}
               onClick={() => setIsMobileMenuOpen(false)}
-              title={item.name}
+              title={sidebarCollapsed ? item.name : undefined}
+              aria-label={`Navigate to ${item.name}`}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+              role='menuitem'
             >
               <span className='text-xl'>{item.icon}</span>
               {!sidebarCollapsed && (
@@ -99,7 +104,7 @@ function SidebarLayout({ onLogout }) {
               )}
             </Link>
           ))}
-        </nav>
+        </div>
 
         {/* Toggle Button */}
         {/* <div className='p-4'>
@@ -118,7 +123,11 @@ function SidebarLayout({ onLogout }) {
         </div> */}
 
         {/* User Actions at Bottom */}
-        <div className='border-t border-gray-600/30 relative'>
+        <div
+          className='border-t border-gray-600/30 relative'
+          role='group'
+          aria-label='User actions'
+        >
           <Link
             to='/profile'
             className={cx(
@@ -129,7 +138,9 @@ function SidebarLayout({ onLogout }) {
                 : 'text-gray-400 hover:text-gray-50 hover:bg-gray-800/50 active:bg-gray-800'
             )}
             onClick={() => setIsMobileMenuOpen(false)}
-            title={sidebarCollapsed ? 'Profile' : ''}
+            title={sidebarCollapsed ? 'Profile' : undefined}
+            aria-label='View your profile'
+            aria-current={isActive('/profile') ? 'page' : undefined}
           >
             <span className='text-xl'>👤</span>
             {!sidebarCollapsed && (
@@ -145,7 +156,8 @@ function SidebarLayout({ onLogout }) {
               'relative w-full flex items-center py-3 bg-gradient-to-r from-red-600/40 to-red-700/40 hover:from-red-600/60 hover:to-red-700/60 active:from-red-600/70 active:to-red-700/70 text-gray-50 backdrop-blur-sm font-medium text-sm tracking-wide transition-all duration-200 group touch-manipulation whitespace-nowrap',
               sidebarCollapsed ? 'justify-center px-2' : 'space-x-3 px-4'
             )}
-            title={sidebarCollapsed ? 'Sign Out' : ''}
+            title={sidebarCollapsed ? 'Sign Out' : undefined}
+            aria-label='Sign out of your account'
           >
             <span className='text-xl'>🚪</span>
             {!sidebarCollapsed && (
@@ -153,7 +165,7 @@ function SidebarLayout({ onLogout }) {
             )}
           </button>
         </div>
-      </div>
+      </nav>
 
       {/* Desktop Sidebar Toggle Button */}
       <div
@@ -183,6 +195,11 @@ function SidebarLayout({ onLogout }) {
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         className='lg:hidden fixed top-4 left-4 z-50 p-3 rounded-xl bg-gray-800/60 hover:bg-gray-800/80 text-gray-400 hover:text-gray-50 transition-all duration-300 border border-gray-600/30'
+        aria-label={
+          isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'
+        }
+        aria-expanded={isMobileMenuOpen}
+        aria-controls='mobile-navigation'
       >
         <svg
           className={cx(

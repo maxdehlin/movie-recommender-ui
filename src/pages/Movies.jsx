@@ -3,12 +3,14 @@ import useRatings from '../hooks/useRatings'
 import useRecommendations from '../hooks/useRecommendations'
 import useToast from '../hooks/useToast'
 import StarRating from '../components/StarRating'
+import SkeletonLoader from '../components/SkeletonLoader'
 
 function Movies() {
   const { showToast } = useToast()
 
   const { ratings, addRating } = useRatings()
-  const { recommendations, generateRecommendations } = useRecommendations()
+  const { recommendations, generateRecommendations, isLoadingRecommendations } =
+    useRecommendations()
 
   // Watchlist state (from localStorage)
   const [watchlist, setWatchlist] = useState([])
@@ -193,10 +195,16 @@ function Movies() {
   return (
     <div className='flex h-screen'>
       {/* Secondary Sidebar */}
-      <div
+      <aside
         className={`w-64 bg-gray-800/60 backdrop-blur-xl border-r border-gray-600/30 flex flex-col transition-all duration-300`}
+        role='complementary'
+        aria-label='Movie categories'
       >
-        <nav className='flex-1 py-6'>
+        <nav
+          className='flex-1 py-6'
+          role='navigation'
+          aria-label='Movie categories navigation'
+        >
           {sections.map((section) => (
             <button
               key={section.id}
@@ -207,6 +215,8 @@ function Movies() {
                   : 'text-gray-400 hover:text-gray-50 hover:bg-gray-800/60 backdrop-blur-sm border border-transparent hover:border-gray-600/30'
               }`}
               title={section.name}
+              aria-label={`View ${section.name} (${section.count} movies)`}
+              aria-current={activeSection === section.id ? 'page' : undefined}
             >
               <div className={`relative z-10 flex items-center ${'space-x-3'}`}>
                 <span className='text-lg group-hover:animate-pulse'>
@@ -239,18 +249,18 @@ function Movies() {
             </button>
           </div>
         )}
-      </div>
+      </aside>
 
       {/* Main Content */}
-      <div className='flex-1 flex flex-col'>
+      <main className='flex-1 flex flex-col' role='main'>
         {/* Header with Search */}
-        <div className='p-6 border-b border-gray-600/30 bg-gray-800/30 backdrop-blur-sm'>
+        <header className='p-6 border-b border-gray-600/30 bg-gray-800/30 backdrop-blur-sm'>
           <div className='flex items-center justify-between mb-4'>
             <div>
-              <h2 className='text-xl font-serif text-gray-50'>
+              <h1 className='text-xl font-serif text-gray-50'>
                 {sections.find((s) => s.id === activeSection)?.name}
-              </h2>
-              <p className='text-gray-400 text-sm'>
+              </h1>
+              <p className='text-gray-400 text-sm' aria-live='polite'>
                 {filteredData.length} movie
                 {filteredData.length !== 1 ? 's' : ''}
               </p>
@@ -271,39 +281,52 @@ function Movies() {
               🔍
             </span>
           </div>
-        </div>
+        </header>
 
         {/* Movie List */}
         <div className='flex-1 p-6 overflow-y-auto'>
-          {filteredData.length === 0 ? (
-            <div className='text-center py-12'>
-              <div className='text-6xl mb-4'>🎬</div>
-              <h3 className='text-xl font-serif text-gray-50 mb-2'>
-                {searchQuery
-                  ? 'No movies found'
-                  : `No ${sections
-                      .find((s) => s.id === activeSection)
-                      ?.name.toLowerCase()} yet`}
-              </h3>
-              <p className='text-gray-400'>
-                {searchQuery
-                  ? 'Try adjusting your search terms'
-                  : activeSection === 'rated'
-                  ? 'Start rating movies to build your collection'
-                  : activeSection === 'watchlist'
-                  ? 'Add movies to your watchlist to see them here'
-                  : 'Rate some movies to get personalized recommendations'}
-              </p>
-            </div>
-          ) : (
+          {/* Loading State */}
+          {isLoadingRecommendations && activeSection === 'recommendations' && (
             <div className='space-y-4'>
-              {filteredData.map((movie) => (
-                <MovieListItem key={movie.id} movie={movie} />
-              ))}
+              <SkeletonLoader variant='movie-card' count={5} />
             </div>
           )}
+
+          {/* Regular Content */}
+          {(!isLoadingRecommendations ||
+            activeSection !== 'recommendations') && (
+            <>
+              {filteredData.length === 0 ? (
+                <div className='text-center py-12'>
+                  <div className='text-6xl mb-4'>🎬</div>
+                  <h3 className='text-xl font-serif text-gray-50 mb-2'>
+                    {searchQuery
+                      ? 'No movies found'
+                      : `No ${sections
+                          .find((s) => s.id === activeSection)
+                          ?.name.toLowerCase()} yet`}
+                  </h3>
+                  <p className='text-gray-400'>
+                    {searchQuery
+                      ? 'Try adjusting your search terms'
+                      : activeSection === 'rated'
+                      ? 'Start rating movies to build your collection'
+                      : activeSection === 'watchlist'
+                      ? 'Add movies to your watchlist to see them here'
+                      : 'Rate some movies to get personalized recommendations'}
+                  </p>
+                </div>
+              ) : (
+                <div className='space-y-4'>
+                  {filteredData.map((movie) => (
+                    <MovieListItem key={movie.id} movie={movie} />
+                  ))}
+                </div>
+              )}
+            </>
+          )}
         </div>
-      </div>
+      </main>
     </div>
   )
 }
