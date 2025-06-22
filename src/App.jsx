@@ -7,13 +7,12 @@ import {
 } from 'react-router-dom'
 import './App.css'
 import LoginPage from './pages/LoginPage'
-import RatingPage from './pages/RatingPage'
 import LandingPage from './pages/LandingPage'
 import Home from './pages/Home'
 import MovieDetails from './pages/MovieDetails'
-import Watchlist from './pages/Watchlist'
 import Profile from './pages/Profile'
-import Layout from './components/Layout'
+import Movies from './pages/Movies'
+import SidebarLayout from './components/SidebarLayout'
 import ProtectedRoute from './components/ProtectedRoute'
 
 // Backend URL configuration
@@ -107,19 +106,22 @@ function App() {
 
         {/* Protected Routes */}
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
-          <Route element={<Layout onLogout={handleLogout} />}>
+          <Route element={<SidebarLayout onLogout={handleLogout} />}>
             <Route path='/home' element={<Home />} />
+            <Route path='/movies' element={<Movies />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/movie/:id' element={<MovieDetails />} />
+
+            {/* Redirect old routes */}
             <Route
               path='/dashboard'
               element={<Navigate to='/home' replace />}
             />
+            <Route path='/rate' element={<Navigate to='/movies' replace />} />
             <Route
-              path='/rate'
-              element={<RatingPage onLogout={handleLogout} />}
+              path='/watchlist'
+              element={<Navigate to='/movies' replace />}
             />
-            <Route path='/movie/:id' element={<MovieDetails />} />
-            <Route path='/watchlist' element={<Watchlist />} />
-            <Route path='/profile' element={<Profile />} />
           </Route>
         </Route>
 
