@@ -14,24 +14,14 @@ function Home() {
     showToast(`Rated "${movie.title}" ${rating} stars`, 'success')
   }
 
-  const getGreeting = () => {
-    const hour = new Date().getHours()
-    if (hour < 12) return 'Good morning'
-    if (hour < 17) return 'Good afternoon'
-    return 'Good evening'
-  }
-
   return (
     <div className='min-h-screen p-8'>
       <div className='max-w-4xl mx-auto space-y-8'>
         {/* Header */}
         <div className='text-center space-y-4'>
           <h1 className='text-4xl md:text-5xl font-serif text-cream leading-tight'>
-            {getGreeting()}! 👋
-          </h1>
-          <h2 className='text-2xl md:text-3xl font-serif text-cream leading-tight'>
             Discover Your Next Favorite Film
-          </h2>
+          </h1>
           <p className='text-xl text-muted-gray max-w-2xl mx-auto'>
             {userState?.isNewUser
               ? "Welcome to your cinema journey. Let's find your first great film!"
