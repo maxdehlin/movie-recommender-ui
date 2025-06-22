@@ -74,8 +74,8 @@ function Dashboard() {
   ]
 
   return (
-    <div className='min-h-screen pt-12 pb-20 px-8'>
-      <div className='max-w-7xl mx-auto space-y-16'>
+    <div className='min-h-screen pt-4 pb-20 px-4 sm:px-6 lg:px-8'>
+      <div className='max-w-7xl mx-auto space-y-12 sm:space-y-16'>
         {/* Welcome Section - Cinematic Style */}
         <section className='text-center space-y-12'>
           <div className='relative inline-block'>
@@ -96,59 +96,83 @@ function Dashboard() {
         </section>
 
         {/* Stats Grid - Film Canisters */}
-        <section className='grid grid-cols-1 md:grid-cols-3 gap-8'>
-          <div className='group bg-charcoal-light/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 hover:border-teal/40 p-10 text-center space-y-6 hover:scale-105 transition-all duration-500 shadow-2xl hover:shadow-teal/10'>
+        <section className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8'>
+          <div
+            className='group bg-charcoal-light/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 hover:border-teal/40 p-6 sm:p-8 lg:p-10 text-center space-y-4 sm:space-y-6 hover:scale-[1.02] hover:-translate-y-2 transition-all duration-700 shadow-2xl hover:shadow-teal/20 opacity-0 animate-fade-in-up touch-manipulation active:scale-[0.98]'
+            style={{ animationDelay: '100ms', animationFillMode: 'forwards' }}
+          >
             <div className='relative'>
-              <div className='w-20 h-20 bg-gradient-to-br from-teal/20 to-teal-dark/20 rounded-full flex items-center justify-center mx-auto border-2 border-teal/30 group-hover:border-teal/50 transition-all duration-300'>
-                <span className='text-4xl group-hover:animate-pulse'>⭐</span>
+              <div className='w-20 h-20 bg-gradient-to-br from-teal/20 to-teal-dark/20 rounded-full flex items-center justify-center mx-auto border-2 border-teal/30 group-hover:border-teal/50 transition-all duration-500 group-hover:scale-110'>
+                <span className='text-4xl group-hover:animate-pulse-glow'>
+                  ⭐
+                </span>
               </div>
-              {/* Film sprocket holes */}
-              <div className='absolute -top-2 -right-2 w-3 h-3 bg-teal/30 rounded-full animate-pulse'></div>
-              <div className='absolute -bottom-2 -left-2 w-2 h-2 bg-crimson/30 rounded-full animate-pulse'></div>
+              {/* Enhanced film sprocket holes */}
+              <div className='absolute -top-2 -right-2 w-3 h-3 bg-teal/40 rounded-full animate-pulse-glow'></div>
+              <div
+                className='absolute -bottom-2 -left-2 w-2 h-2 bg-crimson/40 rounded-full animate-pulse-glow'
+                style={{ animationDelay: '1s' }}
+              ></div>
             </div>
-            <div>
-              <div className='text-4xl font-serif text-teal mb-2 tracking-wide'>
+            <div className='transform group-hover:scale-105 transition-transform duration-500'>
+              <div className='text-4xl font-serif text-teal mb-2 tracking-wide group-hover:text-teal-light transition-colors duration-300'>
                 {stats.moviesRated}
               </div>
-              <div className='text-muted-gray font-medium text-lg tracking-wider uppercase'>
+              <div className='text-muted-gray font-medium text-lg tracking-wider uppercase group-hover:text-muted-gray-light transition-colors duration-300'>
                 Films Rated
               </div>
             </div>
           </div>
 
-          <div className='group bg-charcoal-light/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 hover:border-crimson/40 p-10 text-center space-y-6 hover:scale-105 transition-all duration-500 shadow-2xl hover:shadow-crimson/10'>
+          <div
+            className='group bg-charcoal-light/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 hover:border-crimson/40 p-6 sm:p-8 lg:p-10 text-center space-y-4 sm:space-y-6 hover:scale-[1.02] hover:-translate-y-2 transition-all duration-700 shadow-2xl hover:shadow-crimson/20 opacity-0 animate-fade-in-up touch-manipulation active:scale-[0.98]'
+            style={{ animationDelay: '200ms', animationFillMode: 'forwards' }}
+          >
             <div className='relative'>
-              <div className='w-20 h-20 bg-gradient-to-br from-crimson/20 to-crimson-dark/20 rounded-full flex items-center justify-center mx-auto border-2 border-crimson/30 group-hover:border-crimson/50 transition-all duration-300'>
-                <span className='text-4xl group-hover:animate-pulse'>🎯</span>
+              <div className='w-20 h-20 bg-gradient-to-br from-crimson/20 to-crimson-dark/20 rounded-full flex items-center justify-center mx-auto border-2 border-crimson/30 group-hover:border-crimson/50 transition-all duration-500 group-hover:scale-110'>
+                <span className='text-4xl group-hover:animate-pulse-glow'>
+                  🎯
+                </span>
               </div>
-              {/* Film sprocket holes */}
-              <div className='absolute -top-2 -left-2 w-3 h-3 bg-crimson/30 rounded-full animate-pulse'></div>
-              <div className='absolute -bottom-2 -right-2 w-2 h-2 bg-teal/30 rounded-full animate-pulse'></div>
+              {/* Enhanced film sprocket holes */}
+              <div className='absolute -top-2 -left-2 w-3 h-3 bg-crimson/40 rounded-full animate-pulse-glow'></div>
+              <div
+                className='absolute -bottom-2 -right-2 w-2 h-2 bg-teal/40 rounded-full animate-pulse-glow'
+                style={{ animationDelay: '1.5s' }}
+              ></div>
             </div>
-            <div>
-              <div className='text-4xl font-serif text-crimson mb-2 tracking-wide'>
+            <div className='transform group-hover:scale-105 transition-transform duration-500'>
+              <div className='text-4xl font-serif text-crimson mb-2 tracking-wide group-hover:text-crimson-light transition-colors duration-300'>
                 {stats.recommendationsReceived}
               </div>
-              <div className='text-muted-gray font-medium text-lg tracking-wider uppercase'>
+              <div className='text-muted-gray font-medium text-lg tracking-wider uppercase group-hover:text-muted-gray-light transition-colors duration-300'>
                 AI Recommendations
               </div>
             </div>
           </div>
 
-          <div className='group bg-charcoal-light/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 hover:border-teal/40 p-10 text-center space-y-6 hover:scale-105 transition-all duration-500 shadow-2xl hover:shadow-teal/10'>
+          <div
+            className='group bg-charcoal-light/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 hover:border-teal/40 p-6 sm:p-8 lg:p-10 text-center space-y-4 sm:space-y-6 hover:scale-[1.02] hover:-translate-y-2 transition-all duration-700 shadow-2xl hover:shadow-teal/20 opacity-0 animate-fade-in-up touch-manipulation active:scale-[0.98]'
+            style={{ animationDelay: '300ms', animationFillMode: 'forwards' }}
+          >
             <div className='relative'>
-              <div className='w-20 h-20 bg-gradient-to-br from-teal/20 to-crimson/20 rounded-full flex items-center justify-center mx-auto border-2 border-teal/30 group-hover:border-teal/50 transition-all duration-300'>
-                <span className='text-4xl group-hover:animate-pulse'>❤️</span>
+              <div className='w-20 h-20 bg-gradient-to-br from-teal/20 to-crimson/20 rounded-full flex items-center justify-center mx-auto border-2 border-teal/30 group-hover:border-teal/50 transition-all duration-500 group-hover:scale-110'>
+                <span className='text-4xl group-hover:animate-pulse-glow'>
+                  ❤️
+                </span>
               </div>
-              {/* Film sprocket holes */}
-              <div className='absolute -top-2 -right-2 w-2 h-2 bg-teal/30 rounded-full animate-pulse'></div>
-              <div className='absolute -bottom-2 -left-2 w-3 h-3 bg-crimson/30 rounded-full animate-pulse'></div>
+              {/* Enhanced film sprocket holes */}
+              <div className='absolute -top-2 -right-2 w-2 h-2 bg-teal/40 rounded-full animate-pulse-glow'></div>
+              <div
+                className='absolute -bottom-2 -left-2 w-3 h-3 bg-crimson/40 rounded-full animate-pulse-glow'
+                style={{ animationDelay: '2s' }}
+              ></div>
             </div>
-            <div>
-              <div className='text-4xl font-serif text-teal mb-2 tracking-wide'>
+            <div className='transform group-hover:scale-105 transition-transform duration-500'>
+              <div className='text-4xl font-serif text-teal mb-2 tracking-wide group-hover:text-teal-light transition-colors duration-300'>
                 {stats.savedMovies}
               </div>
-              <div className='text-muted-gray font-medium text-lg tracking-wider uppercase'>
+              <div className='text-muted-gray font-medium text-lg tracking-wider uppercase group-hover:text-muted-gray-light transition-colors duration-300'>
                 Saved Films
               </div>
             </div>
@@ -162,12 +186,16 @@ function Dashboard() {
             subtitle='Choose your next cinematic adventure'
           />
 
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8'>
             {quickActions.map((action, index) => (
               <Link
                 key={index}
                 to={action.href}
-                className={`group relative bg-charcoal-light/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 hover:border-${action.color}/40 p-10 transition-all duration-500 hover:scale-105 shadow-2xl hover:shadow-${action.hoverShadow} overflow-hidden`}
+                className={`group relative bg-charcoal-light/60 backdrop-blur-xl rounded-3xl border border-gray-600/30 hover:border-${action.color}/40 p-6 sm:p-8 lg:p-10 transition-all duration-700 hover:scale-[1.02] hover:-translate-y-2 shadow-2xl hover:shadow-${action.hoverShadow} overflow-hidden opacity-0 animate-fade-in-up touch-manipulation active:scale-[0.98]`}
+                style={{
+                  animationDelay: `${500 + index * 150}ms`,
+                  animationFillMode: 'forwards',
+                }}
               >
                 {/* Film strip perforations */}
                 <div className='absolute left-3 top-1/2 transform -translate-y-1/2 space-y-2'>
@@ -181,28 +209,28 @@ function Dashboard() {
                   <div className='w-2 h-2 bg-current opacity-10 rounded-full'></div>
                 </div>
 
-                <div className='relative z-10 text-center space-y-8'>
+                <div className='relative z-10 text-center space-y-8 transform group-hover:scale-[1.01] transition-transform duration-500'>
                   <div
-                    className={`w-24 h-24 bg-gradient-to-br from-${action.color}/20 to-${action.color}-dark/20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-all duration-500 border-2 border-${action.color}/30`}
+                    className={`w-24 h-24 bg-gradient-to-br from-${action.color}/20 to-${action.color}-dark/20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-all duration-700 border-2 border-${action.color}/30 group-hover:border-${action.color}/50 shadow-lg group-hover:shadow-${action.color}/20`}
                   >
-                    <span className='text-5xl group-hover:animate-pulse'>
+                    <span className='text-5xl group-hover:animate-pulse-glow transform transition-transform duration-500 group-hover:scale-110'>
                       {action.icon}
                     </span>
                   </div>
-                  <div className='space-y-4'>
-                    <h3 className='text-2xl font-serif text-cream group-hover:text-teal transition-colors duration-300 tracking-wide'>
+                  <div className='space-y-4 transform group-hover:scale-105 transition-transform duration-500'>
+                    <h3 className='text-2xl font-serif text-cream group-hover:text-teal transition-colors duration-500 tracking-wide'>
                       {action.title}
                     </h3>
-                    <p className='text-muted-gray group-hover:text-cream/80 transition-colors duration-300 font-light text-lg leading-relaxed'>
+                    <p className='text-muted-gray group-hover:text-cream/80 transition-colors duration-500 font-light text-lg leading-relaxed'>
                       {action.description}
                     </p>
                   </div>
-                  <div className='flex items-center justify-center space-x-3 text-muted-gray group-hover:text-teal transition-colors duration-300'>
+                  <div className='flex items-center justify-center space-x-3 text-muted-gray group-hover:text-teal transition-colors duration-500 transform group-hover:scale-105 group-hover:translate-x-1'>
                     <span className='text-sm font-medium tracking-wider uppercase'>
                       Enter
                     </span>
                     <svg
-                      className='w-5 h-5 group-hover:translate-x-2 transition-transform duration-300'
+                      className='w-5 h-5 group-hover:translate-x-2 transition-transform duration-500'
                       fill='none'
                       stroke='currentColor'
                       viewBox='0 0 24 24'
@@ -217,8 +245,10 @@ function Dashboard() {
                   </div>
                 </div>
 
-                {/* Hover shimmer effect */}
-                <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000'></div>
+                {/* Enhanced hover shimmer effect */}
+                <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1200 ease-out'></div>
+                {/* Subtle inner glow on hover */}
+                <div className='absolute inset-0 rounded-3xl bg-gradient-to-br from-white/0 via-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700'></div>
               </Link>
             ))}
           </div>
