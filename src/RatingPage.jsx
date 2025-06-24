@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-const BACKEND_URL = 'http://127.0.0.1:8000'
+const BACKEND_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 function RatingPage({ onLogout }) {
   const [searchQuery, setSearchQuery] = useState('')

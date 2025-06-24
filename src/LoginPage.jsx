@@ -1,6 +1,12 @@
 import React from 'react'
 
-const BACKEND_URL = 'http://127.0.0.1:8000'
+// const BACKEND_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const BACKEND_URL = import.meta.env.VITE_API_URL || 'https://movie-recommender-fragrant-shape-7289.fly.dev'
+
+
+
+
+
 
 function LoginPage({ onLogin }) {
   const handleGoogleLogin = () => {

@@ -3,8 +3,8 @@ import './App.css'
 import LoginPage from './LoginPage'
 import RatingPage from './RatingPage'
 
-// Backend URL configuration
-const BACKEND_URL = 'http://127.0.0.1:8000'
+// Backend URL configuration'
+const BACKEND_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 
 function App() {
