@@ -1,10 +1,15 @@
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
-const IS_DEV = import.meta.env.DEV
+// const IS_DEV = import.meta.env.DEV
+const IS_DEV = false
+
 
 const api = {
   async fetchMovies() {
-    const endpoint = IS_DEV ? '/dev/random-movies?count=10' : '/movies'
-    const response = await fetch(`${API_BASE_URL}${endpoint}`)
+    const endpoint = IS_DEV ? '/dev/random-movies?count=10' : '/dev/movies'
+    const url = `${API_BASE_URL}${endpoint}`
+    const response = await fetch(url)
+    console.log('url', url)
+    console.log('response', response)
     if (!response.ok) {
       throw new Error('Failed to fetch movies')
     }
@@ -29,6 +34,7 @@ const api = {
   },
 
   async verifyMovie(token, movieTitle) {
+    console.log('token', token)
     if (IS_DEV) {
       return { success: true, detail: 'Movie verified (dev mode)' }
     }

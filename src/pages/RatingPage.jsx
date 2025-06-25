@@ -5,7 +5,7 @@ function RatingPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [ratings, setRatings] = useState({})
   const [recommendations, setRecommendations] = useState([])
-  const [availableMovies, setAvailableMovies] = useState([])
+  // const [availableMovies, setAvailableMovies] = useState([])
   const [displayedMovies, setDisplayedMovies] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -22,10 +22,6 @@ function RatingPage() {
   const loadInitialData = async () => {
     try {
       setIsLoadingMovies(true)
-
-      // Load movies from API
-      const movieData = await api.fetchMovies()
-      setAvailableMovies(movieData.movies || movieData)
 
       // Load saved data from localStorage
       const savedRatings = localStorage.getItem('ratings')
@@ -51,8 +47,8 @@ function RatingPage() {
         setSavedRecommendations(new Set(JSON.parse(savedList)))
       }
     } catch (error) {
-      console.error('Failed to load initial data:', error)
-      setError('Failed to load movies. Please refresh the page.')
+      // console.error('Failed to load initial data:', error)
+      setError(error.message)
     } finally {
       setIsLoadingMovies(false)
     }
@@ -61,78 +57,46 @@ function RatingPage() {
   const handleSearch = async (e) => {
     e.preventDefault()
     if (!searchQuery.trim()) return
-
+  
     setIsSearching(true)
     setError(null)
     setSuccess(null)
-
+  
     try {
-      const searchTerm = searchQuery.trim().toLowerCase()
-      const matchingMovies = availableMovies.filter((movie) => {
-        const movieTitle = movie.title.toLowerCase()
-
-        // Multiple search strategies for better matching
-        return (
-          // Exact substring match
-          movieTitle.includes(searchTerm) ||
-          // Remove punctuation and extra spaces for fuzzy matching
-          movieTitle
-            .replace(/[^\w\s]/g, '')
-            .replace(/\s+/g, ' ')
-            .includes(
-              searchTerm.replace(/[^\w\s]/g, '').replace(/\s+/g, ' ')
-            ) ||
-          // Check if all search words exist in the title (any order)
-          searchTerm
-            .split(/\s+/)
-            .every((word) => word.length > 0 && movieTitle.includes(word))
-        )
-      })
-
-      if (matchingMovies.length === 0) {
-        setError('No movies found matching your search. Try a different title.')
+      console.log('try1')
+      const token = localStorage.getItem('authToken')
+      const movieTitle = searchQuery.trim()
+  
+      if (!token) {
+        setError('Authentication token missing')
         return
       }
-
-      const newMovie = matchingMovies[0]
-
-      // Check if already rated
-      if (ratings[newMovie.id]) {
-        setError('You have already rated this movie')
+      console.log('check1')
+  
+      const verificationResult = await api.verifyMovie(token, movieTitle)
+      console.log('Verification result:', verificationResult)
+  
+      if (!verificationResult.success) {
+        setError('This movie could not be verified. Try a different title.')
         return
       }
-
-      // Check if already in display list
-      if (displayedMovies.find((movie) => movie.id === newMovie.id)) {
-        setError('This movie is already in your rating list')
+  
+      // Prevent adding duplicates
+      if (displayedMovies.find((movie) => movie.title === movieTitle)) {
+        setError('This movie is already in your list.')
         return
       }
-
-      // Verify movie with the API
-      try {
-        const token = localStorage.getItem('authToken')
-        if (token) {
-          const verificationResult = await api.verifyMovie(token, newMovie.title)
-          console.log('verificationResult', verificationResult)
-          if (!verificationResult.success) {
-            setError('This movie could not be verified. Please try a different title.')
-            return
-          }
-        }
-      } catch (verificationError) {
-        console.error('Movie verification failed:', verificationError)
-        // In development mode or if verification fails, still allow the movie
-        // but log the error for debugging
-        if (!import.meta.env.DEV) {
-          setError('Movie verification failed. Please try again.')
-          return
-        }
+      console.log('check2')
+  
+      const newMovie = {
+        id: movieTitle, // Use title as fallback ID
+        title: movieTitle,
       }
-
-      // Add to displayed movies
+  
       setDisplayedMovies((prev) => [...prev, newMovie])
-      setSuccess(`"${newMovie.title}" added to your rating list!`)
+      setSuccess(`"${movieTitle}" added to your rating list!`)
       setSearchQuery('')
+      console.log('check3')
     } catch (error) {
       console.error('Search failed:', error)
       setError('Search failed. Please try again.')
