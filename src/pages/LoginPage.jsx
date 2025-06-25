@@ -7,6 +7,7 @@ const isDevelopment = import.meta.env.DEV
 function LoginPage({ onLogin }) {
   const handleGoogleLogin = () => {
     window.location.href = `${BACKEND_URL}/auth/google/login`
+    console.log('BACKEND_URL', BACKEND_URL)
   }
 
   const handleDevLogin = async () => {

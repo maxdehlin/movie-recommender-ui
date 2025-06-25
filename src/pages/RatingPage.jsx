@@ -108,6 +108,27 @@ function RatingPage() {
         return
       }
 
+      // Verify movie with the API
+      try {
+        const token = localStorage.getItem('authToken')
+        if (token) {
+          const verificationResult = await api.verifyMovie(token, newMovie.title)
+          console.log('verificationResult', verificationResult)
+          if (!verificationResult.success) {
+            setError('This movie could not be verified. Please try a different title.')
+            return
+          }
+        }
+      } catch (verificationError) {
+        console.error('Movie verification failed:', verificationError)
+        // In development mode or if verification fails, still allow the movie
+        // but log the error for debugging
+        if (!import.meta.env.DEV) {
+          setError('Movie verification failed. Please try again.')
+          return
+        }
+      }
+
       // Add to displayed movies
       setDisplayedMovies((prev) => [...prev, newMovie])
       setSuccess(`"${newMovie.title}" added to your rating list!`)

@@ -32,7 +32,7 @@ const api = {
     if (IS_DEV) {
       return { success: true, detail: 'Movie verified (dev mode)' }
     }
-
+    
     const response = await fetch(
       `${API_BASE_URL}/verify_movie?movie=${encodeURIComponent(movieTitle)}`,
       {
