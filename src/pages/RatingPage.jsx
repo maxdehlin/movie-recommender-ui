@@ -23,17 +23,33 @@ function RatingPage() {
     try {
       setIsLoadingMovies(true)
 
-      // Load saved data from localStorage
-      const savedRatings = localStorage.getItem('ratings')
-      if (savedRatings) {
-        const parsedRatings = JSON.parse(savedRatings)
-        setRatings(parsedRatings)
+      const token = localStorage.getItem('authToken')
+      if (!token) {
+        setError('Authentication token missing')
+        return
+      }
 
-        // Load displayed movies from rated movies
-        const ratedMovieIds = new Set(Object.keys(parsedRatings))
-        const ratedMovies = (movieData.movies || movieData).filter((movie) =>
-          ratedMovieIds.has(movie.id.toString())
-        )
+      // Load user ratings from backend
+      const userRatingsResponse = await api.getUserRatings(token)
+      const userRatings = userRatingsResponse.detail
+      
+      // Filter out any ratings with numeric IDs or invalid titles
+      const filteredRatings = {}
+      Object.entries(userRatings).forEach(([movieId, rating]) => {
+        // Skip if movieId is numeric or doesn't look like a proper movie title
+        if (!/^\d+$/.test(movieId) && movieId.trim() !== '' && movieId !== '0') {
+          filteredRatings[movieId] = rating
+        }
+      })
+      
+      setRatings(filteredRatings)
+
+      // Load displayed movies from rated movies
+      if (Object.keys(filteredRatings).length > 0) {
+        const ratedMovies = Object.keys(filteredRatings).map(movieId => ({
+          id: movieId,
+          title: movieId, // For now, using movieId as title - backend should return full movie data
+        }))
         setDisplayedMovies(ratedMovies)
       }
 
@@ -47,8 +63,8 @@ function RatingPage() {
         setSavedRecommendations(new Set(JSON.parse(savedList)))
       }
     } catch (error) {
-      // console.error('Failed to load initial data:', error)
-      setError(error.message)
+      console.error('Failed to load initial data:', error)
+      setError('Failed to load your ratings. Please try again.')
     } finally {
       setIsLoadingMovies(false)
     }
@@ -105,13 +121,25 @@ function RatingPage() {
     }
   }
 
-  const handleRating = (movieId, rating) => {
-    const newRatings = {
-      ...ratings,
-      [movieId]: rating,
+  const handleRating = async (movieId, rating) => {
+    try {
+      const token = localStorage.getItem('authToken')
+      if (!token) {
+        setError('Authentication token missing')
+        return
+      }
+
+      await api.saveRating(token, movieId, rating)
+      
+      const newRatings = {
+        ...ratings,
+        [movieId]: rating,
+      }
+      setRatings(newRatings)
+    } catch (error) {
+      console.error('Failed to save rating:', error)
+      setError('Failed to save rating. Please try again.')
     }
-    setRatings(newRatings)
-    localStorage.setItem('ratings', JSON.stringify(newRatings))
   }
 
   const handleSubmit = async () => {
@@ -125,6 +153,8 @@ function RatingPage() {
 
     try {
       const token = localStorage.getItem('authToken')
+      
+      
       const data = await api.getRecommendations(token, ratings)
 
       if (data.success && data.detail) {
@@ -135,7 +165,7 @@ function RatingPage() {
       }
     } catch (error) {
       console.error('Recommendation failed:', error)
-      setError('Failed to get recommendations. Please try again.')
+      setError('Weird error: ' + error.message)
     } finally {
       setIsLoading(false)
     }
@@ -164,14 +194,26 @@ function RatingPage() {
     localStorage.setItem('savedRecommendations', JSON.stringify([...newSaved]))
   }
 
-  const removeMovie = (movieId) => {
-    setDisplayedMovies((prev) => prev.filter((movie) => movie.id !== movieId))
-    setRatings((prev) => {
-      const newRatings = { ...prev }
-      delete newRatings[movieId]
-      localStorage.setItem('ratings', JSON.stringify(newRatings))
-      return newRatings
-    })
+  const removeMovie = async (movieId) => {
+    try {
+      const token = localStorage.getItem('authToken')
+      if (!token) {
+        setError('Authentication token missing')
+        return
+      }
+
+      await api.deleteRating(token, movieId)
+      
+      setDisplayedMovies((prev) => prev.filter((movie) => movie.id !== movieId))
+      setRatings((prev) => {
+        const newRatings = { ...prev }
+        delete newRatings[movieId]
+        return newRatings
+      })
+    } catch (error) {
+      console.error('Failed to remove movie:', error)
+      setError('Failed to remove movie. Please try again.')
+    }
   }
 
   const ratedCount = Object.keys(ratings).length
