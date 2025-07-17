@@ -106,7 +106,7 @@ function RatingPage() {
   
       const newMovie = {
         id: movieTitle, // Use title as fallback ID
-        title: movieTitle,
+        title: verificationResult.detail,
       }
   
       setDisplayedMovies((prev) => [...prev, newMovie])
@@ -154,7 +154,7 @@ function RatingPage() {
     try {
       const token = localStorage.getItem('authToken')
       
-      
+
       const data = await api.getRecommendations(token, ratings)
 
       if (data.success && data.detail) {
