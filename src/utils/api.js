@@ -24,9 +24,9 @@ const api = {
         Authorization: `Bearer ${token}`
       },
       body: JSON.stringify({
-        seeds: Object.entries(ratings).map(([title, rating]) => ({
-          title,
-          rating
+        seeds: Object.entries(ratings).map(([movie_id, rating]) => ({
+          id: parseInt(movie_id),
+          rating: parseFloat(rating)
         }))
       })
     })
@@ -43,19 +43,29 @@ const api = {
     if (IS_DEV) {
       // Return mock data for development
       const savedRatings = localStorage.getItem('ratings')
+      console.log('DEV mode: Loading ratings from localStorage:', savedRatings)
       return savedRatings ? JSON.parse(savedRatings) : {}
     }
 
+    console.log('Fetching user ratings from:', `${API_BASE_URL}/user/ratings`)
     const response = await fetch(`${API_BASE_URL}/user/ratings`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
 
+    console.log('User ratings response status:', response.status)
+    console.log('User ratings response ok:', response.ok)
+
     if (!response.ok) {
-      throw new Error('Failed to fetch user ratings')
+      const errorText = await response.text()
+      console.error('User ratings API error:', errorText)
+      throw new Error(`Failed to fetch user ratings: ${response.status} ${errorText}`)
     }
-    return response.json()
+    
+    const data = await response.json()
+    console.log('User ratings API response data:', data)
+    return data
   },
 
   async saveRating (token, movieId, rating) {
@@ -80,7 +90,9 @@ const api = {
     })
 
     if (!response.ok) {
-      throw new Error('Failed to save rating')
+      const errorText = await response.text()
+      console.error('Save rating API error:', errorText)
+      throw new Error(`Failed to save rating: ${response.status} ${errorText}`)
     }
     return response.json()
   },
@@ -102,7 +114,28 @@ const api = {
     })
 
     if (!response.ok) {
-      throw new Error('Failed to delete rating')
+      const errorText = await response.text()
+      console.error('Delete rating API error:', errorText)
+      throw new Error(`Failed to delete rating: ${response.status} ${errorText}`)
+    }
+    return response.json()
+  },
+
+  async getMovieById (token, movieId) {
+    console.log('Fetching movie details for ID:', movieId)
+    const response = await fetch(
+      `${API_BASE_URL}/movies/${movieId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    )
+
+    if (!response.ok) {
+      const errorText = await response.text()
+      console.error('Get movie API error:', errorText)
+      throw new Error(`Failed to get movie: ${response.status} ${errorText}`)
     }
     return response.json()
   },
@@ -122,7 +155,9 @@ const api = {
     )
 
     if (!response.ok) {
-      throw new Error('Failed to verify movie')
+      const errorText = await response.text()
+      console.error('Verify movie API error:', errorText)
+      throw new Error(`Failed to verify movie: ${response.status} ${errorText}`)
     }
     return response.json()
   },
@@ -137,7 +172,9 @@ const api = {
     })
 
     if (!response.ok) {
-      throw new Error('Dev login failed')
+      const errorText = await response.text()
+      console.error('Dev login API error:', errorText)
+      throw new Error(`Dev login failed: ${response.status} ${errorText}`)
     }
     return response.json()
   }

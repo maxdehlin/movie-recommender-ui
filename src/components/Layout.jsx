@@ -37,9 +37,6 @@ function Layout({ onLogout }) {
                 <h1 className='text-xl font-bold text-white tracking-tight'>
                   MovieRecs
                 </h1>
-                <p className='text-xs text-white/50 font-medium hidden sm:block'>
-                  AI-Powered Recommendations
-                </p>
               </div>
             </Link>
 

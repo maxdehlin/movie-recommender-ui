@@ -97,9 +97,6 @@ function LoginPage({ onLogin }) {
                   <div className='w-10 h-10 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl flex items-center justify-center mx-auto'>
                     <span className='text-lg'>🤖</span>
                   </div>
-                  <p className='text-white/60 text-xs font-medium'>
-                    AI Powered
-                  </p>
                 </div>
                 <div className='text-center space-y-2'>
                   <div className='w-10 h-10 bg-gradient-to-br from-pink-500/20 to-rose-500/20 rounded-xl flex items-center justify-center mx-auto'>

@@ -4,9 +4,19 @@ import api from '../utils/api'
 function RatingPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [ratings, setRatings] = useState({})
+  
+  // Debug effect to log ratings changes
+  useEffect(() => {
+    console.log('Ratings state updated:', ratings)
+  }, [ratings])
   const [recommendations, setRecommendations] = useState([])
   // const [availableMovies, setAvailableMovies] = useState([])
   const [displayedMovies, setDisplayedMovies] = useState([])
+  
+  // Debug effect to log displayedMovies changes
+  useEffect(() => {
+    console.log('DisplayedMovies state updated:', displayedMovies)
+  }, [displayedMovies])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(null)
@@ -31,26 +41,51 @@ function RatingPage() {
 
       // Load user ratings from backend
       const userRatingsResponse = await api.getUserRatings(token)
-      const userRatings = userRatingsResponse.detail
+      console.log('User ratings response:', userRatingsResponse)
       
-      // Filter out any ratings with numeric IDs or invalid titles
+      // Handle the backend response structure (array of rating objects)
+      let userRatings = []
+      if (userRatingsResponse.detail) {
+        userRatings = userRatingsResponse.detail
+      } else if (Array.isArray(userRatingsResponse)) {
+        userRatings = userRatingsResponse
+      }
+      
+      console.log('Processed user ratings:', userRatings)
+      
+      // Convert array to object for easier handling
       const filteredRatings = {}
-      Object.entries(userRatings).forEach(([movieId, rating]) => {
-        // Skip if movieId is numeric or doesn't look like a proper movie title
-        if (!/^\d+$/.test(movieId) && movieId.trim() !== '' && movieId !== '0') {
-          filteredRatings[movieId] = rating
+      userRatings.forEach((ratingObj) => {
+        console.log('Processing rating object:', ratingObj)
+        if (ratingObj.movie_id && ratingObj.rating !== undefined) {
+          filteredRatings[ratingObj.movie_id] = ratingObj.rating
+          console.log('Added to filtered ratings:', ratingObj.movie_id, ratingObj.rating)
+        } else {
+          console.log('Filtered out rating object:', ratingObj)
         }
       })
       
+      console.log('Filtered ratings:', filteredRatings)
       setRatings(filteredRatings)
 
       // Load displayed movies from rated movies
       if (Object.keys(filteredRatings).length > 0) {
-        const ratedMovies = Object.keys(filteredRatings).map(movieId => ({
-          id: movieId,
-          title: movieId, // For now, using movieId as title - backend should return full movie data
-        }))
+        console.log('Creating displayed movies from filtered ratings...')
+        
+        // Create movie objects from the backend response
+        const ratedMovies = userRatings.map((ratingObj) => {
+          console.log('Creating movie object from rating:', ratingObj)
+          return {
+            id: ratingObj.movie_id,
+            title: ratingObj.title,
+            rating: ratingObj.rating
+          }
+        })
+        
         setDisplayedMovies(ratedMovies)
+        console.log('Set displayed movies:', ratedMovies)
+      } else {
+        console.log('No filtered ratings found, displayedMovies not updated')
       }
 
       const savedRecommendationsData = localStorage.getItem('recommendations')
@@ -90,6 +125,7 @@ function RatingPage() {
       console.log('check1')
   
       const verificationResult = await api.verifyMovie(token, movieTitle)
+      // official_title = 
       console.log('Verification result:', verificationResult)
   
       if (!verificationResult.success) {
@@ -110,7 +146,7 @@ function RatingPage() {
       }
   
       setDisplayedMovies((prev) => [...prev, newMovie])
-      setSuccess(`"${movieTitle}" added to your rating list!`)
+      setSuccess(`"${verificationResult.detail}" added to your rating list!`)
       setSearchQuery('')
       console.log('check3')
     } catch (error) {
@@ -136,6 +172,8 @@ function RatingPage() {
         [movieId]: rating,
       }
       setRatings(newRatings)
+      console.log('Rating saved for movieId:', movieId, 'rating:', rating)
+      console.log('Updated ratings state:', newRatings)
     } catch (error) {
       console.error('Failed to save rating:', error)
       setError('Failed to save rating. Please try again.')
@@ -154,10 +192,18 @@ function RatingPage() {
     try {
       const token = localStorage.getItem('authToken')
       
-
-      const data = await api.getRecommendations(token, ratings)
+      // Since we're now using movie IDs as keys consistently, we can use ratings directly
+      const ratingsWithIds = { ...ratings }
+      
+      console.log('Current ratings state:', ratings)
+      console.log('Current displayedMovies:', displayedMovies)
+      console.log('Current recommendations:', recommendations)
+      console.log('Sending ratings with IDs for recommendations:', ratingsWithIds)
+      const data = await api.getRecommendations(token, ratingsWithIds)
 
       if (data.success && data.detail) {
+        console.log('Recommendations received:', data.detail)
+        console.log('First recommendation object structure:', data.detail[0])
         setRecommendations(data.detail)
         localStorage.setItem('recommendations', JSON.stringify(data.detail))
       } else {
@@ -265,7 +311,7 @@ function RatingPage() {
                 </span>
               </h2>
               <p className='text-xl text-white/70 font-light leading-relaxed max-w-2xl mx-auto'>
-                Rate movies you've watched and our AI will recommend
+                Rate movies you've watched and we will recommend
                 personalized picks just for you
               </p>
             </section>
@@ -557,6 +603,43 @@ function RatingPage() {
                       {movie.reason}
                     </p>
                   )}
+
+                  {/* Rating Stars */}
+                  <div className='flex items-center justify-center mb-4'>
+                    <div className='flex items-center space-x-1'>
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <button
+                          key={star}
+                          onClick={() => {
+                            console.log(movie)
+                            const movieKey = movie.movie_id || movie.id
+                            console.log('Rating movie with key:', movieKey, 'movie object:', movie)
+                            handleRating(movieKey, star)
+                          }}
+                          className={`relative p-1 rounded-lg transition-all duration-300 hover:scale-125 active:scale-110 group ${
+                            ratings[movie.movie_id || movie.id || movie.title || movie] >= star
+                              ? 'text-amber-400'
+                              : 'text-white/30 hover:text-amber-300'
+                          }`}
+                        >
+                          <svg
+                            className={`w-6 h-6 transition-all duration-300 ${
+                              ratings[movie.movie_id || movie.id || movie.title || movie] >= star
+                                ? 'drop-shadow-lg filter'
+                                : 'group-hover:drop-shadow-md'
+                            }`}
+                            fill='currentColor'
+                            viewBox='0 0 24 24'
+                          >
+                            <path d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z' />
+                          </svg>
+                          {ratings[movie.movie_id || movie.id || movie.title || movie] >= star && (
+                            <div className='absolute inset-0 bg-amber-400/20 rounded-lg animate-pulse'></div>
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
 
                   <div className='flex items-center justify-between pt-4 border-t border-white/10'>
                     <div className='flex items-center space-x-2'>

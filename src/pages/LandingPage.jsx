@@ -30,9 +30,6 @@ function LandingPage() {
                 <h1 className='text-xl font-bold text-white tracking-tight'>
                   MovieRecs
                 </h1>
-                <p className='text-xs text-white/60 font-medium'>
-                  AI-Powered Recommendations
-                </p>
               </div>
             </div>
             <Link
@@ -60,7 +57,7 @@ function LandingPage() {
                   </span>
                 </h1>
                 <p className='text-xl md:text-2xl text-white/70 font-light leading-relaxed max-w-3xl mx-auto'>
-                  Powered by AI, MovieRecs learns your taste and recommends
+                  MovieRecs learns your taste and recommends
                   films you'll absolutely love. Rate a few movies and unlock
                   personalized recommendations.
                 </p>
@@ -84,7 +81,6 @@ function LandingPage() {
                   <div className='w-1 h-1 bg-white/30 rounded-full'></div>
                   <div className='flex items-center space-x-2'>
                     <div className='w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-300'></div>
-                    <span className='text-sm font-medium'>AI-powered</span>
                   </div>
                 </div>
               </div>
@@ -140,7 +136,7 @@ function LandingPage() {
         <div className='max-w-7xl mx-auto px-6 lg:px-8 py-8'>
           <div className='text-center'>
             <p className='text-white/50 text-sm'>
-              © 2024 MovieRecs. Discover movies you'll love with AI-powered
+              © 2024 MovieRecs. Discover movies you'll love with machine learning powered
               recommendations.
             </p>
           </div>
