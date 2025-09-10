@@ -142,7 +142,7 @@ function RatingPage() {
   
       const newMovie = {
         id: movieTitle, // Use title as fallback ID
-        title: verificationResult.detail,
+        title: movieTitle,
       }
   
       setDisplayedMovies((prev) => [...prev, newMovie])

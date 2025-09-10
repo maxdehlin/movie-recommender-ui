@@ -141,6 +141,7 @@ const api = {
   },
 
   async verifyMovie (token, movieTitle) {
+    console.log('token', token)
     if (IS_DEV) {
       return { success: true, detail: 'Movie verified (dev mode)' }
     }
