@@ -611,20 +611,20 @@ function RatingPage() {
                         <button
                           key={star}
                           onClick={() => {
-                            console.log(movie)
-                            const movieKey = movie.movie_id || movie.id
-                            console.log('Rating movie with key:', movieKey, 'movie object:', movie)
+                            console.log('Rating recommendation movie:', movie)
+                            const movieKey = movie.id
+                            console.log('Rating movie with ID:', movieKey)
                             handleRating(movieKey, star)
                           }}
                           className={`relative p-1 rounded-lg transition-all duration-300 hover:scale-125 active:scale-110 group ${
-                            ratings[movie.movie_id || movie.id || movie.title || movie] >= star
+                            ratings[movie.id] >= star
                               ? 'text-amber-400'
                               : 'text-white/30 hover:text-amber-300'
                           }`}
                         >
                           <svg
                             className={`w-6 h-6 transition-all duration-300 ${
-                              ratings[movie.movie_id || movie.id || movie.title || movie] >= star
+                              ratings[movie.id] >= star
                                 ? 'drop-shadow-lg filter'
                                 : 'group-hover:drop-shadow-md'
                             }`}
@@ -633,7 +633,7 @@ function RatingPage() {
                           >
                             <path d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z' />
                           </svg>
-                          {ratings[movie.movie_id || movie.id || movie.title || movie] >= star && (
+                          {ratings[movie.id] >= star && (
                             <div className='absolute inset-0 bg-amber-400/20 rounded-lg animate-pulse'></div>
                           )}
                         </button>
@@ -683,7 +683,7 @@ function RatingPage() {
         )}
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes fade-in {
           from {
             opacity: 0;

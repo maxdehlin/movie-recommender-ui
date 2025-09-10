@@ -84,8 +84,8 @@ const api = {
         Authorization: `Bearer ${token}`
       },
       body: JSON.stringify({
-        movie: movieId, // match FastAPI param name
-        value: rating // match FastAPI param name
+        movie: String(movieId), 
+        value: rating
       })
     })
 
